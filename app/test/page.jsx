@@ -7,7 +7,7 @@ const page = () => {
     <div>
       {" "}
       <MarqueeDemoVertical />
-      <DomainSearchSection />
+      {/* <DomainSearchSection /> */}
     </div>
   );
 };

@@ -87,7 +87,7 @@ export default function DomainSearchSection() {
       <h1 className="text-white text-7xl">comon</h1>
       <section
         ref={section1Ref}
-        className="absolute inset-0 h-screen flex flex-col items-center justify-center text-white bg-gradient-to-b from-blue-900 to-indigo-800 rounded-t-[4rem] overflow-hidden"
+        className="absolute inset-0 h-screen flex flex-col items-center justify-center text-white bg-gradient-to-b from-blue-900 to-indigo-800  overflow-hidden"
       >
         <div className="max-w-5xl px-6">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">

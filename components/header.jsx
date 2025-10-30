@@ -1,10 +1,12 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Button from "./ui/button";
 
 const Header = () => {
   const [showHeader, setShowHeader] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,43 +20,109 @@ const Header = () => {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full bg-white border-b border-gray-200 z-50 transition-all duration-500 ${
-        showHeader ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-      }`}
-    >
-      <nav className="flex items-center justify-between px-8 py-4">
-        {/* Left: Logo */}
-        <div className="text-2xl font-bold text-black">Logo</div>
+    <>
+      {/* --- Header Bar --- */}
+      <header
+        className={`fixed top-0 left-0 w-full bg-white border-b border-gray-200 z-50 transition-all duration-500 ${
+          showHeader
+            ? "translate-y-0 opacity-100"
+            : "-translate-y-full opacity-0"
+        }`}
+      >
+        <nav className="flex items-center justify-between px-6 md:px-8 py-4">
+          {/* Left: Logo */}
+          <div className="text-2xl font-bold text-black">Logo</div>
 
-        {/* Center: Menu Items */}
-        <div className="hidden md:flex items-center gap-8">
-          {["dummy", "lorepsum", "about"].map((item) => (
-            <div
-              key={item}
-              className="flex items-center gap-1 cursor-pointer hover:text-gray-600"
+          {/* Center: Menu Items (hidden on mobile) */}
+          <div className="hidden md:flex items-center gap-8">
+            {["dummy", "lorepsum", "about"].map((item) => (
+              <div
+                key={item}
+                className="flex items-center gap-1 cursor-pointer hover:text-gray-600"
+              >
+                <span className="text-md font-medium text-black">{item}</span>
+                <ChevronDown size={16} />
+              </div>
+            ))}
+
+            {["Pricing", "Careers", "features", "Enterprise"].map((item) => (
+              <span
+                key={item}
+                className="text-md font-medium cursor-pointer hover:text-gray-600 text-black"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+
+          {/* Right Side */}
+          <div className="flex items-center gap-4">
+            {/* Button */}
+            <Button className="hidden md:inline-block bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2">
+              Get Started
+            </Button>
+
+            {/* Mobile: Sidebar Toggle */}
+            <button
+              onClick={() => setIsSidebarOpen(true)}
+              className="md:hidden p-2 rounded-md hover:bg-gray-100"
             >
-              <span className="text-md font-medium text-black">{item}</span>
-              <ChevronDown size={16} />
-            </div>
-          ))}
+              <Menu size={26} className="text-black" />
+            </button>
+          </div>
+        </nav>
+      </header>
 
-          {["Pricing", "Careers", "features", "Enterprise"].map((item) => (
+      {/* --- Sidebar Drawer --- */}
+      <div
+        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-[60] transform transition-transform duration-300 ${
+          isSidebarOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {/* Sidebar Header */}
+        <div className="flex items-center justify-between px-6 py-4 border-b">
+          <span className="text-lg font-semibold text-black">Menu</span>
+          <button
+            onClick={() => setIsSidebarOpen(false)}
+            className="p-2 hover:bg-gray-100 rounded-md"
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        {/* Sidebar Content */}
+        <div className="flex flex-col p-6 space-y-4">
+          {[
+            "dummy",
+            "lorepsum",
+            "about",
+            "Pricing",
+            "Careers",
+            "features",
+            "Enterprise",
+          ].map((item) => (
             <span
               key={item}
-              className="text-md font-medium cursor-pointer hover:text-gray-600 text-black"
+              className="text-gray-700 text-lg font-medium cursor-pointer hover:text-blue-600"
             >
               {item}
             </span>
           ))}
-        </div>
 
-        {/* Right: Button */}
-        <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2">
-          Get Started
-        </Button>
-      </nav>
-    </header>
+          <Button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2">
+            Get Started
+          </Button>
+        </div>
+      </div>
+
+      {/* --- Overlay (background blur) --- */}
+      {isSidebarOpen && (
+        <div
+          onClick={() => setIsSidebarOpen(false)}
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[55]"
+        ></div>
+      )}
+    </>
   );
 };
 
