@@ -4,19 +4,19 @@ import { Marquee } from "./ui/marquee";
 const companies = [
   {
     name: "Google",
-    logo: "https://images.theconversation.com/files/527116/original/file-20230518-29-egvjik.jpg?ixlib=rb-4.1.0&rect=40%2C161%2C4500%2C2250&q=45&auto=format&w=1356&h=668&fit=crop",
+    logo: "/logo-dummy.png",
   },
   {
     name: "Microsoft",
-    logo: "https://images.theconversation.com/files/527116/original/file-20230518-29-egvjik.jpg?ixlib=rb-4.1.0&rect=40%2C161%2C4500%2C2250&q=45&auto=format&w=1356&h=668&fit=crop",
+    logo: "/logo-dummy.png",
   },
   {
     name: "Amazon",
-    logo: "https://images.theconversation.com/files/527116/original/file-20230518-29-egvjik.jpg?ixlib=rb-4.1.0&rect=40%2C161%2C4500%2C2250&q=45&auto=format&w=1356&h=668&fit=crop",
+    logo: "/logo-dummy.png",
   },
   {
     name: "Netflix",
-    logo: "https://images.theconversation.com/files/527116/original/file-20230518-29-egvjik.jpg?ixlib=rb-4.1.0&rect=40%2C161%2C4500%2C2250&q=45&auto=format&w=1356&h=668&fit=crop",
+    logo: "/logo-dummy.png",
   },
 ];
 

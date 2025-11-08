@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Testimonials from "../ui/testimonialcard";
 import ClientComponent from "./gridComponent";
+import BusinessFeatureSection from "./featureSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -90,14 +91,15 @@ export default function DomainSearchSection() {
         ref={section1Ref}
         className="absolute inset-0 h-screen flex flex-col items-center justify-center text-white bg-gradient-to-b from-blue-900 to-indigo-800  overflow-hidden"
       >
-        <div className="max-w-5xl px-6">
+        {/* <div className="max-w-5xl px-6">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
             What Our Clients Say
           </h2>
           <div className="backdrop-blur-lg bg-white/10 rounded-3xl shadow-lg p-6">
             <Testimonials reviews={reviews} />
           </div>
-        </div>
+        </div> */}
+        <BusinessFeatureSection />
       </section>
 
       {/* --- Section 2 --- */}

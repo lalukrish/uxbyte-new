@@ -14,6 +14,8 @@ import StrategiGrid from "@/components/landingPage/startegiMarket";
 import FaqSection from "@/components/landingPage/faqSection";
 import InspirationSection from "@/components/landingPage/blogSection";
 import Footer from "@/components/footer";
+import CreativeHero from "@/components/landingPage/hero-section";
+import BusinessFeatureSection from "@/components/landingPage/featureSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -190,6 +192,7 @@ export default function Home() {
 
   return (
     <>
+      <CreativeHero />
       <div
         ref={containerRef}
         className="relative w-full min-h-[200vh] bg-gradient-to-br from-cyan-100 via-white to-cyan-100 overflow-hidden"
@@ -433,7 +436,6 @@ export default function Home() {
       <StrategiGrid />
       <FaqSection />
       <InspirationSection />
-      <Footer />
     </>
   );
 }

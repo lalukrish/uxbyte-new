@@ -9,6 +9,7 @@ const nextConfig = {
       "thumbs.dreamstime.com",
       "media.istockphoto.com",
       "ui-avatars.com",
+      "img.freepik.com",
     ],
   },
 };
