@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 
 import "./globals.css";
 import TopHeader from "@/components/topHeader";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          type="module"
+          src="https://unpkg.com/@splinetool/viewer@1.10.90/build/spline-viewer.js"
+          strategy="beforeInteractive"
+        />
+      </head>
       <body className={`${poppins.variable} antialiased`}>
         <TopHeader />
         {children}

@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Testimonials from "../ui/testimonialcard";
+import ClientComponent from "./gridComponent";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -102,9 +103,9 @@ export default function DomainSearchSection() {
       {/* --- Section 2 --- */}
       <section
         ref={section2Ref}
-        className="absolute inset-0 h-screen flex flex-col items-center justify-center rounded-t-[4rem] text-white bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-900"
+        className="absolute inset-0 h-screen  rounded-t-[4rem] text-white bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-900"
       >
-        <div className="text-center space-y-8 px-6">
+        {/* <div className="text-center space-y-8 px-6">
           <h2 className="text-4xl md:text-5xl font-bold">
             Find the Perfect Domain
           </h2>
@@ -123,7 +124,8 @@ export default function DomainSearchSection() {
               Search →
             </button>
           </div>
-        </div>
+        </div> */}
+        <ClientComponent />
       </section>
 
       {/* --- Section 3 --- */}
