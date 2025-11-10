@@ -204,7 +204,7 @@ export default function Home() {
               <h2 className="text-3xl font-mono mt-[0%] text-black mb-2 leading-tight">
                 dummy dummy dummy dummy
               </h2>
-              <h1 className="text-7xl font-extralight mt-[8%] text-black mb-6 leading-tight">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mt-[8%] text-black mb-6 leading-tight">
                 Lorem Ipsum is simply dummy text{" "}
               </h1>
               <p className="text-xl text-gray-700 mb-8">
@@ -244,7 +244,7 @@ export default function Home() {
             <div className="absolute left-14 top-[45%] -translate-y-1/2 z-50">
               <div
                 ref={leftCardRef}
-                className="bg-white rounded-lg p-4 shadow-md border-2 border-blue-400 w-44 mx-auto mt-10 ml-15"
+                className="bg-white rounded-lg p-4 border-2 border-blue-400 w-44 mx-auto mt-10 ml-15"
               >
                 <div className="text-center text-black text-xs sm:text-sm md:text-base font-semibold leading-tight">
                   {/* First Line */}
@@ -338,7 +338,7 @@ export default function Home() {
             className="flex flex-col rounded-xl 
       bg-gradient-to-r from-blue-50 via-blue-100 to-green-100 
       w-full max-w-6xl h-auto min-h-[400px] sm:min-h-[500px] lg:min-h-[600px]
-      mt-22 px-6 sm:px-[10%] py-[1%] mx-auto shadow-lg"
+      mt-22 px-6 sm:px-[10%] py-[1%] mx-auto"
           >
             {/* 🔹 Top Row: Heading + Social Icons */}
             <div className="w-full flex justify-between items-center">

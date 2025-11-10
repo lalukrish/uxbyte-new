@@ -62,7 +62,7 @@ const StrategiGrid = () => {
   return (
     <div className="py-0 xl:py-28 px-4 md:px-10 bg-white">
       {/* Header Section */}
-      <div className="pl-0 md:pl-20 text-left">
+      <div className="pl-0 md:pl-10 text-left">
         <CChip title="Industries We Serve" />
 
         <h2 className="mt-6 mb-12 font-light text-3xl md:text-4xl leading-snug text-gray-900">
@@ -85,9 +85,9 @@ const StrategiGrid = () => {
             <img
               src={industry.imageUrl}
               alt={industry.title}
-              className="w-full h-52 object-cover"
+              className="w-full h-72 object-cover"
             />
-            <div className="p-5">
+            <div className="pt-2">
               <h3 className="font-medium text-xl text-gray-900 capitalize mb-2">
                 {industry.title}
               </h3>
