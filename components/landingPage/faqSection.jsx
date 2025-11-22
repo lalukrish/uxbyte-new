@@ -41,6 +41,26 @@ const faqs = [
     answer:
       "Yes, we provide a secure dashboard where you can track your visa or admission process in real-time.",
   },
+  {
+    question: "What services do you offer?",
+    answer:
+      "We offer visa consulting, study abroad assistance, travel guidance, and documentation support tailored to each client's needs.",
+  },
+  {
+    question: "Do you charge for consultation?",
+    answer:
+      "Our initial consultation is completely free. We only charge once you decide to proceed with our services.",
+  },
+  {
+    question: "Can I track my application status?",
+    answer:
+      "Yes, we provide a secure dashboard where you can track your visa or admission process in real-time.",
+  },
+  {
+    question: "What services do you offer?",
+    answer:
+      "We offer visa consulting, study abroad assistance, travel guidance, and documentation support tailored to each client's needs.",
+  },
 ];
 
 const Testimonials = ({ reviews }) => (
@@ -97,25 +117,20 @@ export default function ScrollFaqGsap() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[200vh] overflow-hidden">
+    <section ref={sectionRef} className="relative h-[130vh] overflow-hidden">
       {/* Blue Section */}
       <div
         ref={blueRef}
-        className="absolute top-0 left-0 w-full h-screen bg-gradient-to-b from-blue-900 to-indigo-800 flex flex-col justify-center items-center rounded-b-[6rem] z-10"
+        className="absolute top-0 left-0 w-full h-screen  bg-white flex flex-col  rounded-b-[6rem] z-10"
       >
-        <div className="max-w-5xl px-6 text-center text-white">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8">
+        <div className=" px-14  text-black ">
+          {/* <h2 className="text-4xl md:text-5xl font-bold mb-8">
             What Our Clients Say
           </h2>
           <div className="backdrop-blur-lg bg-white/10 rounded-3xl shadow-lg p-6">
             <Testimonials reviews={reviews} />
-          </div>
-        </div>
-      </div>
+          </div> */}
 
-      {/* White FAQ Section */}
-      <div className="absolute top-0 left-0 w-full h-full bg-white text-black rounded-t-[6rem] flex flex-col justify-center items-start px-6 md:px-10">
-        <div className="max-w-full w-full">
           <h2 className="text-4xl md:text-5xl font-bold text-start mb-12">
             Frequently Asked Questions
           </h2>
@@ -125,7 +140,7 @@ export default function ScrollFaqGsap() {
               <div
                 key={index}
                 onClick={() => toggleFAQ(index)}
-                className="flex justify-between items-center w-full py-5 cursor-pointer hover:bg-gray-50 transition-colors"
+                className="flex justify-between items-start w-full py-5 cursor-pointer hover:bg-gray-50 transition-colors"
               >
                 <div>
                   <p className="font-semibold text-lg">{faq.question}</p>
@@ -145,34 +160,21 @@ export default function ScrollFaqGsap() {
           </div>
         </div>
       </div>
-      {/* <div className="text-center space-y-8 px-6">
-                <h2 className="text-4xl md:text-5xl font-bold">
-                  Find the Perfect Domain
-                </h2>
-                <p className="max-w-2xl mx-auto text-lg text-gray-200">
-                  Secure your identity online with a domain name that defines your
-                  brand.
-                </p>
-      
-                <div className="w-full max-w-3xl mx-auto flex items-center bg-white/20 backdrop-blur-md rounded-full shadow-xl overflow-hidden border border-white/30">
-                  <input
-                    type="text"
-                    placeholder="Type your domain name..."
-                    className="flex-1 px-6 py-3 bg-transparent text-lg text-white placeholder-gray-300 outline-none"
-                  />
-                  <button className="bg-orange-400 hover:bg-orange-500 text-black px-8 py-3 font-semibold rounded-r-full transition-all">
-                    Search →
-                  </button>
-                </div>
-              </div> */}
-      {/* <div className="max-w-5xl px-6">
-                        <h2 className="text-4xl md:text-5xl font-bold text-center mb-8">
-                          What Our Clients Say
-                        </h2>
-                        <div className="backdrop-blur-lg bg-white/10 rounded-3xl shadow-lg p-6">
-                          <Testimonials reviews={reviews} />
-                        </div>
-                      </div> */}
+
+      {/* White FAQ Section */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[#004f4f] text-white rounded-t-[6rem] flex flex-col justify-center items-center px-6 md:px-10">
+        <h1 className="text-4xl md:text-7xl font-semibold leading-tight ">
+          Let's Connect Today <br /> And Build Something Great
+        </h1>
+
+        <p className="mt-4 text-lg md:text-xl text-gray-700 ">
+          We help you turn your vision into reality with our expert team.
+        </p>
+
+        <button className="mt-8 bg-black text-white px-6 py-3 rounded-full text-lg md:text-xl hover:bg-gray-800 transition-all">
+          Get Started
+        </button>
+      </div>
     </section>
   );
 }

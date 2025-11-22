@@ -7,7 +7,7 @@ import { LayoutTextFlip } from "../ui/layout-text-flip";
 
 export default function CreativeHero() {
   return (
-    <section className="min-h-screen bg-[#fdf7e4] flex flex-col md:flex-row items-center justify-between px-8 md:px-20 py-16">
+    <section className="min-h-screen bg-gradient-to-b from-white overflow-hidden flex flex-col md:flex-row items-center justify-between px-8 md:px-20 py-16">
       {/* === Left Content === */}
       <div className="flex-1 text-left space-y-6 ">
         <h1 className="text-2xl lg:text-5xl xl:text-7xl 2xl:text-7xl md:text-6xl font-bold text-gray-900 leading-tight">

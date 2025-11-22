@@ -16,7 +16,7 @@ export default function ClientComponent() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-12 relative">
         <div className="text-center mb-12 sm:mb-16 relative">
           {/* Main White Box Container */}
-          <div className="inline-block bg-white rounded-3xl sm:rounded-[3rem] shadow-2xl px-8 sm:px-12 lg:px-16 py-8 sm:py-12 relative">
+          <div className="inline-block bg-black rounded-3xl sm:rounded-[3rem] shadow-2xl px-8 sm:px-12 lg:px-16 py-8 sm:py-12 relative">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               <div className="mb-2">
                 Your{" "}
@@ -145,7 +145,7 @@ export default function ClientComponent() {
           {/* Social Media Marketing Card */}
           <div className="bg-gradient-to-br from-purple-200 to-pink-200 rounded-2xl sm:rounded-3xl p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
             <div className="mb-4">
-              <div className="w-32 h-32 sm:w-40 sm:h-40 mx-auto">
+              {/* <div className="w-32 h-32 sm:w-40 sm:h-40 mx-auto">
                 <svg viewBox="0 0 200 200" className="w-full h-full">
                   <circle
                     cx="100"
@@ -182,6 +182,14 @@ export default function ClientComponent() {
                     strokeWidth="3"
                   />
                 </svg>
+              </div> */}
+              <div className=" w-[300px] inline-block">
+                {/* Background GIF */}
+                <img
+                  src="/social-media.gif"
+                  alt="background"
+                  className="block w-[300px]"
+                />
               </div>
             </div>
             <div className="bg-white rounded-xl sm:rounded-2xl px-4 sm:px-6 py-3 sm:py-4 inline-block self-start">

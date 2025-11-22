@@ -16,6 +16,8 @@ import InspirationSection from "@/components/landingPage/blogSection";
 import Footer from "@/components/footer";
 import CreativeHero from "@/components/landingPage/hero-section";
 import BusinessFeatureSection from "@/components/landingPage/featureSection";
+import SpotlightPreview from "@/components/animted-landing";
+import ScrollMarquee from "@/components/scrollmarquee";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -192,11 +194,15 @@ export default function Home() {
 
   return (
     <>
+      <SpotlightPreview />
+      <ScrollMarquee />
+
       <CreativeHero />
       <div
         ref={containerRef}
         className="relative w-full min-h-[200vh] bg-gradient-to-br from-cyan-100 via-white to-cyan-100 overflow-hidden"
       >
+        {/* <SpotlightPreview /> */}
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
           <div className="relative h-screen flex items-center justify-center px-8">
             {/* Center Content */}
@@ -431,6 +437,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+
       <AboutUs />
       <DomainSearchSection />
       <StrategiGrid />
