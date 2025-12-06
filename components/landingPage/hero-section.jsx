@@ -2,43 +2,90 @@
 
 import Image from "next/image";
 import Button from "../ui/button";
-import { LayoutTextFlip } from "../ui/layout-text-flip";
-// import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export default function CreativeHero() {
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [hovering, setHovering] = useState(false);
+
   return (
-    <section className="min-h-screen bg-gradient-to-b from-white overflow-hidden flex flex-col md:flex-row items-center justify-between px-8 md:px-20 py-16">
-      {/* === Left Content === */}
-      <div className="flex-1 text-left space-y-6 ">
-        <h1 className="text-2xl lg:text-5xl xl:text-7xl 2xl:text-7xl md:text-6xl font-bold text-gray-900 leading-tight">
-          Design the way <br />
-          <LayoutTextFlip words={["you think.", "imagine", "you think."]} />
-        </h1>
+    <section className="min-h-screen bg-gradient-to-b from-white overflow-hidden">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-16 py-12 lg:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[calc(100vh-6rem)]">
+          {/* === LEFT IMAGE SECTION === */}
+          <div className="flex justify-center items-center order-1 lg:order-1">
+            <div
+              className="relative w-full max-w-[350px] h-[400px] sm:max-w-[400px] sm:h-[450px] md:max-w-[450px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl group"
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                setCursorPos({
+                  x: e.clientX - rect.left,
+                  y: e.clientY - rect.top,
+                });
+                setHovering(true);
+              }}
+              onMouseLeave={() => setHovering(false)}
+            >
+              {/* Main Image */}
+              <Image
+                src="/hero_image3.png"
+                alt="Main"
+                fill
+                className="object-cover"
+              />
 
-        <div className="bg-white border border-gray-200 shadow-sm rounded-lg p-4 w-fit">
-          <p className="text-gray-800 font-medium">
-            Build your site with more creative freedom.
-          </p>
-        </div>
+              {/* Second Layer (hover reveal) */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  WebkitMaskImage: hovering
+                    ? `radial-gradient(220px at ${cursorPos.x}px ${cursorPos.y}px, transparent 30%, black 60%)`
+                    : "radial-gradient(0px at -140px -100px, transparent 0%, black 0%)",
+                  maskImage: hovering
+                    ? `radial-gradient(220px at ${cursorPos.x}px ${cursorPos.y}px, transparent 30%, black 60%)`
+                    : "radial-gradient(0px at -10px -100px, transparent 0%, black 0%)",
+                  transition:
+                    "mask-image 0.2s ease, -webkit-mask-image 0.2s ease",
+                }}
+              >
+                <Image
+                  src="/hero_image2.png"
+                  alt="Second Layer"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          </div>
 
-        <Button className="bg-yellow-400 hover:bg-yellow-500 text-black rounded-full px-6 py-3 text-lg font-semibold shadow-md">
-          Start Here
-        </Button>
+          {/* === RIGHT TEXT SECTION === */}
+          <div className="flex flex-col justify-center space-y-6 order-2 lg:order-2">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
+              Bring your ideas to life with Creative Freedom
+            </h1>
 
-        <p className="text-gray-600 text-lg">
-          Create a website the way you want. Start your 14-day free trial today.
-        </p>
-      </div>
+            <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+              We help you design websites exactly the way you imagine. With
+              intuitive tools, dynamic animations, and unmatched flexibility —
+              your creativity has no limits.
+              <br />
+              <br />
+              Explore a futuristic design experience where your imagination
+              meets powerful visual tools. We help you design websites exactly
+              the way you imagine. With intuitive tools, dynamic animations, and
+              unmatched flexibility — your creativity has no limits.
+              <br />
+              <br />
+              Explore a futuristic design experience where your imagination
+              meets powerful visual tools.
+            </p>
 
-      {/* === Right Image === */}
-      <div className="flex-1 flex justify-center mt-10 md:mt-0">
-        <div className="relative w-[350px] h-[400px] md:w-[450px] md:h-[500px] rounded-2xl overflow-hidden shadow-lg">
-          <Image
-            src="https://img.freepik.com/free-photo/people-wearing-futuristic-high-tech-virtual-reality-glasses_23-2151141659.jpg?semt=ais_hybrid&w=740&q=80" // 👉 replace with your image path
-            alt="Designer working"
-            fill
-            className="object-cover"
-          />
+            <div>
+              <Button className="bg-yellow-400 hover:bg-yellow-500 text-black rounded-full px-6 py-3 text-lg font-semibold shadow-md">
+                Start Building →
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -62,7 +62,7 @@ const StrategiGrid = () => {
   return (
     <div className="py-0 xl:py-28 px-4 md:px-10 bg-white">
       {/* Header Section */}
-      <div className="pl-0 md:pl-10 text-left">
+      <div className="pl-0 md:pl-20 text-left">
         <CChip title="Industries We Serve" />
 
         <h2 className="mt-6 mb-12 font-light text-3xl md:text-4xl leading-snug text-gray-900">
@@ -76,7 +76,7 @@ const StrategiGrid = () => {
       </div>
 
       {/* Grid Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-2 md:px-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-2 md:px-10 lg:px-20">
         {industries.map((industry, index) => (
           <div
             key={index}
@@ -85,7 +85,7 @@ const StrategiGrid = () => {
             <img
               src={industry.imageUrl}
               alt={industry.title}
-              className="w-full h-72 object-cover"
+              className="w-full h-96 object-cover"
             />
             <div className="pt-2">
               <h3 className="font-medium text-xl text-gray-900 capitalize mb-2">

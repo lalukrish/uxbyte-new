@@ -127,27 +127,27 @@ export default function DomainSearchSection() {
         ref={section2Ref}
         className="absolute inset-0 h-screen w-full rounded-t-[4rem] text-white bg-gradient-to-br from-indigo-900 via-purple-800 to-indigo-900 overflow-hidden"
       >
-        <div
+        {/* <div
           ref={section2ContentRef}
           className="w-full h-full overflow-y-auto overflow-x-hidden scrollbar-hide"
           style={{
             scrollBehavior: "smooth",
           }}
-        >
-          <ClientComponent />
-          {/* Scroll indicator */}
-          {!section2Scrolled && (
-            <div className="sticky bottom-8 left-0 right-0 flex justify-center pointer-events-none">
-              <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm animate-bounce">
-                ↓ Scroll to continue
-              </div>
+        > */}
+        <ClientComponent />
+        {/* Scroll indicator */}
+        {!section2Scrolled && (
+          <div className="sticky bottom-8 left-0 right-0 flex justify-center pointer-events-none">
+            <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm animate-bounce">
+              ↓ Scroll to continue
             </div>
-          )}
-        </div>
+          </div>
+        )}
+        {/* </div> */}
       </section>
 
       {/* --- Section 3 --- */}
-      <section
+      {/* <section
         ref={section3Ref}
         className="absolute inset-0 h-screen w-full flex flex-col items-center justify-center rounded-t-[4rem] text-white bg-gradient-to-tr from-purple-800 via-fuchsia-700 to-pink-600 overflow-hidden"
       >
@@ -169,7 +169,7 @@ export default function DomainSearchSection() {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar {

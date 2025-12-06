@@ -129,7 +129,10 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
-
+html {
+  scroll-behavior: smooth;
+  font-synthesis: none;
+}
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -179,4 +182,31 @@
     opacity: 1;
     transform: translate(-50%, -40%) scale(1);
   }
+}
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.gradient-animate {
+  background: linear-gradient(
+    90deg,
+    #0b1c4c,
+    #523b52,
+    #c57a3a,
+    #0b1c4c,
+    #1c3ca8
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.gradient-animate:hover {
+  animation: gradientMove 3s linear infinite;
 }

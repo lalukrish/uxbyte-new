@@ -162,19 +162,50 @@ export default function ScrollFaqGsap() {
       </div>
 
       {/* White FAQ Section */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[#004f4f] text-white rounded-t-[6rem] flex flex-col justify-center items-center px-6 md:px-10">
-        <h1 className="text-4xl md:text-7xl font-semibold leading-tight ">
+      <div className="absolute top-0 left-0 w-full h-full bg-white text-white rounded-t-[6rem] flex flex-col justify-center items-center px-6 md:px-10">
+        {/* <h1 className="text-4xl md:text-7xl font-semibold leading-tight  bg-[#004f4f]">
           Let's Connect Today <br /> And Build Something Great
-        </h1>
+        </h1> */}
 
-        <p className="mt-4 text-lg md:text-xl text-gray-700 ">
+        {/* <p className="mt-4 text-lg md:text-xl text-gray-700 ">
           We help you turn your vision into reality with our expert team.
-        </p>
+        </p> */}
+        <div className="w-full flex flex-col items-center justify-center py-20">
+          <h1
+            className="
+            gradient-animate
+            text-3xl sm:text-5xl md:text-5xl lg:text-7xl 2xl:text-11xl
+            font-semibold 
+            text-center
+            leading-tight
+            cursor-pointer
+          "
+          >
+            The data you own,
+          </h1>
 
+          <h1
+            className="
+            gradient-animate
+            text-3xl sm:text-5xl md:text-5xl lg:text-7xl 2xl:text-11xl
+            font-semibold 
+            text-center
+            leading-tight
+            mt-3
+            cursor-pointer
+          "
+          >
+            supercharged with AI
+          </h1>
+        </div>
         <button className="mt-8 bg-black text-white px-6 py-3 rounded-full text-lg md:text-xl hover:bg-gray-800 transition-all">
           Get Started
         </button>
       </div>
+      <>
+        {/* Inject animation styles */}
+        {/* <style>{gradientTextAnimation}</style> */}
+      </>
     </section>
   );
 }
