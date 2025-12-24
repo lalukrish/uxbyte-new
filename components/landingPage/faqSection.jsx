@@ -117,20 +117,16 @@ export default function ScrollFaqGsap() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative h-[130vh] overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative h-[130vh] overflow-hidden mx-auto md:mx-10!"
+    >
       {/* Blue Section */}
       <div
         ref={blueRef}
         className="absolute top-0 left-0 w-full h-screen  bg-white flex flex-col  rounded-b-[6rem] z-10"
       >
         <div className=" px-14  text-black ">
-          {/* <h2 className="text-4xl md:text-5xl font-bold mb-8">
-            What Our Clients Say
-          </h2>
-          <div className="backdrop-blur-lg bg-white/10 rounded-3xl shadow-lg p-6">
-            <Testimonials reviews={reviews} />
-          </div> */}
-
           <h2 className="text-4xl md:text-5xl font-bold text-start mb-12">
             Frequently Asked Questions
           </h2>

@@ -18,6 +18,7 @@ import CreativeHero from "@/components/landingPage/hero-section";
 import BusinessFeatureSection from "@/components/landingPage/featureSection";
 import SpotlightPreview from "@/components/animted-landing";
 import ScrollMarquee from "@/components/scrollmarquee";
+import HeroNew from "@/components/landingPage/hero-new";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -194,8 +195,9 @@ export default function Home() {
 
   return (
     <>
-      <SpotlightPreview />
-      <ScrollMarquee />
+      <HeroNew />
+      {/* <SpotlightPreview /> */}
+      {/* <ScrollMarquee /> */}
 
       <CreativeHero />
       <div

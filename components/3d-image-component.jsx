@@ -407,68 +407,66 @@ const MaritimeCarousel = () => {
           const el = imageRefs.current[index];
           if (!el) return;
 
-          const startTime = index * 1.5;
-          const isLastCard = index === images.length - 1;
+          const startTime = index * 1.2;
 
-          // Different exit angles for variety
-          const isLeft = img.startPos.x.includes("-");
-          const exitX = isLeft ? "-70%" : "40%";
-          const exitY =
-            index % 3 === 0 ? "-80%" : index % 3 === 1 ? "60%" : "40%";
-          const exitRotation = isLeft ? -25 : 25;
-          const rotateY = isLeft ? -35 : 35;
+          // Calculate unique exit direction for each card
+          const angle = (index / images.length) * Math.PI * 2;
+          const exitX = Math.cos(angle) * 150 + "%";
+          const exitY = Math.sin(angle) * 150 + "%";
+          const exitRotation = (angle * 180) / Math.PI;
 
-          // Image moves FORWARD from back to front
-          tl.to(
+          // Phase 1: All cards start at center, stacked
+          tl.fromTo(
             el,
             {
-              z: 600, // Come forward to prominent position
-              scale: isLastCard ? 1.5 : 1.3,
+              x: "0%",
+              y: "0%",
+              z: -800 - index * 100,
+              scale: 0.6,
+              opacity: 0.3,
+              rotation: 0,
+            },
+            {
+              x: "0%",
+              y: "0%",
+              z: 200,
+              scale: 1.2,
               opacity: 1,
-              rotationY: isLastCard ? 0 : rotateY * 0.3, // Slight rotation as it approaches
-              duration: 2,
+              rotation: 0,
+              duration: 1.5,
               ease: "power2.out",
             },
             startTime
           );
 
-          if (isLastCard) {
-            // Last card: shoots straight forward at full size
-            tl.to(
-              el,
-              {
-                x: "0%",
-                y: "0%",
-                z: 1800, // Zoom straight past the camera
-                scale: 3.5,
-                rotation: 0,
-                rotationY: 0,
-                rotationX: 0,
-                opacity: 0,
-                duration: 1.5,
-                ease: "power2.in",
-              },
-              startTime + 2
-            );
-          } else {
-            // Other cards: exit at angles with smaller scale
-            tl.to(
-              el,
-              {
-                x: exitX,
-                y: exitY,
-                z: 600, // Not as far forward
-                scale: 1.5, // Smaller exit scale
-                rotation: exitRotation,
-                rotationY: rotateY,
-                rotationX: index % 2 === 0 ? 15 : -15,
-                opacity: 0,
-                duration: 1.5,
-                ease: "power2.in",
-              },
-              startTime + 2
-            );
-          }
+          // Phase 2: Brief pause at center
+          tl.to(
+            el,
+            {
+              scale: 1.25,
+              duration: 0.4,
+              ease: "power1.inOut",
+            },
+            startTime + 1.5
+          );
+
+          // Phase 3: Explode outward in all directions
+          tl.to(
+            el,
+            {
+              x: exitX,
+              y: exitY,
+              z: 800,
+              scale: 0.8,
+              rotation: exitRotation,
+              rotationY: Math.sin(angle) * 30,
+              rotationX: Math.cos(angle) * 20,
+              opacity: 0,
+              duration: 1.8,
+              ease: "power2.in",
+            },
+            startTime + 1.9
+          );
         });
       };
     };

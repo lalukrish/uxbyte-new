@@ -9,13 +9,13 @@ export default function CreativeHero() {
   const [hovering, setHovering] = useState(false);
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-white overflow-hidden">
-      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-16 py-12 lg:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[calc(100vh-6rem)]">
+    <section className="min-h-screen bg-white overflow-hidden">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-16 py-4 lg:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-4 items-center min-h-[calc(100vh-6rem)]">
           {/* === LEFT IMAGE SECTION === */}
           <div className="flex justify-center items-center order-1 lg:order-1">
             <div
-              className="relative w-full max-w-[350px] h-[400px] sm:max-w-[400px] sm:h-[450px] md:max-w-[450px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl group"
+              className="relative w-full max-w-[350px] h-[400px] sm:max-w-[400px] sm:h-[450px] md:max-w-[450px] md:h-[500px] rounded-2xl overflow-hidden  group"
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
                 setCursorPos({
@@ -27,8 +27,14 @@ export default function CreativeHero() {
               onMouseLeave={() => setHovering(false)}
             >
               {/* Main Image */}
-              <Image
+              {/* <Image
                 src="/hero_image3.png"
+                alt="Main"
+                fill
+                className="object-cover"
+              /> */}
+              <Image
+                src="/creative2.png"
                 alt="Main"
                 fill
                 className="object-cover"
@@ -48,8 +54,14 @@ export default function CreativeHero() {
                     "mask-image 0.2s ease, -webkit-mask-image 0.2s ease",
                 }}
               >
-                <Image
+                {/* <Image
                   src="/hero_image2.png"
+                  alt="Second Layer"
+                  fill
+                  className="object-cover"
+                /> */}
+                <Image
+                  src="/creative1.png"
                   alt="Second Layer"
                   fill
                   className="object-cover"
@@ -59,7 +71,7 @@ export default function CreativeHero() {
           </div>
 
           {/* === RIGHT TEXT SECTION === */}
-          <div className="flex flex-col justify-center space-y-6 order-2 lg:order-2">
+          <div className="flex flex-col justify-center space-y-6 order-2 lg:order-2 xl:-translate-x-12">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
               Bring your ideas to life with Creative Freedom
             </h1>

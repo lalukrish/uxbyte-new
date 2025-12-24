@@ -4,7 +4,10 @@ import SpotlightPreview from "@/components/animted-landing";
 import NexusSciHero from "@/components/landingPage/gridComponent";
 import DomainSearchSection from "@/components/landingPage/testimonial-section";
 import { MarqueeDemoVertical } from "@/components/marquee-slider";
+import ScrollingFeatures from "@/components/scrolling-features";
 import ScrollMarquee from "@/components/scrollmarquee";
+import ExplosionImage from "@/components/ui/explosion";
+import HoverImage from "@/components/ui/hover-image";
 import Spline from "@splinetool/react-spline";
 import React from "react";
 
@@ -12,18 +15,15 @@ const page = () => {
   return (
     <div>
       {" "}
-      <SpotlightPreview />
+      {/* <SpotlightPreview />
       <ScrollMarquee />
-      <MarqueeDemoVertical />
+      <MarqueeDemoVertical /> */}
       {/* <DomainSearchSection /> */}
-      <NexusSciHero />
-      {/* <div className="w-full h-screen">
-        <spline-viewer
-          loading-anim-type="spinner-small-dark"
-          url="https://prod.spline.design/G9Sztf4sUw2jMPhY/scene.splinecode"
-        ></spline-viewer>
-      </div>{" "} */}
-      <ScrollZoomSection />
+      {/* <NexusSciHero /> */}
+      {/* <ScrollZoomSection />
+      <HoverImage /> */}
+      <ExplosionImage />
+      <ScrollingFeatures />
     </div>
   );
 };

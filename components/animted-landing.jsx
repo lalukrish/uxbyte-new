@@ -65,7 +65,8 @@ export default function SpotlightPreview() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-purple-950 via-black to-gray-950">
+    // <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-purple-950 via-black to-gray-950">
+    <div className="relative min-h-screen overflow-hidden bg-white">
       {/* Rotating spotlights - each moves independently */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none z-[1]">
         {/* Center spotlight - tracks mouse or rotates */}
@@ -89,7 +90,7 @@ export default function SpotlightPreview() {
         </div>
 
         {/* Left spotlight - rotates right to left */}
-        <div className="absolute -top-20 left-[20%] -translate-x-1/2 w-[500px] h-[400px] opacity-40 animate-spotlight-swing-left">
+        <div className="absolute -top-20 left-[20%] -translate-x-1/2 w-[500px] h-[400px] opacity-40 ">
           <div
             className="absolute top-0 left-1/2 -translate-x-2/3 w-full h-full bg-gradient-to-b from-pink-500/40 via-fuchsia-500/20 to-transparent"
             style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)" }}
@@ -136,7 +137,7 @@ export default function SpotlightPreview() {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 py-20">
         {/* Hero Section */}
-        <div className="max-w-6xl mx-auto mt-32">
+        <div className="md:px-24 mx-auto mt-32">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-6xl font-bold text-white mb-6 leading-tight">
