@@ -443,7 +443,7 @@ export default function Home() {
 
       <AboutUs />
       <DomainSearchSection />
-      {/* <StrategiGrid /> */}
+      <StrategiGrid />
       {/* <HoverImage /> */}
 
       <FaqSection />

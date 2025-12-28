@@ -64,7 +64,7 @@ const faqs = [
 ];
 
 const Testimonials = ({ reviews }) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-black">
     {reviews.map((review, index) => (
       <div key={index} className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
         <div className="flex items-center gap-3 mb-3">
@@ -119,12 +119,12 @@ export default function ScrollFaqGsap() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[130vh] overflow-hidden mx-auto md:mx-10!"
+      className="relative h-[130vh] overflow-hidden  bg-black"
     >
       {/* Blue Section */}
       <div
         ref={blueRef}
-        className="absolute top-0 left-0 w-full h-screen  bg-white flex flex-col  rounded-b-[6rem] z-10"
+        className="absolute top-0  w-full h-screen  bg-white flex flex-col  rounded-b-[6rem] z-10"
       >
         <div className=" px-14  text-black ">
           <h2 className="text-4xl md:text-5xl font-bold text-start mb-12">
@@ -158,7 +158,7 @@ export default function ScrollFaqGsap() {
       </div>
 
       {/* White FAQ Section */}
-      <div className="absolute top-0 left-0 w-full h-full bg-white text-white rounded-t-[6rem] flex flex-col justify-center items-center px-6 md:px-10">
+      <div className="absolute top-0 w-full h-full bg-black text-white rounded-t-[6rem] flex flex-col justify-center items-center px-6">
         {/* <h1 className="text-4xl md:text-7xl font-semibold leading-tight  bg-[#004f4f]">
           Let's Connect Today <br /> And Build Something Great
         </h1> */}
@@ -170,7 +170,7 @@ export default function ScrollFaqGsap() {
           <h1
             className="
             gradient-animate
-            text-3xl sm:text-5xl md:text-5xl lg:text-7xl 2xl:text-11xl
+            text-3xl sm:text-5xl md:text-5xl  xl:text-[122px] 2xl:text-11xl
             font-semibold 
             text-center
             leading-tight

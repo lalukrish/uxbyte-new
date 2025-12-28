@@ -85,7 +85,7 @@ const StrategiGrid = () => {
             <img
               src={industry.imageUrl}
               alt={industry.title}
-              className="w-full h-96 object-cover"
+              className="w-full h-64 object-cover"
             />
             <div className="pt-2">
               <h3 className="font-medium text-xl text-gray-900 capitalize mb-2">
