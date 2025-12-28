@@ -20,8 +20,8 @@ const page = () => {
       <MarqueeDemoVertical /> */}
       {/* <DomainSearchSection /> */}
       {/* <NexusSciHero /> */}
-      {/* <ScrollZoomSection />
-      <HoverImage /> */}
+      {/* {/* <ScrollZoomSection /> */}
+      <HoverImage />
       <ExplosionImage />
       <ScrollingFeatures />
     </div>

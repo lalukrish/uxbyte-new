@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,36 +79,17 @@ export default function HeroNew() {
       <nav className="flex items-center justify-between px-8 py-6 lg:px-24 mx-auto">
         <div className="flex items-center gap-2">
           <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center">
-            <svg
-              className="w-6 h-6 text-white"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-            >
-              <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 18c-3.86-.89-7-5.23-7-9.5V8.3l7-3.11v15.62z" />
-            </svg>
+            <Image src="/logo-1.png" alt="logo" width={100} height={100} />
           </div>
-          <span className="text-2xl font-bold text-gray-900">hatch</span>
+          <span className="text-2xl font-bold text-gray-900">
+            Uxbyte Studio
+          </span>
         </div>
 
         <div className="flex items-center gap-8">
           <button className="px-6 py-2.5 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors">
             Schedule a Demo
           </button>
-          {/* <button className="p-2 hover:bg-gray-100 rounded-lg">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button> */}
         </div>
       </nav>
 
@@ -117,10 +99,10 @@ export default function HeroNew() {
       {/* Hero Section with Horizontal Scroll */}
       <section
         ref={containerRef}
-        className=" bg-white overflow-hidden relative"
+        className=" bg-white overflow-hidden relative mt-20"
       >
         <div className="h-full flex items-center">
-          <main className="w-full 2xl:px-56 xl:px-40 px-8">
+          <main className="w-full 2xl:px-56 xl:px-24 px-8">
             {/* Headline */}
             <div className="max-w-4xl mb-12">
               <h1 className="text-7xl font-bold leading-tight mb-6">

@@ -19,6 +19,7 @@ import BusinessFeatureSection from "@/components/landingPage/featureSection";
 import SpotlightPreview from "@/components/animted-landing";
 import ScrollMarquee from "@/components/scrollmarquee";
 import HeroNew from "@/components/landingPage/hero-new";
+import HoverImage from "@/components/ui/hover-image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -442,7 +443,9 @@ export default function Home() {
 
       <AboutUs />
       <DomainSearchSection />
-      <StrategiGrid />
+      {/* <StrategiGrid /> */}
+      {/* <HoverImage /> */}
+
       <FaqSection />
       <InspirationSection />
     </>
