@@ -1,10 +1,18 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { Poppins } from "next/font/google";
+import { IBM_Plex_Sans } from "next/font/google";
 
 import "./globals.css";
 import TopHeader from "@/components/topHeader";
 import Script from "next/script";
 import Footer from "@/components/footer";
+import SmoothScrollProvider from "@/lib/smoothScrollProvider";
+import "@/lib/gsap-init";
+const ibmPlexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,9 +45,11 @@ export default function RootLayout({ children }) {
           strategy="beforeInteractive"
         />
       </head>
-      <body className={`${poppins.variable} antialiased`}>
-        <TopHeader />
+      <body className={`${ibmPlexSans.className} antialiased`}>
+        {/* <TopHeader /> */}
+        {/* <SmoothScrollProvider> */}
         {children}
+        {/* </SmoothScrollProvider> */}
         <Footer />
       </body>
     </html>

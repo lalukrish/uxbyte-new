@@ -9,7 +9,7 @@ export default function CreativeHero() {
   const [hovering, setHovering] = useState(false);
 
   return (
-    <section className="min-h-screen bg-white overflow-hidden">
+    <section id="new-hero" className="min-h-screen bg-white overflow-hidden">
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-16 py-4 lg:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-4 items-center min-h-[calc(100vh-6rem)]">
           {/* === LEFT IMAGE SECTION === */}

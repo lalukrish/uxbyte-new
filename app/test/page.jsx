@@ -1,6 +1,7 @@
 // import { SpotlightPreview } from "@/components/animted-landing";
 import ScrollZoomSection from "@/components/3d-image-component";
 import SpotlightPreview from "@/components/animted-landing";
+import AnimationCard from "@/components/landingPage/animation-card";
 import NexusSciHero from "@/components/landingPage/gridComponent";
 import DomainSearchSection from "@/components/landingPage/testimonial-section";
 import { MarqueeDemoVertical } from "@/components/marquee-slider";
@@ -17,13 +18,17 @@ const page = () => {
       {" "}
       {/* <SpotlightPreview />
       <ScrollMarquee />
-      <MarqueeDemoVertical /> */}
-      {/* <DomainSearchSection /> */}
-      {/* <NexusSciHero /> */}
-      {/* {/* <ScrollZoomSection /> */}
+      <MarqueeDemoVertical />
+      <DomainSearchSection />
+      <NexusSciHero />
+      <ScrollZoomSection />
       <HoverImage />
       <ExplosionImage />
+     
+      {/* <CardMovingSection /> */}
+      {/* <DomainSearchSection /> */}
       <ScrollingFeatures />
+      <AnimationCard />
     </div>
   );
 };
