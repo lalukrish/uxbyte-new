@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Button } from "@/commonComponents/Button";
 
 export default function SaaSSection() {
   const containerRef = useRef(null);
@@ -148,10 +149,10 @@ export default function SaaSSection() {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-gray-50 py-20 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="px-2 md:px-20 mx-auto">
         <div className="grid grid-cols-12 gap-8">
           {/* Left Section - Fixed Categories */}
-          <div className="col-span-12 lg:col-span-3">
+          <div className="col-span-12 lg:col-span-3 ">
             <div className="lg:sticky lg:top-24 space-y-3">
               {categories.map((category, index) => (
                 <div
@@ -167,21 +168,21 @@ export default function SaaSSection() {
                     });
                   }}
                   className={`
-                    flex items-center gap-3 px-5 py-3 rounded-xl cursor-pointer
+                    flex  items-center gap-3 px-5 py-4 rounded-sm cursor-pointer
                     transition-all duration-300 group
                     ${
                       activeCategory === index
-                        ? "bg-indigo-600 text-white shadow-lg shadow-indigo-200"
+                        ? "bg-black text-white shadow-lg shadow-indigo-200"
                         : "bg-white text-gray-700 hover:bg-gray-100 hover:shadow-md"
                     }
                   `}
                 >
-                  <span className="text-2xl">{category.icon}</span>
+                  {/* <span className="text-2xl">{category.icon}</span> */}
                   <span className="font-medium text-sm">{category.name}</span>
                 </div>
               ))}
 
-              <button className="w-full mt-6 px-5 py-3 rounded-xl bg-white text-gray-700 hover:bg-gray-100 transition-all duration-300 font-medium text-sm flex items-center justify-center gap-2 group border border-gray-200">
+              {/* <button className="w-full mt-6 px-5 py-3 rounded-xl bg-white text-gray-700 hover:bg-gray-100 transition-all duration-300 font-medium text-sm flex items-center justify-center gap-2 group border border-gray-200">
                 EXPLORE ALL
                 <svg
                   className="w-4 h-4 group-hover:translate-x-1 transition-transform"
@@ -196,7 +197,14 @@ export default function SaaSSection() {
                     d="M9 5l7 7-7 7"
                   />
                 </svg>
-              </button>
+              </button> */}
+              <Button
+                label={"Explore All"}
+                type="button"
+                href="/explore-all"
+                variant="outlined"
+                className="px-5 py-3 w-full! justify-center! items-center!"
+              />
             </div>
           </div>
 

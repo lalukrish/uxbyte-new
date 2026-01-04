@@ -175,62 +175,63 @@ const ServiceHoverCard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white p-8">
-      <div className="max-w-[1400px] mx-auto">
-        {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-5xl font-bold mb-4">Latest Articles</h1>
-          <p className="text-gray-600 text-lg">
-            Insights and perspectives on business transformation. Hover to read
-            more.
-          </p>
-        </div>
-
-        {/* Masonry Grid - Matching Reference Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {/* First Column */}
-          <div className="space-y-4">
-            <div className="h-[400px]">
-              <ArticleCard {...articles[0]} />
-            </div>
-            <div className="h-[350px]">
-              <ArticleCard {...articles[3]} />
-            </div>
+    <section className="features">
+      <div className="min-h-screen bg-white p-8">
+        <div className="px-16 mx-auto">
+          {/* Header */}
+          <div className="mb-12">
+            <h1 className="text-5xl font-bold mb-4">Latest Articles</h1>
+            <p className="text-gray-600 text-lg">
+              Insights and perspectives on business transformation. Hover to
+              read more.
+            </p>
           </div>
 
-          {/* Second Column */}
-          <div className="space-y-4">
-            <div className="h-[500px]">
-              <ArticleCard {...articles[1]} />
+          {/* Masonry Grid - Matching Reference Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* First Column */}
+            <div className="space-y-4">
+              <div className="h-[400px]">
+                <ArticleCard {...articles[0]} />
+              </div>
+              <div className="h-[350px]">
+                <ArticleCard {...articles[3]} />
+              </div>
             </div>
-            <div className="h-[300px]">
-              <ArticleCard {...articles[4]} />
-            </div>
-          </div>
 
-          {/* Third Column */}
-          <div className="space-y-4">
-            <div className="h-[350px]">
-              <ArticleCard {...articles[2]} />
+            {/* Second Column */}
+            <div className="space-y-4">
+              <div className="h-[500px]">
+                <ArticleCard {...articles[1]} />
+              </div>
+              <div className="h-[300px]">
+                <ArticleCard {...articles[4]} />
+              </div>
             </div>
-            <div className="h-[380px]">
-              <ArticleCard {...articles[5]} />
-            </div>
-            {/* <div className="h-[320px]">
+
+            {/* Third Column */}
+            <div className="space-y-4">
+              <div className="h-[350px]">
+                <ArticleCard {...articles[2]} />
+              </div>
+              <div className="h-[380px]">
+                <ArticleCard {...articles[5]} />
+              </div>
+              {/* <div className="h-[320px]">
               <ArticleCard {...articles[6]} />
             </div> */}
+            </div>
           </div>
-        </div>
 
-        {/* Second Row */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+          {/* Second Row */}
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
           <div className="h-[380px]">
             <ArticleCard {...articles[7]} />
           </div>
         </div> */}
 
-        {/* Usage Example */}
-        {/* <div className="mt-16 bg-black text-white p-8 rounded-lg">
+          {/* Usage Example */}
+          {/* <div className="mt-16 bg-black text-white p-8 rounded-lg">
           <h2 className="text-2xl font-bold mb-4">Usage Example:</h2>
           <pre className="text-sm overflow-x-auto">
             {`import ArticleCard from './ArticleCard';
@@ -246,8 +247,8 @@ const ServiceHoverCard = () => {
           </pre>
         </div> */}
 
-        {/* Features */}
-        {/* <div className="mt-8 bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-lg">
+          {/* Features */}
+          {/* <div className="mt-8 bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-lg">
           <h2 className="text-2xl font-bold mb-4">Features:</h2>
           <ul className="space-y-2 text-gray-700">
             <li>
@@ -272,8 +273,9 @@ const ServiceHoverCard = () => {
             </li>
           </ul>
         </div> */}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

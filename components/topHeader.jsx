@@ -6,7 +6,7 @@ const TopHeader = () => {
   return (
     <div>
       <Header />
-      <BottomContactBar />
+      {/* <BottomContactBar /> */}
     </div>
   );
 };

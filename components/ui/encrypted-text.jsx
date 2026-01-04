@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
-import { cn } from "@/lib/utils";
 
 const DEFAULT_CHARSET =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-={}[];:,.<>/?";
@@ -22,19 +21,19 @@ function generateGibberishPreservingSpaces(original, charset) {
 }
 
 export const EncryptedText = ({
-  normaltext,
+  normaltext = "",
   text,
   className,
+  normalClassName = "",
   revealDelayMs = 50,
   charset = DEFAULT_CHARSET,
   flipDelayMs = 50,
-  encryptedClassName,
-  revealedClassName,
+  encryptedClassName = "text-neutral-500",
+  revealedClassName = "text-black dark:text-white",
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
   const [mounted, setMounted] = useState(false);
-
   const [revealCount, setRevealCount] = useState(0);
   const animationFrameRef = useRef(null);
   const startTimeRef = useRef(0);
@@ -43,7 +42,6 @@ export const EncryptedText = ({
     text ? text.split("").map((ch) => (ch === " " ? " " : "?")) : []
   );
 
-  // Only run on client after mount
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -51,7 +49,6 @@ export const EncryptedText = ({
   useEffect(() => {
     if (!isInView || !mounted) return;
 
-    // Initialize scrambled characters only on client
     const initial = text
       ? generateGibberishPreservingSpaces(text, charset)
       : "";
@@ -78,7 +75,6 @@ export const EncryptedText = ({
         return;
       }
 
-      // Re-randomize unrevealed scramble characters on an interval
       const timeSinceLastFlip = now - lastFlipTimeRef.current;
       if (timeSinceLastFlip >= Math.max(0, flipDelayMs)) {
         for (let index = 0; index < totalLength; index += 1) {
@@ -110,15 +106,13 @@ export const EncryptedText = ({
   if (!text) return null;
 
   return (
-    <motion.span
-      ref={ref}
-      className={cn(className)}
-      aria-label={text}
-      role="text"
-    >
+    <span ref={ref} className={className}>
+      {/* Normal text - no animation */}
+      {normaltext && <span className={revealedClassName}>{normaltext}</span>}
+
+      {/* Encrypted text - with animation */}
       {text.split("").map((char, index) => {
         const isRevealed = index < revealCount;
-        // Use consistent placeholder before mount to avoid hydration mismatch
         const displayChar = !mounted
           ? char === " "
             ? " "
@@ -130,15 +124,17 @@ export const EncryptedText = ({
           : scrambleCharsRef.current[index] ?? "?";
 
         return (
-          <span
+          <motion.span
             key={index}
-            className={cn(isRevealed ? revealedClassName : encryptedClassName)}
+            className={isRevealed ? revealedClassName : encryptedClassName}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.1 }}
           >
-            {normaltext}
             {displayChar}
-          </span>
+          </motion.span>
         );
       })}
-    </motion.span>
+    </span>
   );
 };

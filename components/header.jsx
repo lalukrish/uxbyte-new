@@ -1,121 +1,423 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { Menu, X } from "lucide-react";
-import Button from "./ui/button";
+import { useEffect, useState } from "react";
+import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
-const MENU_ITEMS = [
-  { label: "About Us", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Blogs", href: "/blog" },
-  { label: "Contact Us", href: "/contact" },
+const menuData = [
+  {
+    label: "SERVICES",
+    href: "/services",
+    items: [
+      { label: "Web Development", href: "/services/web-dev" },
+      { label: "Mobile Apps", href: "/services/mobile" },
+      { label: "UI/UX Design", href: "/services/design" },
+      { label: "Cloud Solutions", href: "/services/cloud" },
+      { label: "AI Integration", href: "/services/ai" },
+      { label: "Digital Marketing", href: "/services/marketing" },
+    ],
+  },
+  {
+    label: "INDUSTRIES",
+    href: "/industries",
+    items: [
+      { label: "SaaS", href: "/industries/saas" },
+      { label: "Healthcare", href: "/industries/healthcare" },
+      { label: "Fintech", href: "/industries/fintech" },
+      { label: "Edtech", href: "/industries/edtech" },
+    ],
+  },
+  {
+    label: "CASES",
+    href: "/cases",
+    items: [],
+  },
+  {
+    label: "COMPANY",
+    href: "/company",
+    items: [
+      { label: "About Us", href: "/company/about" },
+      { label: "Careers", href: "/company/careers" },
+      { label: "Team", href: "/company/team" },
+    ],
+  },
+  {
+    label: "INSIGHTS",
+    href: "/insights",
+    items: [],
+  },
+  {
+    label: "CONTACTS",
+    href: "/contacts",
+    items: [],
+  },
 ];
 
-const Header = () => {
+export default function Header() {
+  const [openMenu, setOpenMenu] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrollingDown, setScrollingDown] = useState(false);
+  const [isDarkSection, setIsDarkSection] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      const heroHeight =
-        document.getElementById("hero-section")?.offsetHeight || 600;
-      setShowHeader(window.scrollY > heroHeight - 100);
+      const currentScrollY = window.scrollY;
+
+      // Check if we're in hero or people section
+      const heroSection = document.querySelector("[data-hero-section]");
+      const peopleSection = document.querySelector("[data-people-section]");
+
+      let inHeroOrPeople = false;
+
+      if (heroSection) {
+        const heroRect = heroSection.getBoundingClientRect();
+        const heroBottom = heroRect.bottom;
+        inHeroOrPeople = heroBottom > 80; // 80px is header height
+      }
+
+      if (!inHeroOrPeople && peopleSection) {
+        const peopleRect = peopleSection.getBoundingClientRect();
+        const peopleTop = peopleRect.top;
+        const peopleBottom = peopleRect.bottom;
+        // Check if header area (top 80px) overlaps with people section
+        inHeroOrPeople = peopleTop < 80 && peopleBottom > 0;
+      }
+
+      // If in hero or people section, hide header and return early
+      if (inHeroOrPeople) {
+        setShowHeader(false);
+        setLastScrollY(currentScrollY);
+        return;
+      }
+
+      // Show header after scrolling 300px (only when NOT in hero/people section)
+      if (currentScrollY > 300) {
+        setShowHeader(true);
+
+        // Detect scroll direction
+        if (currentScrollY > lastScrollY) {
+          setScrollingDown(true);
+        } else {
+          setScrollingDown(false);
+        }
+      } else {
+        setShowHeader(false);
+      }
+
+      setLastScrollY(currentScrollY);
+
+      // Detect section background color
+      detectSectionColor();
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
+
+  const detectSectionColor = () => {
+    // Get all sections
+    const sections = document.querySelectorAll("section, div[data-section]");
+    const headerHeight = 80; // Height of header
+    const scrollPosition = window.scrollY + headerHeight;
+
+    let foundDarkSection = true;
+
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top + window.scrollY;
+      const sectionBottom = sectionTop + rect.height;
+
+      // Check if header is over this section
+      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        const bgColor = window.getComputedStyle(section).backgroundColor;
+
+        // Parse RGB values
+        const rgb = bgColor.match(/\d+/g);
+        if (rgb) {
+          const brightness =
+            (parseInt(rgb[0]) * 299 +
+              parseInt(rgb[1]) * 587 +
+              parseInt(rgb[2]) * 114) /
+            1000;
+          foundDarkSection = brightness < 128;
+        }
+      }
+    });
+
+    setIsDarkSection(foundDarkSection);
+  };
+
+  // Color scheme based on section
+  const headerBg = isDarkSection
+    ? "bg-white/95 backdrop-blur-sm"
+    : "bg-[#0a0a0a]/95 backdrop-blur-sm";
+  const borderColor = isDarkSection ? "border-gray-200" : "border-gray-800";
+  const textColor = isDarkSection ? "text-gray-700" : "text-gray-300";
+  const textHoverColor = isDarkSection
+    ? "hover:text-black"
+    : "hover:text-white";
+  const logoColor = isDarkSection ? "bg-orange-500" : "bg-orange-500";
+  const logoText = isDarkSection ? "text-black" : "text-white";
+  const ctaBg = isDarkSection
+    ? "bg-black text-white hover:bg-gray-800"
+    : "bg-white text-black hover:bg-gray-100";
+  const mobileIconColor = isDarkSection ? "text-black" : "text-white";
 
   return (
     <>
-      {/* --- Header Bar --- */}
+      {/* ================= HEADER ================= */}
       <header
-        className={`fixed top-0 left-0 w-full bg-white border-b border-gray-200 z-50 transition-all duration-500 ${
-          showHeader
+        className={`fixed top-0 left-0 w-full z-50 ${headerBg} border-b ${borderColor} transition-all duration-500 ${
+          showHeader && !scrollingDown
             ? "translate-y-0 opacity-100"
             : "-translate-y-full opacity-0"
         }`}
       >
-        <nav className="flex items-center justify-between px-6 md:px-8 py-4">
-          {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-black">
-            Logo
-          </Link>
+        <div className="xl:px-24 mx-auto px-6 h-20 flex items-center justify-between">
+          {/* LOGO */}
+          <a href="/" className="flex items-center gap-2">
+            <Image
+              src="/logo-1.png"
+              alt="Uxbyte Studio"
+              width={50}
+              height={50}
+              className="object-contain"
+              priority
+            />{" "}
+            <span className={`${logoText} font-semibold text-lg tracking-wide`}>
+              Uxbyte Studio
+            </span>
+          </a>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
-            {MENU_ITEMS.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-md font-medium text-black hover:text-gray-600"
+          {/* ================= DESKTOP NAV ================= */}
+          <nav className="hidden lg:flex items-center gap-2">
+            {menuData.map((item) => (
+              <div
+                key={item.label}
+                className="relative h-20 flex items-center"
+                onMouseEnter={() =>
+                  item.items?.length && setOpenMenu(item.label)
+                }
+                onMouseLeave={() => setOpenMenu(null)}
               >
-                {item.label}
-              </Link>
+                {!item.items || item.items.length === 0 ? (
+                  <a
+                    href={item.href}
+                    className={`px-4 text-sm font-medium ${textColor} ${textHoverColor} transition-colors`}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <button
+                    className={`flex items-center gap-1 px-4 text-sm font-medium ${textColor} ${textHoverColor} transition-colors h-full`}
+                  >
+                    {item.label}
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${
+                        openMenu === item.label ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                )}
+
+                {/* Invisible bridge */}
+                {item.items?.length > 0 && openMenu === item.label && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 w-48 h-2"></div>
+                )}
+              </div>
             ))}
-          </div>
+          </nav>
 
-          {/* Right Side */}
-          <div className="flex items-center gap-4">
-            <Button className="hidden md:inline-block bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2">
-              Get Started
-            </Button>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsSidebarOpen(true)}
-              className="md:hidden p-2 rounded-md hover:bg-gray-100"
+          {/* CTA */}
+          <div className="hidden lg:block">
+            <a
+              href="/contact"
+              className={`inline-flex items-center gap-2 px-6 py-2 ${ctaBg} font-medium transition-colors text-sm`}
             >
-              <Menu size={26} className="text-black" />
-            </button>
+              GET IN TOUCH
+              <ArrowRight size={16} />
+            </a>
           </div>
-        </nav>
+
+          {/* MOBILE BUTTON */}
+          <button
+            className={`lg:hidden ${mobileIconColor}`}
+            onClick={() => setMobileOpen(true)}
+          >
+            <Menu size={28} />
+          </button>
+        </div>
       </header>
 
-      {/* --- Mobile Sidebar --- */}
+      {/* ================= MEGA MENU ================= */}
+      {menuData.map(
+        (item) =>
+          item.items?.length > 0 && (
+            <div
+              key={item.label}
+              className={`fixed top-20 left-0 w-full bg-[#0a0a0a] border-b border-gray-800 z-40 transition-all duration-300 ease-in-out ${
+                openMenu === item.label && showHeader
+                  ? "opacity-100 visible translate-y-0"
+                  : "opacity-0 invisible -translate-y-4"
+              }`}
+              onMouseEnter={() => setOpenMenu(item.label)}
+              onMouseLeave={() => setOpenMenu(null)}
+            >
+              <div className="max-w-7xl mx-auto px-8 py-12">
+                <div className="grid grid-cols-12 gap-16">
+                  {/* LEFT SIDE */}
+                  <div className="col-span-4">
+                    <h3 className="text-3xl font-bold text-white mb-4">
+                      {item.label === "SERVICES"
+                        ? "Ready to bring your idea to life?"
+                        : item.label === "INDUSTRIES"
+                        ? "Industry Expertise"
+                        : item.label}
+                    </h3>
+                    <p className="text-gray-400 mb-8 leading-relaxed">
+                      {item.label === "SERVICES"
+                        ? "Explore our comprehensive range of services designed to help you succeed."
+                        : item.label === "INDUSTRIES"
+                        ? "Specialized solutions tailored for your industry."
+                        : `Discover more about ${item.label.toLowerCase()}.`}
+                    </p>
+
+                    <a
+                      href={item.href}
+                      className="inline-flex items-center gap-2 px-8 py-3 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-colors"
+                    >
+                      LET'S TALK
+                      <ArrowRight size={18} />
+                    </a>
+                  </div>
+
+                  {/* RIGHT SIDE - Menu Items */}
+                  <div className="col-span-8">
+                    <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                      {item.items.map((sub) => (
+                        <a
+                          key={sub.label}
+                          href={sub.href}
+                          className="group py-3 border-b border-gray-800 hover:border-gray-600 transition-colors"
+                        >
+                          <div className="text-lg font-medium text-white group-hover:text-orange-500 transition-colors">
+                            {sub.label}
+                          </div>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+      )}
+
+      {/* ================= FLOATING CTA (Always Visible) ================= */}
+      {mounted && (
+        <div className="fixed top-3 right-6 xl:right-24 z-50">
+          <a
+            href="/contact"
+            className={`inline-flex items-center gap-2 px-6 py-3.5 font-medium transition-all duration-500 text-sm shadow-lg ${
+              showHeader ? `${ctaBg}` : "bg-black text-white hover:bg-gray-800"
+            }`}
+          >
+            GET IN TOUCH
+            <ArrowRight size={16} />
+          </a>
+        </div>
+      )}
+
+      {/* ================= MOBILE OVERLAY ================= */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-xl z-[60] transform transition-transform duration-300 ${
-          isSidebarOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 bg-black/70 z-40 transition-opacity duration-300 lg:hidden ${
+          mobileOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+        onClick={() => setMobileOpen(false)}
+      />
+
+      {/* ================= MOBILE DRAWER ================= */}
+      <aside
+        className={`fixed top-0 right-0 z-50 h-full w-80 bg-[#0a0a0a] text-white transform transition-transform duration-300 ease-in-out lg:hidden ${
+          mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b">
-          <span className="text-lg font-semibold text-black">Menu</span>
+        <div className="p-6 flex justify-between items-center border-b border-gray-800">
+          <span className="font-bold text-xl">Menu</span>
           <button
-            onClick={() => setIsSidebarOpen(false)}
-            className="p-2 hover:bg-gray-100 rounded-md"
+            onClick={() => setMobileOpen(false)}
+            className="hover:bg-gray-800 p-2 rounded-lg transition-colors"
           >
             <X size={24} />
           </button>
         </div>
 
-        <div className="flex flex-col p-6 space-y-4">
-          {MENU_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setIsSidebarOpen(false)}
-              className="text-gray-700 text-lg font-medium hover:text-blue-600"
-            >
-              {item.label}
-            </Link>
+        <nav className="px-4 py-6 space-y-2 overflow-y-auto h-[calc(100%-88px)]">
+          {menuData.map((item) => (
+            <div key={item.label}>
+              {!item.items || item.items.length === 0 ? (
+                <a
+                  href={item.href}
+                  className="block px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <>
+                  <button
+                    onClick={() =>
+                      setOpenMenu(openMenu === item.label ? null : item.label)
+                    }
+                    className="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-gray-800 rounded-lg transition-colors text-sm font-medium"
+                  >
+                    {item.label}
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform duration-200 ${
+                        openMenu === item.label ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {openMenu === item.label && (
+                    <div className="ml-4 mt-2 space-y-1 pl-4 border-l-2 border-gray-700">
+                      {item.items.map((sub) => (
+                        <a
+                          key={sub.label}
+                          href={sub.href}
+                          className="block text-sm text-gray-400 hover:text-white py-2 px-3 rounded hover:bg-gray-800 transition-colors"
+                        >
+                          {sub.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
           ))}
 
-          <Button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white rounded-full px-6 py-2">
-            Get Started
-          </Button>
-        </div>
-      </div>
-
-      {/* Overlay */}
-      {isSidebarOpen && (
-        <div
-          onClick={() => setIsSidebarOpen(false)}
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[55]"
-        />
-      )}
+          {/* Mobile CTA */}
+          <div className="pt-3">
+            <a
+              href="/contact"
+              className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-colors"
+            >
+              GET IN TOUCH
+              <ArrowRight size={18} />
+            </a>
+          </div>
+        </nav>
+      </aside>
     </>
   );
-};
-
-export default Header;
+}

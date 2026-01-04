@@ -215,3 +215,15 @@ html {
 .gradient-animate:hover {
   animation: gradientMove 3s linear infinite;
 }
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 999px;
+}

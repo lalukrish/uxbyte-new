@@ -1,0 +1,75 @@
+name: 🚀 Deploy demo
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: 🌍 Deploy to VPS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📂 Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: 🔑 Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          cat >> ~/.ssh/config <<EOL
+          Host vps
+            HostName ${{ secrets.SERVER_IP }}
+            User ${{ secrets.SERVER_USER }}
+            IdentityFile ~/.ssh/id_ed25519
+            StrictHostKeyChecking no
+          EOL
+
+      - name: 📤 Sync Project Files
+        run: |
+          echo "⚡ Uploading project files to VPS..."
+          rsync -avz --delete \
+            --exclude '.git' \
+            --exclude 'node_modules' \
+            --exclude '.next' \
+            ./ vps:/var/www/html/demo/
+
+      - name: 🛠️ Build & Restart on Server
+        run: |
+          ssh vps << 'EOF'
+            set -e
+
+            cd /var/www/html/demo
+
+            echo "🔍 Checking for dependency changes..."
+            HASH_FILE="./package-lock.prev"
+
+            # Set a safe cache path (fixes build-cache issues)
+            NPM_CACHE="/home/$USER/.npm-cache"
+            mkdir -p "$NPM_CACHE"
+            npm config set cache "$NPM_CACHE"
+
+            if [ -f package-lock.json ] && [ -f "$HASH_FILE" ] && cmp -s package-lock.json "$HASH_FILE"; then
+              echo "✅ No dependency changes — skipping install"
+            else
+              echo "📦 Dependencies changed — installing..."
+              rm -rf node_modules
+              npm install --include=optional
+              cp package-lock.json "$HASH_FILE"
+            fi
+
+            echo "🏗️ Building Next.js project..."
+            rm -rf .next
+            npm run build
+
+            echo "🚀 Starting with PM2 (port 3001)..."
+            pm2 describe idemo >/dev/null 2>&1 && \
+              pm2 restart demo || \
+              PORT=3001 pm2 start npm --name demo -- start
+
+            pm2 save
+
+            echo "✅ Deployment successful!"
+          EOF

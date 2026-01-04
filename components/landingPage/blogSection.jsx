@@ -5,17 +5,17 @@ import { motion } from "framer-motion";
 
 const cards = [
   {
-    img: "/assets/blog1.jpg",
+    img: "/blog-1.webp",
     title: "How to design a website (step-by-step guide)",
     bg: "bg-[#004f4f]", // deep teal
   },
   {
-    img: "/assets/blog2.jpg",
+    img: "/blog-2.webp",
     title: "How to monetize your website in 15 actionable steps",
     bg: "bg-[#65281e]", // brown-red
   },
   {
-    img: "/assets/blog3.jpg",
+    img: "/blog-3.webp",
     title: "18 outstanding website examples that will inspire you",
     bg: "bg-[#5658f3]", // violet-blue
   },
@@ -23,7 +23,7 @@ const cards = [
 
 export default function InspirationSection() {
   return (
-    <section className="w-full py-20 bg-white text-black">
+    <section className="inspiration w-full py-20 bg-white text-black">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center max-w-7xl mx-auto px-6 mb-16">
         <h2 className="text-4xl md:text-5xl font-bold leading-tight max-w-3xl">

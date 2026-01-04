@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/commonComponents/Button";
 import {
   Facebook,
   Twitter,
@@ -27,16 +28,28 @@ export default function Footer() {
             Let's Talk
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <button className="px-10 py-5 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition-all text-base border-2 border-white hover:scale-105">
+            {/* <button className="px-10 py-5 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition-all text-base border-2 border-white hover:scale-105">
               Contact Us
-            </button>
-            <button
+            </button> */}
+            <Button
+              label=" Contact Us"
+              className="border-white! hover:bg-black! hover:border-white! hover:text-white! text-white! py-4"
+              variant="outlined"
+            />
+            {/* <button
               onClick={scrollToTop}
               className="px-10 py-5 bg-transparent text-white rounded-full font-semibold hover:bg-white hover:text-black transition-all text-base border-2 border-white flex items-center gap-3 hover:scale-105"
             >
               Move to top
               <ArrowUp className="w-5 h-5" />
-            </button>
+            </button> */}
+            <Button
+              label="Move to top"
+              className="bg-white! text-black! py-4"
+              variant="filled"
+              iconRight={<ArrowUp className="w-5 h-5" />}
+              onClick={scrollToTop}
+            ></Button>
           </div>
         </div>
       </div>

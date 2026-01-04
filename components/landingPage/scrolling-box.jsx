@@ -6,6 +6,7 @@ import { RadixFilesDemo } from "../ui/files";
 import SaaSSection from "./scrolling-features";
 import { WobbleCardDemo } from "./wobble-card";
 import BikeHero from "./grid-box";
+import MultiSection from "./grid-box";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,7 +16,6 @@ const ScrollingBox = () => {
   const nextSectionRef = useRef(null);
 
   useLayoutEffect(() => {
-    // Skip if refs aren't ready
     if (!sectionRef.current || !boxRef.current || !nextSectionRef.current)
       return;
 
@@ -23,7 +23,6 @@ const ScrollingBox = () => {
     const box = boxRef.current;
     const nextSection = nextSectionRef.current;
 
-    // Animation 1: Box expansion
     const expansionAnim = gsap.fromTo(
       box,
       {
@@ -42,14 +41,13 @@ const ScrollingBox = () => {
 
     const expansionTrigger = ScrollTrigger.create({
       trigger: section,
-      start: "top bottom+=100", // 🔥 delay animation start
+      start: "top bottom+=100",
       end: "center center",
       scrub: 1.5,
       animation: expansionAnim,
       invalidateOnRefresh: true,
     });
 
-    // Animation 2: Slide-up with pinning
     const slideUpAnim = gsap.fromTo(
       nextSection,
       {
@@ -83,7 +81,6 @@ const ScrollingBox = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
 
-      // Proper cleanup order to prevent removeChild error
       expansionTrigger.kill(true);
       slideUpTrigger.kill(true);
       expansionAnim.kill();
@@ -97,7 +94,7 @@ const ScrollingBox = () => {
   }, []);
 
   return (
-    <>
+    <section className="video-section">
       {/* Video expansion section */}
       <div ref={sectionRef} className="will-change-transform">
         <div className="sticky top-0 h-screen w-full flex items-end justify-center overflow-hidden">
@@ -125,7 +122,7 @@ const ScrollingBox = () => {
               {/* <h2 className="text-6xl font-bold text-white drop-shadow-lg">
                 Our Solutions
               </h2> */}
-              <BikeHero />
+              <MultiSection />
             </div>
           </div>
         </div>
@@ -142,7 +139,7 @@ const ScrollingBox = () => {
           <WobbleCardDemo />
         </div>
       </div> */}
-    </>
+    </section>
   );
 };
 

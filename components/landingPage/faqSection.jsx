@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Title from "@/commonComponents/title";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -135,7 +136,7 @@ export default function ScrollFaqGsap() {
   return (
     <section
       ref={sectionRef}
-      className="relative "
+      className="faq-section relative "
       style={{ isolation: "isolate", zIndex: 10 }}
     >
       {" "}
@@ -144,10 +145,11 @@ export default function ScrollFaqGsap() {
         ref={blueRef}
         className="absolute top-0 left-0 w-full h-[120vh] bg-white flex flex-col rounded-b-[6rem] z-10"
       >
-        <div className="px-6 md:px-14 py-8 md:py-12 text-black h-full flex flex-col">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-start mb-8 md:mb-12 flex-shrink-0">
+        <div className="px-6 md:px-20 py-8 md:py-12 text-black h-full flex flex-col">
+          {/* <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-start mb-8 md:mb-12 flex-shrink-0">
             Frequently Asked Questions
-          </h2>
+          </h2> */}
+          <Title className="pl-4"> Frequently Asked Questions</Title>
 
           <div className="divide-y divide-gray-300 max-w-5xl xl:max-w-7xl flex-shrink-0">
             {faqs.map((faq, index) => (
