@@ -47,9 +47,9 @@ export default function MobileCenterCarousel() {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-white flex items-center justify-center overflow-hidden">
+    <div className="relative w-full h-[60vh] bg-white flex items-center justify-center overflow-hidden">
       <div className="relative w-full max-w-md mx-auto px-12">
-        <div className="relative h-[500px] flex items-center justify-center">
+        <div className="relative h-[100px] flex items-center justify-center">
           {articles.map((article, index) => {
             const position = getPosition(index);
 
@@ -65,19 +65,19 @@ export default function MobileCenterCarousel() {
                   }
                   ${
                     position === "left"
-                      ? "z-20 scale-75 opacity-90 -translate-x-[290px]"
+                      ? "z-20 scale-75 opacity-90 -translate-x-[270px]"
                       : ""
                   }
                   ${
                     position === "right"
-                      ? "z-20 scale-75 opacity-90 translate-x-[290px]"
+                      ? "z-20 scale-75 opacity-90 translate-x-[270px]"
                       : ""
                   }
                   ${position === "hidden" ? "z-10 scale-50 opacity-0" : ""}
                 `}
                 style={{
-                  width: "310px",
-                  height: "480px",
+                  width: "270px",
+                  height: "330px",
                 }}
               >
                 <div className="relative w-full h-full  overflow-hidden shadow-2xl">

@@ -438,7 +438,7 @@ export default function HeroNew() {
   return (
     <section data-hero-section className="data-hero-section bg-white">
       {/* Navigation */}
-      <nav className="flex items-center justify-between px-8 py-6 lg:px-24 mx-auto">
+      <nav className="flex items-center justify-between px-4 py-4 md:py-6 lg:px-24 mx-auto">
         <div className="flex items-center gap-2">
           <Image
             src="/logo-1.png"
@@ -466,14 +466,14 @@ export default function HeroNew() {
 
       {/* Hero Section with Horizontal Scroll */}
       <div className="hidden md:block">
-        <div ref={containerRef} className="bg-white relative  mt-14">
-          <div className="h-screen flex items-center">
-            <main className="w-full 2xl:px-56 xl:px-24 px-8">
+        <div ref={containerRef} className="bg-white relative  mt-14 ">
+          <div className="h-screen flex items-center  ">
+            <main className="w-full 2xl:px-56 xl:px-24 px-8 ">
               {/* Headline */}
-              <div className="flex items-center justify-between gap-12">
+              <div className="flex items-center justify-between gap-12 ">
                 {/* Left text */}
                 <div className="max-w-4xl mb-12">
-                  <h1 className="text-4xl md:text-7xl font-semibold leading-tight mb-6">
+                  <h1 className="text-4xl md:text-7xl font-semibold leading-tight mb-6 ">
                     <span>Where curiosity</span>
                     <br />
                     <span>roams, </span>
@@ -543,17 +543,17 @@ export default function HeroNew() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col md:hidden overflow-x-hidden">
+      <div className="flex flex-col  md:hidden overflow-x-hidden">
         {/* TEXT SECTION */}
-        <div className="px-4 mb-10">
-          <h1 className="text-4xl font-semibold leading-tight mb-6">
+        <div className="px-4 mb-1 mt-9">
+          <h1 className="text-[36px] font-semibold leading-tight mb-6 text-center">
             <span>Where curiosity</span>
             <br />
             <span>roams, </span>
             <LayoutTextFlip words={["you think.", "imagine", "you create."]} />
           </h1>
 
-          <p className="text-xl text-gray-500">
+          <p className="text-md text-gray-500 text-center">
             All of your notes, bookmarks, and documents at your fingertips.
           </p>
         </div>

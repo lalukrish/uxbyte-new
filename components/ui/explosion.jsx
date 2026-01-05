@@ -1114,42 +1114,42 @@ const IsolatedExplosionImage = () => {
         <div className="overflow-x-hidden">
           <section className="isolated-explosion-spotlight relative w-screen h-screen p-8 overflow-hidden bg-black text-gray-100">
             <section className="isolated-explosion-images absolute top-0 left-0 w-full h-full">
-              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] lg:w-[500px] lg:h-[550px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
+              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[700px] lg:w-[500px] lg:h-[550px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
                 <img
                   src="/aslam.jpeg"
                   alt=""
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] lg:w-[400px] lg:h-[550px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
+              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[700px] lg:w-[400px] lg:h-[550px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
                 <img
                   src="hijaz.jpeg"
                   alt=""
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] lg:w-[500px] lg:h-[550px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
+              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[700px] lg:w-[500px] lg:h-[550px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
                 <img
                   src="swafuvan.jpeg"
                   alt=""
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] lg:w-[400px] lg:h-[450px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
+              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[700px] lg:w-[400px] lg:h-[450px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
                 <img
                   src="adhithya.jpeg"
                   alt=""
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] lg:w-[500px] lg:h-[510px] md:w-[200px] md:h-[500px] rounded-xl overflow-hidden shadow-2xl">
+              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[700px] lg:w-[500px] lg:h-[510px] md:w-[200px] md:h-[500px] rounded-xl overflow-hidden shadow-2xl">
                 <img
                   src="rohith.jpeg"
                   alt=""
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] lg:w-[500px] lg:h-[470px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
+              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[650px] lg:w-[500px] lg:h-[470px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
                 <img
                   src="/lallu.png"
                   alt=""

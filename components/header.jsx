@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
-import Image from "next/image";
+import Link from "next/link";
 
 const menuData = [
   {
@@ -164,12 +164,10 @@ export default function Header() {
   const textHoverColor = isDarkSection
     ? "hover:text-black"
     : "hover:text-white";
-  const logoColor = isDarkSection ? "bg-orange-500" : "bg-orange-500";
   const logoText = isDarkSection ? "text-black" : "text-white";
   const ctaBg = isDarkSection
     ? "bg-black text-white hover:bg-gray-800"
     : "bg-white text-black hover:bg-gray-100";
-  const mobileIconColor = isDarkSection ? "text-black" : "text-white";
 
   return (
     <>
@@ -181,21 +179,16 @@ export default function Header() {
             : "-translate-y-full opacity-0"
         }`}
       >
-        <div className="xl:px-24 mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="xl:px-24 mx-auto px-4 h-20 flex items-center justify-between">
           {/* LOGO */}
-          <a href="/" className="flex items-center gap-2">
-            <Image
-              src="/logo-1.png"
-              alt="Uxbyte Studio"
-              width={50}
-              height={50}
-              className="object-contain"
-              priority
-            />{" "}
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-12 h-12 bg-[#6915ae]  flex items-center justify-center p-1">
+              <span className="text-white font-bold text-xl ">UXB</span>
+            </div>
             <span className={`${logoText} font-semibold text-lg tracking-wide`}>
               Uxbyte Studio
             </span>
-          </a>
+          </Link>
 
           {/* ================= DESKTOP NAV ================= */}
           <nav className="hidden lg:flex items-center gap-2">
@@ -247,94 +240,101 @@ export default function Header() {
               <ArrowRight size={16} />
             </a>
           </div>
-
-          {/* MOBILE BUTTON */}
-          <button
-            className={`lg:hidden ${mobileIconColor}`}
-            onClick={() => setMobileOpen(true)}
-          >
-            <Menu size={28} />
-          </button>
         </div>
       </header>
 
       {/* ================= MEGA MENU ================= */}
-      {menuData.map(
-        (item) =>
-          item.items?.length > 0 && (
-            <div
-              key={item.label}
-              className={`fixed top-20 left-0 w-full bg-[#0a0a0a] border-b border-gray-800 z-40 transition-all duration-300 ease-in-out ${
-                openMenu === item.label && showHeader
-                  ? "opacity-100 visible translate-y-0"
-                  : "opacity-0 invisible -translate-y-4"
-              }`}
-              onMouseEnter={() => setOpenMenu(item.label)}
-              onMouseLeave={() => setOpenMenu(null)}
-            >
-              <div className="max-w-7xl mx-auto px-8 py-12">
-                <div className="grid grid-cols-12 gap-16">
-                  {/* LEFT SIDE */}
-                  <div className="col-span-4">
-                    <h3 className="text-3xl font-bold text-white mb-4">
-                      {item.label === "SERVICES"
-                        ? "Ready to bring your idea to life?"
-                        : item.label === "INDUSTRIES"
-                        ? "Industry Expertise"
-                        : item.label}
-                    </h3>
-                    <p className="text-gray-400 mb-8 leading-relaxed">
-                      {item.label === "SERVICES"
-                        ? "Explore our comprehensive range of services designed to help you succeed."
-                        : item.label === "INDUSTRIES"
-                        ? "Specialized solutions tailored for your industry."
-                        : `Discover more about ${item.label.toLowerCase()}.`}
-                    </p>
+      <div className="hidden md:block">
+        {menuData.map(
+          (item) =>
+            item.items?.length > 0 && (
+              <div
+                key={item.label}
+                className={`fixed top-20 left-0 w-full bg-[#0a0a0a] border-b border-gray-800 z-40 transition-all duration-300 ease-in-out ${
+                  openMenu === item.label && showHeader
+                    ? "opacity-100 visible translate-y-0"
+                    : "opacity-0 invisible -translate-y-4"
+                }`}
+                onMouseEnter={() => setOpenMenu(item.label)}
+                onMouseLeave={() => setOpenMenu(null)}
+              >
+                <div className="max-w-7xl mx-auto px-8 py-12">
+                  <div className="grid grid-cols-12 gap-16">
+                    {/* LEFT SIDE */}
+                    <div className="col-span-4">
+                      <h3 className="text-3xl font-bold text-white mb-4">
+                        {item.label === "SERVICES"
+                          ? "Ready to bring your idea to life?"
+                          : item.label === "INDUSTRIES"
+                          ? "Industry Expertise"
+                          : item.label}
+                      </h3>
+                      <p className="text-gray-400 mb-8 leading-relaxed">
+                        {item.label === "SERVICES"
+                          ? "Explore our comprehensive range of services designed to help you succeed."
+                          : item.label === "INDUSTRIES"
+                          ? "Specialized solutions tailored for your industry."
+                          : `Discover more about ${item.label.toLowerCase()}.`}
+                      </p>
 
-                    <a
-                      href={item.href}
-                      className="inline-flex items-center gap-2 px-8 py-3 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-colors"
-                    >
-                      LET'S TALK
-                      <ArrowRight size={18} />
-                    </a>
-                  </div>
+                      <a
+                        href={item.href}
+                        className="inline-flex items-center gap-2 px-8 py-3 bg-[#6915ae] text-white  font-medium hover:bg-[#6915ae] transition-colors"
+                      >
+                        LET'S TALK
+                        <ArrowRight size={18} />
+                      </a>
+                    </div>
 
-                  {/* RIGHT SIDE - Menu Items */}
-                  <div className="col-span-8">
-                    <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-                      {item.items.map((sub) => (
-                        <a
-                          key={sub.label}
-                          href={sub.href}
-                          className="group py-3 border-b border-gray-800 hover:border-gray-600 transition-colors"
-                        >
-                          <div className="text-lg font-medium text-white group-hover:text-orange-500 transition-colors">
-                            {sub.label}
-                          </div>
-                        </a>
-                      ))}
+                    {/* RIGHT SIDE - Menu Items */}
+                    <div className="col-span-8">
+                      <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+                        {item.items.map((sub) => (
+                          <a
+                            key={sub.label}
+                            href={sub.href}
+                            className="group py-3 border-b border-gray-800 hover:border-gray-600 transition-colors"
+                          >
+                            <div className="text-lg font-medium text-white group-hover:text-orange-500 transition-colors">
+                              {sub.label}
+                            </div>
+                          </a>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )
-      )}
+            )
+        )}
+      </div>
 
-      {/* ================= FLOATING CTA (Always Visible) ================= */}
+      {/* ================= FLOATING CTA & MOBILE MENU ICON (Always Visible) ================= */}
       {mounted && (
-        <div className="fixed top-3 right-6 xl:right-24 z-50">
-          <a
-            href="/contact"
-            className={`inline-flex items-center gap-2 px-6 py-3.5 font-medium transition-all duration-500 text-sm shadow-lg ${
-              showHeader ? `${ctaBg}` : "bg-black text-white hover:bg-gray-800"
-            }`}
+        <>
+          {/* Desktop CTA */}
+          <div className="fixed top-3 right-6 xl:right-24 z-50 hidden md:block">
+            <a
+              href="/contact"
+              className={`inline-flex items-center gap-2 px-6 py-3.5 font-medium transition-all duration-500 text-sm shadow-lg ${
+                showHeader
+                  ? `${ctaBg}`
+                  : "bg-black text-white hover:bg-gray-800"
+              }`}
+            >
+              GET IN TOUCH
+              <ArrowRight size={16} />
+            </a>
+          </div>
+
+          {/* Mobile Menu Icon - Always Visible */}
+          <button
+            className="fixed top-4 right-6 z-50 md:hidden bg-white backdrop-blur-sm p-3 rounded-lg shadow-lg border-1 border-gray-200 text-black hover:bg-black transition-colors"
+            onClick={() => setMobileOpen(true)}
           >
-            GET IN TOUCH
-            <ArrowRight size={16} />
-          </a>
-        </div>
+            <Menu size={24} />
+          </button>
+        </>
       )}
 
       {/* ================= MOBILE OVERLAY ================= */}
@@ -347,7 +347,7 @@ export default function Header() {
 
       {/* ================= MOBILE DRAWER ================= */}
       <aside
-        className={`fixed top-0 right-0 z-50 h-full w-80 bg-[#0a0a0a] text-white transform transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed top-0 right-0 z-50 h-full w-80 bg-[#0a0a0a] text-white transform transition-transform duration-300 ease-in-out lg:hidden overflow-hidden ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -368,6 +368,7 @@ export default function Header() {
                 <a
                   href={item.href}
                   className="block px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
+                  onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
                 </a>
@@ -395,6 +396,7 @@ export default function Header() {
                           key={sub.label}
                           href={sub.href}
                           className="block text-sm text-gray-400 hover:text-white py-2 px-3 rounded hover:bg-gray-800 transition-colors"
+                          onClick={() => setMobileOpen(false)}
                         >
                           {sub.label}
                         </a>
@@ -405,17 +407,6 @@ export default function Header() {
               )}
             </div>
           ))}
-
-          {/* Mobile CTA */}
-          <div className="pt-3">
-            <a
-              href="/contact"
-              className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-orange-500 text-white rounded-full font-medium hover:bg-orange-600 transition-colors"
-            >
-              GET IN TOUCH
-              <ArrowRight size={18} />
-            </a>
-          </div>
         </nav>
       </aside>
     </>
