@@ -900,10 +900,10 @@ const IsolatedExplosionImage = () => {
         { x: -1.9, y: 0.6 },
         { x: 1.9, y: -0.8 },
         { x: -1.9, y: -1.0 },
-        { x: 1.1, y: 1.3 },
+        { x: 1.1, y: 2.5 },
         { x: -1.9, y: 1.4 },
-        { x: 2.6, y: 0.6 },
-        { x: -2.4, y: -1.1 },
+        { x: 0.4, y: -2.3 },
+        { x: -1.0, y: -0.8 },
         { x: 1.8, y: 1.6 },
         { x: -2.6, y: -1.4 },
         { x: 2.4, y: 2.1 },
@@ -1142,6 +1142,13 @@ const IsolatedExplosionImage = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
+              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[650px] lg:w-[500px] lg:h-[630px] md:w-[200px] md:h-[600px] rounded-xl overflow-hidden shadow-2xl">
+                <img
+                  src="/abhi.jpeg"
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[700px] lg:w-[500px] lg:h-[510px] md:w-[200px] md:h-[500px] rounded-xl overflow-hidden shadow-2xl">
                 <img
                   src="rohith.jpeg"
@@ -1149,20 +1156,14 @@ const IsolatedExplosionImage = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[650px] lg:w-[500px] lg:h-[470px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
+              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[650px] lg:w-[500px] lg:h-[570px] md:w-[300px] md:h-[500px] rounded-xl overflow-hidden shadow-2xl">
                 <img
                   src="/lallu.png"
                   alt=""
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] lg:w-[500px] lg:h-[510px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
-                <img
-                  src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&h=350&fit=crop"
-                  alt=""
-                  className="w-full h-full object-cover"
-                />
-              </div>
+
               <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] lg:w-[500px] lg:h-[450px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
                 <img
                   src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=500&h=350&fit=crop"

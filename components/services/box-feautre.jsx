@@ -1,14 +1,6 @@
 import React from "react";
 
-const FeatureSection = ({
-  image,
-  title,
-  tags,
-  techStack,
-  timeline,
-  results,
-  imageLeft = true,
-}) => {
+const FeatureSection = ({ image, title, services = [], imageLeft = true }) => {
   return (
     <div className="w-full bg-white py-16 px-4">
       <div className="max-w-7xl mx-auto">
@@ -27,65 +19,42 @@ const FeatureSection = ({
           </div>
 
           {/* Features/Content */}
-          <div className="w-full lg:w-1/2 space-y-6">
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2">
-              {tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="text-xs font-semibold text-gray-600 tracking-wider"
-                >
-                  #{tag.toUpperCase()}
-                </span>
-              ))}
-            </div>
-
-            {/* Title */}
+          {/* Features/Content */}
+          {/* Content */}
+          <div className="w-full lg:w-1/2 space-y-10">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
               {title}
             </h2>
 
-            {/* Location/Category Badges */}
-            <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded">
-                NOMUPAY
-              </span>
-              <span className="px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded flex items-center gap-2">
-                🇳🇿 NEW ZEALAND
-              </span>
-            </div>
-
-            {/* Tech Stack & Timeline */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6">
-              <div>
-                <h3 className="text-sm font-semibold text-gray-500 mb-3 tracking-wider">
-                  TECH STACK
-                </h3>
-                <p className="text-lg text-gray-900">{techStack}</p>
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold text-gray-500 mb-3 tracking-wider">
-                  TIMELINE
-                </h3>
-                <p className="text-lg text-gray-900">{timeline}</p>
-              </div>
-            </div>
-
-            {/* Results */}
-            <div className="pt-6">
-              <h3 className="text-sm font-semibold text-gray-500 mb-4 tracking-wider">
-                RESULTS
-              </h3>
-              <div className="space-y-3">
-                {results.map((result, index) => (
-                  <div
-                    key={index}
-                    className="text-xl font-semibold text-gray-900"
-                  >
-                    {result}
+            <div className="space-y-8">
+              {services.map((group, index) => (
+                <div key={index}>
+                  {/* Main Item */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-violet-600 text-white text-sm font-bold">
+                      ✓
+                    </span>
+                    <h3 className="text-xl font-semibold text-gray-900">
+                      {group.title}
+                    </h3>
                   </div>
-                ))}
-              </div>
+
+                  {/* Sub Items */}
+                  {group.items?.length > 0 && (
+                    <ul className="ml-9 space-y-2">
+                      {group.items.map((item, idx) => (
+                        <li
+                          key={idx}
+                          className="flex items-center gap-2 text-gray-600"
+                        >
+                          <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>

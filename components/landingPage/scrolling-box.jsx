@@ -129,9 +129,8 @@ const ScrollingBox = () => {
       </div>
 
       {/* SaaS Section - Separate from the animated container */}
-      <div className="relative z-30 bg-white">
-        <SaaSSection />
-      </div>
+      {/* <div className="relative z-30 bg-white">
+      </div> */}
 
       {/* Optional: WobbleCard Section */}
       {/* <div className="relative z-30 bg-white py-20">

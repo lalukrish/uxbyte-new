@@ -5,6 +5,12 @@ import BlogShare from "@/components/blog/blog-share";
 import BlogGrid from "@/components/blog/blog-grid";
 import { BLOGS } from "@/data/blog-data";
 
+export function generateStaticParams() {
+  return BLOGS.map((blog) => ({
+    slug: blog.slug,
+  }));
+}
+
 export default function BlogDetailPage({ params }) {
   const blog = BLOGS.find((b) => b.slug === params.slug);
   if (!blog) notFound();

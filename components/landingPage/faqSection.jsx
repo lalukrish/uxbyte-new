@@ -143,7 +143,7 @@ export default function ScrollFaqGsap() {
       {/* FAQ Section (slides up to reveal black section below) */}
       <div
         ref={blueRef}
-        className="absolute top-0 left-0 w-full h-[120vh] bg-white flex flex-col rounded-b-[6rem] z-10"
+        className="absolute top-0 left-0 w-full h-[120vh] bg-white flex flex-col rounded-b-[2.5rem] md:rounded-b-[6rem] z-10"
       >
         <div className="px-6 md:px-20 py-8 md:py-12 text-black h-full flex flex-col">
           {/* <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-start mb-8 md:mb-12 flex-shrink-0">

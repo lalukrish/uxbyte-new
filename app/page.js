@@ -24,6 +24,7 @@ export default function Home() {
       <AboutSection />
       {/* <CreativeHero /> */}
       <ScrollingBox />
+      <SaaSSection />
 
       {/* <AboutUs /> */}
       {/* <StrategiGrid /> */}

@@ -182,22 +182,6 @@ export default function SaaSSection() {
                 </div>
               ))}
 
-              {/* <button className="w-full mt-6 px-5 py-3 rounded-xl bg-white text-gray-700 hover:bg-gray-100 transition-all duration-300 font-medium text-sm flex items-center justify-center gap-2 group border border-gray-200">
-                EXPLORE ALL
-                <svg
-                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button> */}
               <Button
                 label={"Explore All"}
                 type="button"
@@ -257,8 +241,6 @@ export default function SaaSSection() {
                 </div>
               </div>
             ))}
-            {/* Extra space for scroll
-            <div className="h-96"></div> */}
           </div>
         </div>
       </div>
