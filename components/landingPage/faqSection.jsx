@@ -79,31 +79,6 @@ const faqs = [
   },
 ];
 
-const Testimonials = ({ reviews }) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
-    {reviews.map((review, index) => (
-      <div key={index} className="bg-white/20 backdrop-blur-sm rounded-xl p-4">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 rounded-full bg-white/30 flex items-center justify-center text-xl">
-            👤
-          </div>
-          <div>
-            <p className="font-semibold text-white">{review.name}</p>
-            <div className="flex gap-1">
-              {[...Array(review.rating)].map((_, i) => (
-                <span key={i} className="text-yellow-400">
-                  ★
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-        <p className="text-white/90 text-sm">{review.body}</p>
-      </div>
-    ))}
-  </div>
-);
-
 export default function ScrollFaqGsap() {
   const [openIndex, setOpenIndex] = useState(null);
   const sectionRef = useRef(null);
@@ -143,7 +118,7 @@ export default function ScrollFaqGsap() {
       {/* FAQ Section (slides up to reveal black section below) */}
       <div
         ref={blueRef}
-        className="absolute top-0 left-0 w-full h-[120vh] bg-white flex flex-col rounded-b-[2.5rem] md:rounded-b-[6rem] z-10"
+        className="absolute top-0 left-0 w-full  h-[100vh] md:h-[120vh]  bg-white flex flex-col rounded-b-[0rem] md:rounded-b-[6rem] z-10"
       >
         <div className="px-6 md:px-20 py-8 md:py-12 text-black h-full flex flex-col">
           {/* <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-start mb-8 md:mb-12 flex-shrink-0">
@@ -186,7 +161,7 @@ export default function ScrollFaqGsap() {
         </div>
       </div>
       {/* Hero Section (revealed underneath as FAQ slides up) */}
-      <div className="absolute top-10 left-0 w-full h-[100vh] bg-black text-white rounded-t-[6rem] flex flex-col justify-center items-center px-4 md:px-6">
+      <div className="absolute top-10 left-0 w-full h-[50vh] md:h-[100vh]  bg-black text-white rounded-t-[6rem] flex flex-col justify-center items-center px-4 md:px-6">
         <div className="w-full flex flex-col items-center justify-center py-10 md:py-20 max-w-7xl mx-auto">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[120px] 2xl:text-9xl font-semibold text-center leading-tight gradient-text mb-4">
             The data you own,
@@ -197,7 +172,7 @@ export default function ScrollFaqGsap() {
           </h1>
         </div>
 
-        <button className="mt-6 md:mt-8 bg-white text-black px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg lg:text-xl font-semibold hover:bg-gray-200 transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 duration-300">
+        <button className="mt-6 md:mt-8   bg-white text-black px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg lg:text-xl font-semibold hover:bg-gray-200 transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 duration-300">
           Get Started
         </button>
       </div>

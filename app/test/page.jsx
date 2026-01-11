@@ -29,6 +29,8 @@ const page = () => {
       {/* <DomainSearchSection /> */}
       <ScrollingFeatures />
       <AnimationCard />
+      {/* <ProjectFilterSection />
+      <ServiceCard /> */}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 const articles = [
   {
@@ -30,6 +30,9 @@ const articles = [
 
 export default function MobileCenterCarousel() {
   const [active, setActive] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -46,10 +49,53 @@ export default function MobileCenterCarousel() {
     return "hidden";
   };
 
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      // Swipe left - go to next
+      setActive((prev) => (prev + 1) % articles.length);
+    }
+    if (isRightSwipe) {
+      // Swipe right - go to previous
+      setActive((prev) => (prev - 1 + articles.length) % articles.length);
+    }
+
+    // Reset values
+    setTouchStart(0);
+    setTouchEnd(0);
+  };
+
+  const handlePrev = () => {
+    setActive((active - 1 + articles.length) % articles.length);
+  };
+
+  const handleNext = () => {
+    setActive((active + 1) % articles.length);
+  };
+
   return (
     <div className="relative w-full h-[60vh] bg-white flex items-center justify-center overflow-hidden">
       <div className="relative w-full max-w-md mx-auto px-12">
-        <div className="relative h-[100px] flex items-center justify-center">
+        <div
+          ref={containerRef}
+          className="relative h-[100px] flex items-center justify-center touch-pan-y"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           {articles.map((article, index) => {
             const position = getPosition(index);
 
@@ -80,7 +126,7 @@ export default function MobileCenterCarousel() {
                   height: "330px",
                 }}
               >
-                <div className="relative w-full h-full  overflow-hidden shadow-2xl">
+                <div className="relative w-full h-full overflow-hidden shadow-2xl">
                   {/* Background Image */}
                   <div
                     className="absolute inset-0 bg-cover bg-center"
@@ -131,21 +177,21 @@ export default function MobileCenterCarousel() {
           ))}
         </div>
 
-        {/* Navigation Arrows */}
-        <button
-          onClick={() =>
-            setActive((active - 1 + articles.length) % articles.length)
-          }
-          className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-50 transition-colors z-40"
-        >
-          ‹
-        </button>
-        <button
-          onClick={() => setActive((active + 1) % articles.length)}
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-50 transition-colors z-40"
-        >
-          ›
-        </button>
+        {/* Navigation Arrows - Positioned on Left Bottom */}
+        <div className="absolute left-4 mt-24 flex gap-2 z-40">
+          <button
+            onClick={handlePrev}
+            className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-50 transition-colors text-xl"
+          >
+            ‹
+          </button>
+          <button
+            onClick={handleNext}
+            className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-50 transition-colors text-xl"
+          >
+            ›
+          </button>
+        </div>
       </div>
     </div>
   );

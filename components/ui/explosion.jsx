@@ -1212,7 +1212,7 @@ const IsolatedExplosionImage = () => {
             </section>
 
             <section className="isolated-explosion-outro-header absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-1/2 lg:w-1/2 md:w-[90%] pointer-events-none z-10 p-8 md:p-8">
-              <h1 className="text-7xl lg:text-8xl md:text-4xl font-medium tracking-tight leading-[0.9]">
+              <h1 className="text-4xl lg:text-8xl md:text-4xl font-medium tracking-tight leading-[0.9]">
                 revealing depth in every dimension
               </h1>
             </section>

@@ -44,12 +44,7 @@ const menuData = [
   {
     label: "INSIGHTS",
     href: "/insights",
-    items: [],
-  },
-  {
-    label: "CONTACTS",
-    href: "/contacts",
-    items: [],
+    items: [{ label: "Blogs", href: "/blog" }],
   },
 ];
 
@@ -97,17 +92,20 @@ export default function Header() {
         return;
       }
 
-      // Show header after scrolling 300px (only when NOT in hero/people section)
-      if (currentScrollY > 300) {
-        setShowHeader(true);
-
-        // Detect scroll direction
-        if (currentScrollY > lastScrollY) {
-          setScrollingDown(true);
-        } else {
-          setScrollingDown(false);
-        }
+      // Detect scroll direction
+      if (currentScrollY > lastScrollY) {
+        setScrollingDown(true);
       } else {
+        setScrollingDown(false);
+      }
+
+      // Show header ONLY when scrolling UP and after 300px (only when NOT in hero/people section)
+      if (currentScrollY > 300 && currentScrollY < lastScrollY) {
+        setShowHeader(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Hide header when scrolling down
+        setShowHeader(false);
+      } else if (currentScrollY <= 300) {
         setShowHeader(false);
       }
 
@@ -202,12 +200,12 @@ export default function Header() {
                 onMouseLeave={() => setOpenMenu(null)}
               >
                 {!item.items || item.items.length === 0 ? (
-                  <a
+                  <Link
                     href={item.href}
                     className={`px-4 text-sm font-medium ${textColor} ${textHoverColor} transition-colors`}
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 ) : (
                   <button
                     className={`flex items-center gap-1 px-4 text-sm font-medium ${textColor} ${textHoverColor} transition-colors h-full`}
@@ -232,13 +230,13 @@ export default function Header() {
 
           {/* CTA */}
           <div className="hidden lg:block">
-            <a
+            <Link
               href="/contact"
               className={`inline-flex items-center gap-2 px-6 py-2 ${ctaBg} font-medium transition-colors text-sm`}
             >
               GET IN TOUCH
               <ArrowRight size={16} />
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -277,28 +275,27 @@ export default function Header() {
                           : `Discover more about ${item.label.toLowerCase()}.`}
                       </p>
 
-                      <a
+                      <Link
                         href={item.href}
                         className="inline-flex items-center gap-2 px-8 py-3 bg-[#6915ae] text-white  font-medium hover:bg-[#6915ae] transition-colors"
                       >
-                        LET'S TALK
-                        <ArrowRight size={18} />
-                      </a>
+                        Visit Page <ArrowRight size={18} />
+                      </Link>
                     </div>
 
                     {/* RIGHT SIDE - Menu Items */}
                     <div className="col-span-8">
                       <div className="grid grid-cols-2 gap-x-8 gap-y-4">
                         {item.items.map((sub) => (
-                          <a
+                          <Link
                             key={sub.label}
                             href={sub.href}
                             className="group py-3 border-b border-gray-800 hover:border-gray-600 transition-colors"
                           >
-                            <div className="text-lg font-medium text-white group-hover:text-orange-500 transition-colors">
+                            <div className="text-lg font-medium text-white group-hover:text-[#6915ae] transition-colors">
                               {sub.label}
                             </div>
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -314,8 +311,8 @@ export default function Header() {
         <>
           {/* Desktop CTA */}
           <div className="fixed top-3 right-6 xl:right-24 z-50 hidden md:block">
-            <a
-              href="/contact"
+            <Link
+              href="/contact-us"
               className={`inline-flex items-center gap-2 px-6 py-3.5 font-medium transition-all duration-500 text-sm shadow-lg ${
                 showHeader
                   ? `${ctaBg}`
@@ -324,7 +321,7 @@ export default function Header() {
             >
               GET IN TOUCH
               <ArrowRight size={16} />
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Menu Icon - Always Visible */}
@@ -365,13 +362,13 @@ export default function Header() {
           {menuData.map((item) => (
             <div key={item.label}>
               {!item.items || item.items.length === 0 ? (
-                <a
+                <Link
                   href={item.href}
                   className="block px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
-                </a>
+                </Link>
               ) : (
                 <>
                   <button
@@ -392,14 +389,14 @@ export default function Header() {
                   {openMenu === item.label && (
                     <div className="ml-4 mt-2 space-y-1 pl-4 border-l-2 border-gray-700">
                       {item.items.map((sub) => (
-                        <a
+                        <Link
                           key={sub.label}
                           href={sub.href}
                           className="block text-sm text-gray-400 hover:text-white py-2 px-3 rounded hover:bg-gray-800 transition-colors"
                           onClick={() => setMobileOpen(false)}
                         >
                           {sub.label}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   )}

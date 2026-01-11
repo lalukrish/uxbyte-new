@@ -36,7 +36,7 @@ const ArticleCard = ({
           </div>
 
           {/* Content Overlay */}
-          <div className="relative h-full p-6 flex flex-col justify-between">
+          <div className="relative h-full p-3 md:p-6 flex flex-col justify-between">
             {/* Category Tag with Glassmorphism */}
             <div>
               <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-sm font-semibold uppercase tracking-wide text-white border border-white/30 shadow-lg">
@@ -175,7 +175,7 @@ const ArticleCardsGrid = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white p-8">
+    <div className="min-h-screen bg-white px-2 md:p-8">
       <div className="max-w-[1400px] mx-auto">
         {/* Header */}
         <div className="mb-12">
