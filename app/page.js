@@ -16,27 +16,22 @@ import ScrollFaqGsap from "@/components/landingPage/hovering-section";
 import ArticleCardsGrid from "@/components/landingPage/hovering-section";
 import ServiceHoverCard from "@/components/landingPage/mason-grid";
 import SaaSSection from "@/components/landingPage/scrolling-features";
+import PopularBlogs from "@/components/blog/popular-blogs";
+import { BLOGS } from "@/data/blog-data";
+
+const POPULAR_BLOGS = BLOGS.filter((b) => b.isPopular);
 
 export default function Home() {
   return (
     <>
       <HeroNew />
       <AboutSection />
-      {/* <CreativeHero /> */}
       <ScrollingBox />
       <SaaSSection />
-
-      {/* <AboutUs /> */}
-      {/* <StrategiGrid /> */}
-      {/* <HoverCardDemo /> */}
       <ServiceHoverCard />
-      {/* <AnimationCard /> */}
-      {/* <SaaSSection /> */}
-
       <FaqSection />
       <ExplosionImage />
-      <InspirationSection />
-      {/* <ArticleCardsGrid /> */}
+      <InspirationSection blogs={POPULAR_BLOGS} />
     </>
   );
 }

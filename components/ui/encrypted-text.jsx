@@ -23,16 +23,16 @@ function generateGibberishPreservingSpaces(original, charset) {
 export const EncryptedText = ({
   normaltext = "",
   text,
-  className,
+  className = "",
   normalClassName = "",
   revealDelayMs = 50,
   charset = DEFAULT_CHARSET,
   flipDelayMs = 50,
-  encryptedClassName = "text-neutral-500",
-  revealedClassName = "text-black dark:text-white",
+  encryptedClassName = "text-neutral-500 ",
+  revealedClassName = "text-black dark:text-white ",
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: false });
   const [mounted, setMounted] = useState(false);
   const [revealCount, setRevealCount] = useState(0);
   const animationFrameRef = useRef(null);
@@ -106,7 +106,7 @@ export const EncryptedText = ({
   if (!text) return null;
 
   return (
-    <span ref={ref} className={className}>
+    <span ref={ref} className={`tracking-widest text-semibold! ${className}`}>
       {/* Normal text - no animation */}
       {normaltext && <span className={revealedClassName}>{normaltext}</span>}
 
@@ -129,7 +129,7 @@ export const EncryptedText = ({
             className={isRevealed ? revealedClassName : encryptedClassName}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.1 }}
+            transition={{ duration: 0.3 }}
           >
             {displayChar}
           </motion.span>

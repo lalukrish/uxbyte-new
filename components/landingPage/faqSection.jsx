@@ -4,6 +4,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Title from "@/commonComponents/title";
+import { Button } from "@/commonComponents/Button";
+import { EncryptedText } from "../ui/encrypted-text";
+import Paragraph from "@/commonComponents/paragraph";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,39 +46,39 @@ const reviews = [
 
 const faqs = [
   {
-    question: "What services do you offer?",
+    question: "What services does UXByte provide?",
     answer:
-      "We offer visa consulting, study abroad assistance, travel guidance, and documentation support tailored to each client's needs.",
+      "UXByte is a full-service IT company offering development, cloud solutions, UI/UX design, digital marketing, branding, and social media management.",
   },
   {
-    question: "Do you charge for consultation?",
+    question: "Do you work with startups or large enterprises?",
     answer:
-      "Our initial consultation is completely free. We only charge once you decide to proceed with our services.",
+      "We work with businesses of all sizes, from early-stage startups to growing enterprises, tailoring our solutions to meet unique goals and requirements.",
   },
   {
-    question: "Can I track my application status?",
+    question: "How do you ensure fast project delivery?",
     answer:
-      "Yes, we provide a secure dashboard where you can track your visa or admission process in real-time.",
+      "We follow agile workflows, streamlined processes, and modern technology stacks to ensure efficient development and timely delivery without compromising quality.",
   },
   {
-    question: "How long does the process take?",
+    question: "Can you handle end-to-end projects?",
     answer:
-      "Processing times vary by country and visa type, typically ranging from 2-8 weeks. We keep you updated throughout the entire journey.",
+      "Yes, we manage projects from strategy and design to development, deployment, and ongoing support, providing complete end-to-end solutions.",
   },
   {
-    question: "Do you provide post-arrival support?",
+    question: "Do you offer cloud-based solutions?",
     answer:
-      "Yes, we offer comprehensive post-arrival assistance including accommodation help, orientation services, and ongoing support.",
+      "Yes, we provide scalable and secure cloud solutions, including migration, deployment, and optimization to support business growth and performance.",
   },
   {
-    question: "What countries do you cover?",
+    question: "Will I get ongoing support after project delivery?",
     answer:
-      "We assist with visa applications and study abroad programs for USA, UK, Canada, Australia, Ireland, and many European countries.",
+      "Absolutely. We offer post-launch support, maintenance, and optimization to ensure your digital solutions continue to perform effectively.",
   },
   {
-    question: "Are there any hidden fees?",
+    question: "How do you communicate during a project?",
     answer:
-      "No, we believe in complete transparency. All costs are clearly outlined before you commit to our services.",
+      "We maintain transparent communication through regular updates, progress reviews, and dedicated points of contact throughout the project lifecycle.",
   },
 ];
 
@@ -121,24 +124,30 @@ export default function ScrollFaqGsap() {
         className="absolute top-0 left-0 w-full  h-[100vh] md:h-[120vh]  bg-white flex flex-col rounded-b-[0rem] md:rounded-b-[6rem] z-10"
       >
         <div className="px-6 md:px-20 py-8 md:py-12 text-black h-full flex flex-col">
-          {/* <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-start mb-8 md:mb-12 flex-shrink-0">
-            Frequently Asked Questions
-          </h2> */}
+          <EncryptedText
+            normaltext="SIMPLE"
+            text=" ANSWERS, FAST"
+            className="text-sm pl-4"
+            normalClassName=""
+            encryptedClassName="text-[#adadae]"
+            revealedClassName="text-gray-500 dark:text-[#adadae]"
+            revealDelayMs={30}
+          />
           <Title className="pl-4"> Frequently Asked Questions</Title>
 
-          <div className="divide-y divide-gray-300 max-w-5xl xl:max-w-7xl flex-shrink-0">
+          <div className="divide-y divide-gray-300 flex-shrink-0">
             {faqs.map((faq, index) => (
               <div key={index} className="py-4 md:py-5">
                 <button
                   onClick={() => toggleFAQ(index)}
                   className="flex justify-between items-start w-full text-left cursor-pointer hover:bg-gray-50 transition-colors px-3 md:px-4 py-2 rounded-lg group"
                 >
-                  <p className="font-semibold text-base md:text-lg pr-4 group-hover:cursor-pointer transition-colors">
+                  <p className="font-medium text-base md:text-lg pr-4 group-hover:cursor-pointer transition-colors">
                     {faq.question}
                   </p>
 
                   <ChevronDown
-                    className={`w-5 h-5 md:w-6 md:h-6 text-gray-700 flex-shrink-0 transform transition-transform duration-300 ${
+                    className={`w-5 h-5 md:w-6 md:h-6  flex-shrink-0 transform transition-transform duration-300 ${
                       openIndex === index ? "rotate-180 text-gray-800" : ""
                     }`}
                   />
@@ -151,9 +160,10 @@ export default function ScrollFaqGsap() {
                       : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="text-gray-600 text-sm md:text-base px-3 md:px-4 pt-3 pb-2 leading-relaxed">
-                    {faq.answer}
-                  </p>
+                  <Paragraph
+                    className="text-[17px]! md:text-[17px]! xl:text-[17px]! px-3 md:px-4 pt-3 pb-2"
+                    children={faq.answer}
+                  />
                 </div>
               </div>
             ))}
@@ -172,9 +182,11 @@ export default function ScrollFaqGsap() {
           </h1>
         </div>
 
-        <button className="mt-6 md:mt-8   bg-white text-black px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg lg:text-xl font-semibold hover:bg-gray-200 transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 duration-300">
-          Get Started
-        </button>
+        <Button
+          className="mt-6 md:mt-8  py-4 px-10 hover:bg-black hover:text-white "
+          variant="outlined"
+          label={"Get Started"}
+        ></Button>
       </div>
       <style jsx>{`
         .gradient-text {
@@ -184,7 +196,7 @@ export default function ScrollFaqGsap() {
             #a78bfa 25%,
             #f472b6 50%,
             #a78bfa 75%,
-            #60a5fa 100%
+            #ff7a32 100%
           );
           background-size: 200% auto;
           -webkit-background-clip: text;

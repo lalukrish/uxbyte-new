@@ -349,32 +349,31 @@ export default function HeroNew() {
 
   const images = [
     {
-      src: "https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?w=400&h=400&fit=crop",
-      alt: "Camera on yellow background",
-      chip: "Photography",
+      src: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop",
+      alt: "Modern laptop with code",
+      chip: "Innovation",
     },
     {
-      src: "https://images.unsplash.com/photo-1532153955177-f59af40d6472?w=400&h=400&fit=crop",
-      alt: "Red fabric hands",
-      chip: "Creative Arts",
+      src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=400&fit=crop",
+      alt: "Digital network and connectivity",
+      chip: "Cloud Solutions",
     },
     {
-      src: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=400&fit=crop",
-      alt: "Pink book",
-      chip: "Reading",
+      src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=400&fit=crop",
+      alt: "Developers coding together",
+      chip: "Development",
     },
     {
-      src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
-      alt: "Person",
-      chip: "People",
+      src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=400&fit=crop",
+      alt: "Team collaboration",
+      chip: "Solutions",
     },
     {
-      src: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400&h=400&fit=crop",
-      alt: "Landscape",
-      chip: "Travel",
+      src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=400&fit=crop",
+      alt: "AI and machine learning",
+      chip: "AI & Analytics",
     },
   ];
-
   useLayoutEffect(() => {
     if (!containerRef.current || !imagesRef.current) return;
 
@@ -437,7 +436,6 @@ export default function HeroNew() {
 
   return (
     <section data-hero-section className="data-hero-section bg-white">
-      {/* Navigation */}
       <nav className="flex items-center justify-between px-4 py-4 md:py-6 lg:px-24 mx-auto">
         <div className="flex items-center gap-2">
           <Image
@@ -452,43 +450,33 @@ export default function HeroNew() {
             Uxbyte Studio
           </span>
         </div>
-
-        {/* <div className="hidden lg:block">
-          <a
-            href="/contact"
-            className={`inline-flex items-center gap-2 px-6 py-4.5  bg-black text-white font-medium transition-colors text-sm`}
-          >
-            GET IN TOUCH
-            <ArrowRight size={16} />
-          </a>
-        </div> */}
       </nav>
 
-      {/* Hero Section with Horizontal Scroll */}
       <div className="hidden md:block">
         <div ref={containerRef} className="bg-white relative  mt-14 ">
           <div className="h-screen flex items-center  ">
             <main className="w-full 2xl:px-56 xl:px-24 px-8 ">
-              {/* Headline */}
               <div className="flex items-center justify-between gap-12 ">
-                {/* Left text */}
                 <div className="max-w-4xl mb-12">
-                  <h1 className="text-4xl md:text-7xl font-semibold leading-tight mb-6 ">
-                    <span>Where curiosity</span>
+                  <h1 className="text-4xl md:text-6xl font-medium leading-tight mb-6 ">
+                    <span>Where thinking</span>
                     <br />
-                    <span>roams, </span>
+                    <span>flows, </span>
                     <LayoutTextFlip
-                      words={["you think.", "imagine", "you create."]}
+                      words={[
+                        "innovation grows.",
+                        "creativity moves.",
+                        "insight blooms",
+                      ]}
                     />
                   </h1>
 
                   <p className="text-xl text-gray-500">
-                    All of your notes, bookmarks, and documents at your
-                    fingertips.
+                    Your digital world, managed and organized with ease by
+                    UXByte.{" "}
                   </p>
                 </div>
 
-                {/* Right image */}
                 <div className="flex-shrink-0 w-[460px] h-74 relative xl:-mt-25 md:block hidden">
                   <div className="w-full h-full rounded-none flex items-center justify-center overflow-hidden">
                     <img
@@ -497,10 +485,8 @@ export default function HeroNew() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  {/* <p className="text-center absolute -mt-4 text-sm text-gray-600">
-                  Version 2.0 <br />
-                </p> */}
-                  <div className="flex flex-col items-start gap-4 ">
+
+                  <div className="flex flex-col items-start gap-4 md:-mt-16 md:pl-10">
                     <EncryptedText
                       normaltext=""
                       text="VERSION 2.0"

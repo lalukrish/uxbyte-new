@@ -346,7 +346,11 @@ const CardMovingSection = () => {
                 <a href="#" className="hover:text-blue-600 transition-colors">
                   <Facebook className="w-4 h-4" />
                 </a>
-                <a href="#" className="hover:text-pink-500 transition-colors">
+                <a
+                  href="https://www.instagram.com/uxbyte?igsh=MWRiMjZ5ZWJobjdxYw"
+                  className="hover:text-pink-500 transition-colors"
+                  target="_blank"
+                >
                   <Instagram className="w-4 h-4" />
                 </a>
               </div>
@@ -401,7 +405,11 @@ const CardMovingSection = () => {
                 </span>
               </a>
 
-              <a className="group relative flex items-center bg-gradient-to-r from-pink-500 to-orange-400 text-white rounded-full overflow-hidden w-10 h-10 transition-all duration-300 hover:w-[130px]">
+              <a
+                className="group relative flex items-center bg-gradient-to-r from-pink-500 to-orange-400 text-white rounded-full overflow-hidden w-10 h-10 transition-all duration-300 hover:w-[130px]"
+                target="_blank"
+                href="https://www.instagram.com/uxbyte?igsh=MWRiMjZ5ZWJobjdxYw"
+              >
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Instagram className="w-5 h-5" />
                 </div>

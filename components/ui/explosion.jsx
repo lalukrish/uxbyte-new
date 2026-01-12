@@ -903,11 +903,11 @@ const IsolatedExplosionImage = () => {
         { x: 1.1, y: 2.5 },
         { x: -1.9, y: 1.4 },
         { x: 0.4, y: -2.3 },
-        { x: -1.0, y: -0.8 },
-        { x: 1.8, y: 1.6 },
-        { x: -2.6, y: -1.4 },
-        { x: 2.4, y: 2.1 },
-        { x: -1.5, y: 1.1 },
+        // { x: -1.0, y: -0.8 },
+        // { x: 1.8, y: 1.6 },
+        // { x: -2.6, y: -1.4 },
+        // { x: 2.4, y: 2.1 },
+        // { x: -1.5, y: 1.1 },
       ];
 
       const screenWidth = window.innerWidth;
@@ -943,7 +943,7 @@ const IsolatedExplosionImage = () => {
       scrollTriggerRef.current = ScrollTrigger.create({
         trigger: container.querySelector(".isolated-explosion-spotlight"),
         start: "top top",
-        end: `+=${window.innerHeight * 15}px`,
+        end: `+=${window.innerHeight * 6}px`, //to chnge 10 value to change the scroll
         pin: true,
         pinSpacing: true,
         scrub: 1,
@@ -987,7 +987,7 @@ const IsolatedExplosionImage = () => {
           });
 
           const coverProgress = Math.max(0, (progress - 0.7) * 4);
-          const coverZValue = -1000 + 2000 * coverProgress;
+          const coverZValue = -1000 + 500 * coverProgress;
           const coverScaleValue = Math.min(1, coverProgress * 2);
 
           gsap.set(coverImg, {
@@ -1164,7 +1164,7 @@ const IsolatedExplosionImage = () => {
                 />
               </div>
 
-              <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] lg:w-[500px] lg:h-[450px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
+              {/* <div className="isolated-explosion-img absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] lg:w-[500px] lg:h-[450px] md:w-[200px] md:h-[400px] rounded-xl overflow-hidden shadow-2xl">
                 <img
                   src="https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=500&h=350&fit=crop"
                   alt=""
@@ -1198,11 +1198,11 @@ const IsolatedExplosionImage = () => {
                   alt=""
                   className="w-full h-full object-cover"
                 />
-              </div>
+              </div> */}
             </section>
 
             <section className="isolated-explosion-cover-img-wrapper absolute top-0 left-0 w-full h-full">
-              <div className="isolated-explosion-cover-img w-full h-full bg-black flex items-center justify-center">
+              <div className="isolated-explosion-cover-img m:w-full md:h-full bg-black flex items-center justify-center h-[600px] w-full">
                 <Image src="/blog-3.webp" alt="powerful persons" fill />{" "}
               </div>
             </section>
@@ -1211,9 +1211,21 @@ const IsolatedExplosionImage = () => {
               <h1 className="text-7xl lg:text-8xl md:text-4xl font-medium tracking-tight leading-[0.9] h-1"></h1>
             </section>
 
-            <section className="isolated-explosion-outro-header absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-1/2 lg:w-1/2 md:w-[90%] pointer-events-none z-10 p-8 md:p-8">
-              <h1 className="text-4xl lg:text-8xl md:text-4xl font-medium tracking-tight leading-[0.9]">
-                revealing depth in every dimension
+            <section className="isolated-explosion-outro-header relative absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-1/2 lg:w-1/2 md:w-[90%] pointer-events-none z-10 p-8">
+              <div
+                className="
+      absolute inset-0
+      bg-gradient-to-b
+      from-black/40
+      via-black/20
+      to-black/40
+      blur-2xl
+      -z-10
+    "
+              />
+
+              <h1 className="text-4xl lg:text-8xl md:text-4xl font-medium tracking-tight leading-[0.9] text-white">
+                Creators Behind Growth
               </h1>
             </section>
           </section>

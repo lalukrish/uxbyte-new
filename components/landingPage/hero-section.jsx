@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Button from "../ui/button";
 import { useState } from "react";
+import Title from "@/commonComponents/title";
+import { Button } from "@/commonComponents/Button";
+import Paragraph from "@/commonComponents/paragraph";
 
 export default function CreativeHero() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -72,11 +74,9 @@ export default function CreativeHero() {
 
           {/* === RIGHT TEXT SECTION === */}
           <div className="flex flex-col justify-center space-y-6 order-2 lg:order-2 xl:-translate-x-12">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight">
-              Bring your ideas to life with Creative Freedom
-            </h1>
-
-            <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+            {/* <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight"></h1> */}
+            <Title> Bring your ideas to life with Creative Freedom</Title>
+            <Paragraph className=" text-base sm:text-lg leading-relaxed">
               We help you design websites exactly the way you imagine. With
               intuitive tools, dynamic animations, and unmatched flexibility —
               your creativity has no limits.
@@ -90,13 +90,9 @@ export default function CreativeHero() {
               <br />
               Explore a futuristic design experience where your imagination
               meets powerful visual tools.
-            </p>
+            </Paragraph>
 
-            <div>
-              <Button className="bg-yellow-400 hover:bg-yellow-500 text-black rounded-full px-6 py-3 text-lg font-semibold shadow-md">
-                Start Building →
-              </Button>
-            </div>
+            <div></div>
           </div>
         </div>
       </div>

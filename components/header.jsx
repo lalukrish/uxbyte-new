@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const menuData = [
   {
@@ -49,6 +50,7 @@ const menuData = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
@@ -56,6 +58,12 @@ export default function Header() {
   const [scrollingDown, setScrollingDown] = useState(false);
   const [isDarkSection, setIsDarkSection] = useState(true);
   const [mounted, setMounted] = useState(false);
+
+  // Function to check if a menu item is active
+  const isActive = (href) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -74,56 +82,48 @@ export default function Header() {
       if (heroSection) {
         const heroRect = heroSection.getBoundingClientRect();
         const heroBottom = heroRect.bottom;
-        inHeroOrPeople = heroBottom > 80; // 80px is header height
+        inHeroOrPeople = heroBottom > 80;
       }
 
       if (!inHeroOrPeople && peopleSection) {
         const peopleRect = peopleSection.getBoundingClientRect();
         const peopleTop = peopleRect.top;
         const peopleBottom = peopleRect.bottom;
-        // Check if header area (top 80px) overlaps with people section
         inHeroOrPeople = peopleTop < 80 && peopleBottom > 0;
       }
 
-      // If in hero or people section, hide header and return early
       if (inHeroOrPeople) {
         setShowHeader(false);
         setLastScrollY(currentScrollY);
         return;
       }
 
-      // Detect scroll direction
       if (currentScrollY > lastScrollY) {
         setScrollingDown(true);
       } else {
         setScrollingDown(false);
       }
 
-      // Show header ONLY when scrolling UP and after 300px (only when NOT in hero/people section)
       if (currentScrollY > 300 && currentScrollY < lastScrollY) {
         setShowHeader(true);
       } else if (currentScrollY > lastScrollY) {
-        // Hide header when scrolling down
         setShowHeader(false);
       } else if (currentScrollY <= 300) {
         setShowHeader(false);
       }
 
       setLastScrollY(currentScrollY);
-
-      // Detect section background color
       detectSectionColor();
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
   const detectSectionColor = () => {
-    // Get all sections
     const sections = document.querySelectorAll("section, div[data-section]");
-    const headerHeight = 80; // Height of header
+    const headerHeight = 80;
     const scrollPosition = window.scrollY + headerHeight;
 
     let foundDarkSection = true;
@@ -133,11 +133,8 @@ export default function Header() {
       const sectionTop = rect.top + window.scrollY;
       const sectionBottom = sectionTop + rect.height;
 
-      // Check if header is over this section
       if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
         const bgColor = window.getComputedStyle(section).backgroundColor;
-
-        // Parse RGB values
         const rgb = bgColor.match(/\d+/g);
         if (rgb) {
           const brightness =
@@ -153,7 +150,6 @@ export default function Header() {
     setIsDarkSection(foundDarkSection);
   };
 
-  // Color scheme based on section
   const headerBg = isDarkSection
     ? "bg-white/95 backdrop-blur-sm"
     : "bg-[#0a0a0a]/95 backdrop-blur-sm";
@@ -166,6 +162,21 @@ export default function Header() {
   const ctaBg = isDarkSection
     ? "bg-black text-white hover:bg-gray-800"
     : "bg-white text-black hover:bg-gray-100";
+
+  // Active state colors
+  const getActiveColor = (href) => {
+    if (!isActive(href)) return "";
+    return isDarkSection
+      ? "text-black font-semibold"
+      : "text-white font-semibold";
+  };
+
+  const getActiveIndicator = (href) => {
+    if (!isActive(href)) return "";
+    return isDarkSection
+      ? "border-b-2 border-black"
+      : "border-b-2 border-white";
+  };
 
   return (
     <>
@@ -180,8 +191,8 @@ export default function Header() {
         <div className="xl:px-24 mx-auto px-4 h-20 flex items-center justify-between">
           {/* LOGO */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-12 h-12 bg-[#6915ae]  flex items-center justify-center p-1">
-              <span className="text-white font-bold text-xl ">UXB</span>
+            <div className="w-12 h-12 bg-[#6915ae] flex items-center justify-center p-1">
+              <span className="text-white font-bold text-xl">UXB</span>
             </div>
             <span className={`${logoText} font-semibold text-lg tracking-wide`}>
               Uxbyte Studio
@@ -202,13 +213,25 @@ export default function Header() {
                 {!item.items || item.items.length === 0 ? (
                   <Link
                     href={item.href}
-                    className={`px-4 text-sm font-medium ${textColor} ${textHoverColor} transition-colors`}
+                    className={`px-4 hover:cursor-pointer text-sm font-medium ${
+                      isActive(item.href)
+                        ? getActiveColor(item.href)
+                        : `${textColor} ${textHoverColor}`
+                    } transition-colors h-full flex items-center ${getActiveIndicator(
+                      item.href
+                    )}`}
                   >
                     {item.label}
                   </Link>
                 ) : (
                   <button
-                    className={`flex items-center gap-1 px-4 text-sm font-medium ${textColor} ${textHoverColor} transition-colors h-full`}
+                    className={`flex hover:cursor-pointer items-center gap-1 px-4 text-sm font-medium ${
+                      isActive(item.href)
+                        ? getActiveColor(item.href)
+                        : `${textColor} ${textHoverColor}`
+                    } transition-colors h-full ${getActiveIndicator(
+                      item.href
+                    )}`}
                   >
                     {item.label}
                     <ChevronDown
@@ -220,7 +243,6 @@ export default function Header() {
                   </button>
                 )}
 
-                {/* Invisible bridge */}
                 {item.items?.length > 0 && openMenu === item.label && (
                   <div className="absolute top-full left-1/2 -translate-x-1/2 w-48 h-2"></div>
                 )}
@@ -258,7 +280,6 @@ export default function Header() {
               >
                 <div className="max-w-7xl mx-auto px-8 py-12">
                   <div className="grid grid-cols-12 gap-16">
-                    {/* LEFT SIDE */}
                     <div className="col-span-4">
                       <h3 className="text-3xl font-bold text-white mb-4">
                         {item.label === "SERVICES"
@@ -277,22 +298,31 @@ export default function Header() {
 
                       <Link
                         href={item.href}
-                        className="inline-flex items-center gap-2 px-8 py-3 bg-[#6915ae] text-white  font-medium hover:bg-[#6915ae] transition-colors"
+                        className="inline-flex items-center gap-2 px-8 py-3 bg-[#6915ae] text-white font-medium hover:bg-[#6915ae] transition-colors"
                       >
                         Visit Page <ArrowRight size={18} />
                       </Link>
                     </div>
 
-                    {/* RIGHT SIDE - Menu Items */}
                     <div className="col-span-8">
                       <div className="grid grid-cols-2 gap-x-8 gap-y-4">
                         {item.items.map((sub) => (
                           <Link
                             key={sub.label}
                             href={sub.href}
-                            className="group py-3 border-b border-gray-800 hover:border-gray-600 transition-colors"
+                            className={`group py-3 border-b transition-colors ${
+                              isActive(sub.href)
+                                ? "border-[#6915ae]"
+                                : "border-gray-800 hover:border-gray-600"
+                            }`}
                           >
-                            <div className="text-lg font-medium text-white group-hover:text-[#6915ae] transition-colors">
+                            <div
+                              className={`text-lg font-medium transition-colors ${
+                                isActive(sub.href)
+                                  ? "text-[#6915ae]"
+                                  : "text-white group-hover:text-[#6915ae]"
+                              }`}
+                            >
                               {sub.label}
                             </div>
                           </Link>
@@ -306,10 +336,9 @@ export default function Header() {
         )}
       </div>
 
-      {/* ================= FLOATING CTA & MOBILE MENU ICON (Always Visible) ================= */}
+      {/* ================= FLOATING CTA & MOBILE MENU ICON ================= */}
       {mounted && (
         <>
-          {/* Desktop CTA */}
           <div className="fixed top-3 right-6 xl:right-24 z-50 hidden md:block">
             <Link
               href="/contact-us"
@@ -324,7 +353,6 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Mobile Menu Icon - Always Visible */}
           <button
             className="fixed top-4 right-6 z-50 md:hidden bg-white backdrop-blur-sm p-3 rounded-lg shadow-lg border-1 border-gray-200 text-black hover:bg-black transition-colors"
             onClick={() => setMobileOpen(true)}
@@ -364,7 +392,11 @@ export default function Header() {
               {!item.items || item.items.length === 0 ? (
                 <Link
                   href={item.href}
-                  className="block px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
+                  className={`block px-4 py-3 rounded-lg transition-colors text-sm font-medium ${
+                    isActive(item.href)
+                      ? "bg-[#6915ae] text-white"
+                      : "hover:bg-gray-800"
+                  }`}
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
@@ -375,7 +407,11 @@ export default function Header() {
                     onClick={() =>
                       setOpenMenu(openMenu === item.label ? null : item.label)
                     }
-                    className="w-full text-left px-4 py-3 flex justify-between items-center hover:bg-gray-800 rounded-lg transition-colors text-sm font-medium"
+                    className={`w-full text-left px-4 py-3 flex justify-between items-center rounded-lg transition-colors text-sm font-medium ${
+                      isActive(item.href)
+                        ? "bg-[#6915ae] text-white"
+                        : "hover:bg-gray-800"
+                    }`}
                   >
                     {item.label}
                     <ChevronDown
@@ -392,7 +428,11 @@ export default function Header() {
                         <Link
                           key={sub.label}
                           href={sub.href}
-                          className="block text-sm text-gray-400 hover:text-white py-2 px-3 rounded hover:bg-gray-800 transition-colors"
+                          className={`block text-sm py-2 px-3 rounded transition-colors ${
+                            isActive(sub.href)
+                              ? "bg-[#6915ae] text-white"
+                              : "text-gray-400 hover:text-white hover:bg-gray-800"
+                          }`}
                           onClick={() => setMobileOpen(false)}
                         >
                           {sub.label}

@@ -108,7 +108,7 @@ const ScrollingBox = () => {
               autoPlay
               muted
               loop
-              className="w-full h-[99.9vh] object-cover"
+              className="w-full h-[60vh] md:h-[99.5vh] md: object-cover"
             />
           </div>
 

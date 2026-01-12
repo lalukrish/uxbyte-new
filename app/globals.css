@@ -227,3 +227,16 @@ html {
   background: rgba(0, 0, 0, 0.3);
   border-radius: 999px;
 }
+
+.img-reveal {
+  opacity: 0;
+  transform: translateY(24px) scale(0.95) rotate(-6deg);
+  transition: opacity 0.9s ease-out,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.img-reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotate(0deg);
+}

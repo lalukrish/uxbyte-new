@@ -1,63 +1,85 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import Title from "@/commonComponents/title";
+import { EncryptedText } from "../ui/encrypted-text";
+import { Button } from "@/commonComponents/Button";
+import { ArrowRight } from "lucide-react";
 
-const cards = [
-  {
-    img: "/blog-1.webp",
-    title: "How to design a website (step-by-step guide)",
-    bg: "bg-[#004f4f]", // deep teal
-  },
-  {
-    img: "/blog-2.webp",
-    title: "How to monetize your website in 15 actionable steps",
-    bg: "bg-[#65281e]", // brown-red
-  },
-  {
-    img: "/blog-3.webp",
-    title: "18 outstanding website examples that will inspire you",
-    bg: "bg-[#5658f3]", // violet-blue
-  },
-];
+export default function InspirationSection({ blogs = [] }) {
+  // Only popular blogs (max 3)
+  const popularBlogs = blogs.filter((blog) => blog.isPopular).slice(0, 3);
 
-export default function InspirationSection() {
+  if (!popularBlogs.length) return null;
+
   return (
-    <section className="inspiration w-full py-20 bg-white text-black">
+    <section className="w-full py-20 xl:px-24  text-black">
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center max-w-7xl mx-auto px-6 mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold leading-tight max-w-3xl">
-          Get inspired, gain new skills
-          <br /> and see what’s trending
-        </h2>
-        <button className="mt-6 md:mt-0 bg-black text-white px-6 py-3 rounded-full font-medium  transition">
-          Explore the Blog
-        </button>
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center  mx-auto px-6 mb-16">
+        <div className="flex-col">
+          <EncryptedText
+            normaltext=""
+            text="BLOGS"
+            className="text-sm"
+            normalClassName=""
+            encryptedClassName="text-[#535658]"
+            revealedClassName="text-[#535658] dark:text-[#535658]"
+            revealDelayMs={30}
+          />
+          <Title className="">Latest Blogs</Title>
+        </div>
+
+        <Link
+          href="/blog"
+          className="mt-6 md:mt-0  text-black px-6 py-3 font-medium hover:opacity-90 transition"
+        ></Link>
+        <Button
+          variant="outlined"
+          label={"Explore the Blog"}
+          iconRight={<ArrowRight />}
+          className="hover:text-white hover:bg-black"
+        ></Button>
       </div>
 
       {/* Cards */}
-      <div className="max-w-7xl mx-auto px-6 grid gap-8 md:grid-cols-3">
-        {cards.map((card, i) => (
-          <motion.div
-            key={i}
+      <div className="mx-auto px-6 grid gap-8 md:grid-cols-3">
+        {popularBlogs.map((blog) => (
+          <motion.article
+            key={blog.slug}
             whileHover={{ y: -8, scale: 1.02 }}
             transition={{ duration: 0.3 }}
-            className={`rounded-3xl overflow-hidden  ${card.bg} flex flex-col`}
+            className="overflow-hidden "
           >
-            <div className="relative w-full aspect-[16/10]">
-              <Image
-                src={card.img}
-                alt={card.title}
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="bg-gray-100 p-6 flex-grow">
-              <h3 className="text-lg font-semibold leading-snug">
-                {card.title}
-              </h3>
-            </div>
-          </motion.div>
+            <Link
+              href={`/blog/${blog.slug}`}
+              aria-label={`Read article: ${blog.title}`}
+              className="flex flex-col h-full"
+            >
+              {/* Image */}
+              <div className="relative w-full aspect-[16/10]">
+                <Image
+                  src={blog.image}
+                  alt={blog.title}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="p-0 flex flex-col gap-3 py-3 flex-grow">
+                <div className="text-sm text-neutral-500 flex gap-4 mt-auto justify-between">
+                  <span>{blog.date}</span>
+                  <span>{blog.read}</span>
+                </div>
+                <h3 className="text-lg font-semibold leading-snug">
+                  {blog.title}
+                </h3>
+              </div>
+            </Link>
+          </motion.article>
         ))}
       </div>
     </section>

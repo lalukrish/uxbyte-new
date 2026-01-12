@@ -24,13 +24,19 @@ const page = () => {
       <ScrollZoomSection />
       <HoverImage />
       <ExplosionImage />
-     
+      {/* <AnimationCard /> */}
+      {/* <SaaSSection /> */}
       {/* <CardMovingSection /> */}
       {/* <DomainSearchSection /> */}
       <ScrollingFeatures />
       <AnimationCard />
       {/* <ProjectFilterSection />
       <ServiceCard /> */}
+      {/* <AboutUs /> */}
+      {/* <StrategiGrid /> */}
+      {/* <HoverCardDemo /> */}
+      {/* <ArticleCardsGrid /> */}
+      {/* <CreativeHero /> */}
     </div>
   );
 };
