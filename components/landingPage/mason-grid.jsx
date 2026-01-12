@@ -524,7 +524,7 @@ const ServiceHoverCard = () => {
 
   return (
     <section className="features">
-      <div className="min-h-screen bg-white p-8">
+      <div className="min-h-screen bg-white px-1 md:p-8">
         <div className="px-2 md:px-16 mx-auto">
           <div className="mb-12">
             <EncryptedText
@@ -536,7 +536,7 @@ const ServiceHoverCard = () => {
               revealedClassName="text-gray-500 dark:text-[#adadae]"
               revealDelayMs={30}
             />
-            <Title className="-mt-3">Our Services</Title>
+            <Title className="mt-0 md:-mt-3">Our Services</Title>
             <Paragraph className="">
               Comprehensive solutions to drive your digital transformation.
               Hover to explore more.
@@ -576,14 +576,14 @@ const ServiceHoverCard = () => {
           {/* Mobile Carousel */}
           <div className="lg:hidden relative">
             {/* Carousel Container */}
-            <div className="relative overflow-hidden rounded-lg">
+            <div className="relative overflow-hidden ">
               <div
                 className="flex transition-transform duration-500 ease-out"
                 style={{ transform: `translateX(-${currentSlide * 100}%)` }}
               >
                 {services.map((service, index) => (
                   <div key={index} className="w-full flex-shrink-0 px-2">
-                    <div className="h-[500px]">
+                    <div className="h-[400px]">
                       <ArticleCard {...service} delay={0} />
                     </div>
                   </div>

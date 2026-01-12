@@ -240,3 +240,19 @@ html {
   opacity: 1;
   transform: translateY(0) scale(1) rotate(0deg);
 }
+@keyframes aurora-wave {
+  0% {
+    transform: translateX(-35%) translateY(0);
+  }
+  50% {
+    transform: translateX(0%) translateY(-20px);
+  }
+  100% {
+    transform: translateX(35%) translateY(0);
+  }
+}
+
+/* Main layer */
+.animate-aurora-wave {
+  animation: aurora-wave 120s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}

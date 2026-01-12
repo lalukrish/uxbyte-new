@@ -7,46 +7,47 @@ import { usePathname } from "next/navigation";
 
 const menuData = [
   {
+    label: "ABOUT US",
+    href: "/about-us",
+    // items: [
+    //   { label: "About Us", href: "/company/about" },
+    //   { label: "Careers", href: "/company/careers" },
+    //   { label: "Team", href: "/company/team" },
+    // ],
+  },
+  {
     label: "SERVICES",
     href: "/services",
-    items: [
-      { label: "Web Development", href: "/services/web-dev" },
-      { label: "Mobile Apps", href: "/services/mobile" },
-      { label: "UI/UX Design", href: "/services/design" },
-      { label: "Cloud Solutions", href: "/services/cloud" },
-      { label: "AI Integration", href: "/services/ai" },
-      { label: "Digital Marketing", href: "/services/marketing" },
-    ],
+    // items: [
+    //   { label: "Web Development", href: "/services/web-dev" },
+    //   { label: "Mobile Apps", href: "/services/mobile" },
+    //   { label: "UI/UX Design", href: "/services/design" },
+    //   { label: "Cloud Solutions", href: "/services/cloud" },
+    //   { label: "AI Integration", href: "/services/ai" },
+    //   { label: "Digital Marketing", href: "/services/marketing" },
+    // ],
   },
   {
     label: "INDUSTRIES",
     href: "/industries",
-    items: [
-      { label: "SaaS", href: "/industries/saas" },
-      { label: "Healthcare", href: "/industries/healthcare" },
-      { label: "Fintech", href: "/industries/fintech" },
-      { label: "Edtech", href: "/industries/edtech" },
-    ],
+    // items: [
+    //   { label: "SaaS", href: "/industries/saas" },
+    //   { label: "Healthcare", href: "/industries/healthcare" },
+    //   { label: "Fintech", href: "/industries/fintech" },
+    //   { label: "Edtech", href: "/industries/edtech" },
+    // ],
   },
-  {
-    label: "CASES",
-    href: "/cases",
-    items: [],
-  },
-  {
-    label: "COMPANY",
-    href: "/company",
-    items: [
-      { label: "About Us", href: "/company/about" },
-      { label: "Careers", href: "/company/careers" },
-      { label: "Team", href: "/company/team" },
-    ],
-  },
-  {
-    label: "INSIGHTS",
-    href: "/insights",
-    items: [{ label: "Blogs", href: "/blog" }],
-  },
+  // {
+  //   label: "CASES",
+  //   href: "/cases",
+  //   items: [],
+  // },
+
+  // {
+  //   label: "INSIGHTS",
+  //   href: "/insights",
+  //   items: [{ label: "Blogs", href: "/blog" }],
+  // },
 ];
 
 export default function Header() {

@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Title from "@/commonComponents/title";
+import Paragraph from "@/commonComponents/paragraph";
 
 const tabs = [
   {
     id: "mission",
     label: "Mission",
-    image: "/assets/mission.jpg",
+    image: "/bg-seed.webp",
     content: (
       <>
         <p className="mb-4">
@@ -25,7 +27,7 @@ const tabs = [
   {
     id: "vision",
     label: "Our Vision",
-    image: "/assets/vision.jpg",
+    image: "/blog-1.webp",
     content: (
       <p>
         Our vision is to become a globally trusted immigration partner, helping
@@ -36,7 +38,7 @@ const tabs = [
   {
     id: "values",
     label: "Our Core Values",
-    image: "/assets/values.jpg",
+    image: "/blog-2.webp",
     content: (
       <ul className="list-disc list-inside space-y-2">
         <li>Integrity & Transparency</li>
@@ -53,13 +55,13 @@ export default function ExpertiseTabs() {
   const current = tabs.find((tab) => tab.id === activeTab);
 
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white py-2 mt-20">
       <div className="max-w-6xl mx-auto px-6">
         {/* Title */}
-        <h2 className="text-center text-red-600 font-medium mb-10">
+        <Title className="text-center mb-10">
           Expertise & Recognition
-          <span className="block w-20 h-[2px] bg-red-600 mx-auto mt-2" />
-        </h2>
+          <span className="block w-20 h-[2px] mx-auto mt-2" />
+        </Title>
 
         {/* Tabs */}
         <div className="flex justify-center gap-12 border-b border-gray-300 mb-14">
@@ -67,7 +69,7 @@ export default function ExpertiseTabs() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`pb-3 text-sm font-medium relative ${
+              className={`pb-3 text-xl font-medium relative cursor-pointer ${
                 activeTab === tab.id
                   ? "text-black"
                   : "text-gray-500 hover:text-black"
@@ -75,7 +77,7 @@ export default function ExpertiseTabs() {
             >
               {tab.label}
               {activeTab === tab.id && (
-                <span className="absolute left-0 right-0 -bottom-[1px] h-[2px] bg-black" />
+                <span className="absolute left-0 right-0 -bottom-[1px] h-[2px]  bg-black" />
               )}
             </button>
           ))}
@@ -90,14 +92,12 @@ export default function ExpertiseTabs() {
               alt={current.label}
               width={450}
               height={300}
-              className="rounded-md"
+              className="rounded-md h-[300px]"
             />
           </div>
 
           {/* Text */}
-          <div className="text-gray-700 leading-relaxed text-[15px]">
-            {current.content}
-          </div>
+          <Paragraph className="">{current.content}</Paragraph>
         </div>
       </div>
     </section>

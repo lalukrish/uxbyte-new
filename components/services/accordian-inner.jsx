@@ -1,4 +1,6 @@
 "use client";
+import Paragraph from "@/commonComponents/paragraph";
+import Title from "@/commonComponents/title";
 import React, { useState } from "react";
 
 // FAQItem Component
@@ -10,12 +12,11 @@ const FAQItem = ({ number, question, answer, isOpen, onToggle }) => {
         className="w-full flex items-center justify-between py-8 text-left hover:bg-gray-50 transition-colors"
       >
         <div className="flex items-start gap-8 flex-1">
-          <span className="text-gray-400 text-sm font-light min-w-[2rem]">
-            {number}
-          </span>
-          <h3 className="text-xl md:text-2xl font-light text-gray-900 flex-1">
-            {question}
-          </h3>
+          <span className="min-w-[2rem]">{number}</span>
+          <Paragraph
+            className="text-md! flex-1"
+            children={question}
+          ></Paragraph>
         </div>
         <div className="flex items-center gap-2 ml-4">
           <span className="text-sm font-medium text-gray-900">MORE</span>
@@ -43,14 +44,13 @@ const FAQItem = ({ number, question, answer, isOpen, onToggle }) => {
         }`}
       >
         <div className="pb-8 pl-[4.5rem] pr-20">
-          <p className="text-gray-600 text-base leading-relaxed">{answer}</p>
+          <p className=" text-base leading-relaxed">{answer}</p>
         </div>
       </div>
     </div>
   );
 };
 
-// Main FAQ Component
 export const FAQAccordion = ({
   title = "Questions already answered",
   subtitle = "FAQ",
@@ -71,9 +71,7 @@ export const FAQAccordion = ({
             {subtitle}
           </p>
         )}
-        <h2 className="text-4xl md:text-6xl font-light leading-tight">
-          {title}
-        </h2>
+        <Title>{title}</Title>
       </div>
 
       {/* FAQ Items */}

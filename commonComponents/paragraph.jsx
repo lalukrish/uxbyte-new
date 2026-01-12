@@ -11,9 +11,9 @@ const Paragraph = ({ children, className = "", asHtml = false }) => {
   }
 
   return (
-    <p className={`xl:text-[19px] 2xl:text-[20px] text-black ${className}`}>
+    <div className={`xl:text-[19px] 2xl:text-[20px] text-black ${className}`}>
       {children}
-    </p>
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import { Mail, Phone } from "lucide-react";
+import { Button } from "@/commonComponents/Button";
 
 const SpaceBackground = () => {
   const canvasRef = useRef(null);
@@ -484,13 +485,12 @@ const ContactForm = () => {
               ></textarea>
             </div>
 
-            <button
+            <Button
               onClick={handleSubmit}
+              label={isSubmitting ? "Sending..." : "Send Message"}
               disabled={isSubmitting}
-              className="w-full bg-indigo-600 text-white py-3 text-sm rounded-lg font-semibold hover:bg-indigo-700 transition-colors shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? "Sending..." : "Send Message"}
-            </button>
+              className="py-3 text-sm rounded-lg font-semibold transition-colors shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+            />
           </div>
 
           <p className="text-xs text-gray-500 text-center mt-4">

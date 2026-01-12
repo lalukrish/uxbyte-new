@@ -60,106 +60,106 @@ const ProjectShowcase = () => {
       bgColor: "from-emerald-900 via-teal-900 to-emerald-800",
     },
     {
-      category: "Real-Estate",
-      title: "Modern shopping experiences that drive conversions",
+      category: "REAL-ESTATE",
+      title: "Smart property solutions for modern real estate",
       image:
-        "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop",
       challenges: [
-        "High cart abandonment rates",
-        "Complex inventory management across channels",
-        "Creating seamless mobile shopping experiences",
+        "Complex property listing management",
+        "Virtual tour integration challenges",
+        "Connecting buyers, sellers, and agents efficiently",
       ],
       solutions: [
-        "Optimized checkout flow with minimal friction",
-        "Real-time inventory sync and analytics dashboard",
-        "Mobile-first design with native app performance",
+        "Interactive 3D property tours and AR features",
+        "AI-powered property matching algorithms",
+        "Real-time communication platform for stakeholders",
       ],
-      bgColor: "from-emerald-900 via-teal-900 to-emerald-800",
+      bgColor: "from-orange-900 via-red-900 to-orange-800",
     },
     {
-      category: "Edutech",
-      title: "Modern shopping experiences that drive conversions",
+      category: "EDUTECH",
+      title: "Interactive learning platforms for the digital age",
       image:
-        "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop",
       challenges: [
-        "High cart abandonment rates",
-        "Complex inventory management across channels",
-        "Creating seamless mobile shopping experiences",
+        "Engaging students in remote learning environments",
+        "Tracking progress across diverse curricula",
+        "Accessibility for different learning styles",
       ],
       solutions: [
-        "Optimized checkout flow with minimal friction",
-        "Real-time inventory sync and analytics dashboard",
-        "Mobile-first design with native app performance",
+        "Gamified learning experiences with rewards",
+        "Adaptive learning paths powered by AI",
+        "Multi-modal content delivery (video, text, interactive)",
       ],
-      bgColor: "from-emerald-900 via-teal-900 to-emerald-800",
+      bgColor: "from-indigo-900 via-purple-900 to-indigo-800",
     },
     {
-      category: "Traveltech",
-      title: "Modern shopping experiences that drive conversions",
+      category: "TRAVELTECH",
+      title: "Seamless travel booking and management experiences",
       image:
-        "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=600&fit=crop",
       challenges: [
-        "High cart abandonment rates",
-        "Complex inventory management across channels",
-        "Creating seamless mobile shopping experiences",
+        "Complex itinerary management across multiple services",
+        "Real-time pricing and availability updates",
+        "Personalized recommendations at scale",
       ],
       solutions: [
-        "Optimized checkout flow with minimal friction",
-        "Real-time inventory sync and analytics dashboard",
-        "Mobile-first design with native app performance",
+        "Unified booking platform with AI recommendations",
+        "Real-time synchronization with travel providers",
+        "Smart itinerary builder with collaborative features",
       ],
-      bgColor: "from-emerald-900 via-teal-900 to-emerald-800",
+      bgColor: "from-sky-900 via-blue-900 to-sky-800",
     },
     {
-      category: "Foodtech",
-      title: "Modern shopping experiences that drive conversions",
+      category: "FOODTECH",
+      title: "Delightful dining experiences from order to delivery",
       image:
-        "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop",
       challenges: [
-        "High cart abandonment rates",
-        "Complex inventory management across channels",
-        "Creating seamless mobile shopping experiences",
+        "Managing high-volume orders during peak times",
+        "Maintaining food quality during delivery",
+        "Connecting restaurants with delivery partners efficiently",
       ],
       solutions: [
-        "Optimized checkout flow with minimal friction",
-        "Real-time inventory sync and analytics dashboard",
-        "Mobile-first design with native app performance",
+        "Smart routing algorithms for faster delivery",
+        "Real-time kitchen display systems",
+        "Integrated restaurant management dashboard",
       ],
-      bgColor: "from-emerald-900 via-teal-900 to-emerald-800",
+      bgColor: "from-amber-900 via-yellow-900 to-amber-800",
     },
     {
-      category: "Fashion",
-      title: "Modern shopping experiences that drive conversions",
+      category: "FASHION",
+      title: "Trendsetting e-commerce for fashion-forward brands",
       image:
-        "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&h=600&fit=crop",
       challenges: [
-        "High cart abandonment rates",
-        "Complex inventory management across channels",
-        "Creating seamless mobile shopping experiences",
+        "Showcasing products with accurate color representation",
+        "Size recommendation and fitting challenges",
+        "Managing seasonal inventory and trends",
       ],
       solutions: [
-        "Optimized checkout flow with minimal friction",
-        "Real-time inventory sync and analytics dashboard",
-        "Mobile-first design with native app performance",
+        "AR virtual try-on technology",
+        "AI-powered size and style recommendations",
+        "Dynamic inventory management with trend forecasting",
       ],
-      bgColor: "from-emerald-900 via-teal-900 to-emerald-800",
+      bgColor: "from-pink-900 via-rose-900 to-pink-800",
     },
     {
-      category: "Media",
-      title: "Modern shopping experiences that drive conversions",
+      category: "MEDIA",
+      title: "Content platforms that captivate and engage audiences",
       image:
-        "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=800&h=600&fit=crop",
       challenges: [
-        "High cart abandonment rates",
-        "Complex inventory management across channels",
-        "Creating seamless mobile shopping experiences",
+        "Content discovery in vast media libraries",
+        "Streaming quality across varying bandwidths",
+        "Monetization without disrupting user experience",
       ],
       solutions: [
-        "Optimized checkout flow with minimal friction",
-        "Real-time inventory sync and analytics dashboard",
-        "Mobile-first design with native app performance",
+        "AI-driven content recommendation engine",
+        "Adaptive bitrate streaming technology",
+        "Non-intrusive ad integration with user controls",
       ],
-      bgColor: "from-emerald-900 via-teal-900 to-emerald-800",
+      bgColor: "from-violet-900 via-purple-900 to-violet-800",
     },
   ];
 
@@ -198,45 +198,51 @@ const ProjectShowcase = () => {
   const currentProject = projectData[activeTab];
 
   return (
-    <div className="min-h-screen  text-black py-12 px-4">
+    <div className="min-h-screen text-black py-12 px-4">
       <div className="md:px-20 mx-auto">
-        {/* Tab Navigation */}
+        {/* Tab Navigation with Underline */}
         <div className="mb-12">
           <div className="flex items-center justify-center gap-2 mb-8">
             <button
               onClick={handlePrev}
-              className="p-2 hover:bg-white/10 rounded-full transition-colors"
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
               aria-label="Previous project"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
 
-            <div className="flex gap-1 bg-white/5 p-1 rounded-full backdrop-blur-sm">
+            <div className="relative flex gap-8 px-4">
               {projectData.map((project, index) => (
                 <button
                   key={index}
                   onClick={() => handleTabChange(index)}
-                  className="relative px-6 py-3 rounded-full text-sm font-semibold transition-all"
+                  className={`relative px-4 py-3 text-sm font-semibold transition-colors whitespace-nowrap ${
+                    activeTab === index
+                      ? "text-black"
+                      : "text-gray-400 hover:text-gray-600"
+                  }`}
                 >
+                  <span className="relative z-10">{project.category}</span>
+
+                  {/* Animated Underline - moves with active tab */}
                   {activeTab === index && (
                     <motion.div
-                      layoutId="activeTab"
-                      className={`absolute inset-0 bg-gradient-to-r ${project.bgColor} rounded-full`}
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-black"
+                      layoutId="underline"
                       transition={{
                         type: "spring",
-                        bounce: 0.2,
-                        duration: 0.6,
+                        stiffness: 500,
+                        damping: 30,
                       }}
                     />
                   )}
-                  <span className="relative z-10">{project.category}</span>
                 </button>
               ))}
             </div>
 
             <button
               onClick={handleNext}
-              className="p-2 hover:bg-white/10 rounded-full transition-colors"
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
               aria-label="Next project"
             >
               <ChevronRight className="w-6 h-6" />
@@ -258,20 +264,19 @@ const ProjectShowcase = () => {
                 x: { type: "spring", stiffness: 300, damping: 30 },
                 opacity: { duration: 0.2 },
               }}
-              //  className={`bg-gradient-to-br ${currentProject.bgColor} rounded-3xl overflow-hidden shadow-2xl`}
             >
-              <div className="grid md:grid-cols-2 gap-14! p-2 md:p-12 w-full h-[600px]">
+              <div className="grid md:grid-cols-2 gap-14 p-2 md:p-12 w-full h-[600px]">
                 {/* Image Section */}
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
-                  className="relative h-[400px] md:h-full rounded-2xl overflow-hidden group"
+                  className="relative h-[400px] md:h-full  overflow-hidden group"
                 >
                   <img
                     src={currentProject.image}
                     alt={currentProject.category}
-                    className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </motion.div>
@@ -309,10 +314,10 @@ const ProjectShowcase = () => {
                           }}
                           className="flex gap-3 items-start"
                         >
-                          <span className="text-purple-300 text-xl mt-1">
+                          <span className="text-purple-500 text-xl mt-1">
                             ✱
                           </span>
-                          <p className="text-black/90">{challenge}</p>
+                          <p className="text-gray-700">{challenge}</p>
                         </motion.div>
                       ))}
                     </div>
@@ -325,7 +330,7 @@ const ProjectShowcase = () => {
                     transition={{ delay: 0.6, duration: 0.5 }}
                     className="mb-8"
                   >
-                    <h3 className="text-sm font-bold tracking-wider text-white/70 mb-3">
+                    <h3 className="text-sm font-bold tracking-wider text-black mb-3">
                       HOW WE SOLVE THEM:
                     </h3>
                     <div className="space-y-2">
@@ -340,8 +345,8 @@ const ProjectShowcase = () => {
                           }}
                           className="flex gap-3 items-start"
                         >
-                          <span className="text-green-300 text-xl mt-1">✱</span>
-                          <p className="text-black/90">{solution}</p>
+                          <span className="text-green-500 text-xl mt-1">✱</span>
+                          <p className="text-gray-700">{solution}</p>
                         </motion.div>
                       ))}
                     </div>
@@ -352,7 +357,7 @@ const ProjectShowcase = () => {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.9, duration: 0.5 }}
-                    className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-white/90 transition-all hover:gap-5 w-fit"
+                    className="group inline-flex items-center gap-3 bg-black text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-800 transition-all hover:gap-5 w-fit"
                   >
                     EXPLORE PROJECT
                     <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
@@ -375,8 +380,8 @@ const ProjectShowcase = () => {
               <div
                 className={`h-2 rounded-full transition-all duration-300 ${
                   index === activeTab
-                    ? "w-12 bg-white"
-                    : "w-2 bg-white/30 group-hover:bg-white/50"
+                    ? "w-12 bg-black"
+                    : "w-2 bg-gray-300 group-hover:bg-gray-400"
                 }`}
               />
             </button>

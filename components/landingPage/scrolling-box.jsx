@@ -100,7 +100,7 @@ const ScrollingBox = () => {
         <div className="sticky top-0 h-screen w-full flex items-end justify-center overflow-hidden">
           <div
             ref={boxRef}
-            className="flex items-center justify-center will-change-transform"
+            className="flex  items-center justify-center will-change-transform"
             style={{ backfaceVisibility: "hidden" }}
           >
             <video
@@ -108,7 +108,7 @@ const ScrollingBox = () => {
               autoPlay
               muted
               loop
-              className="w-full h-[60vh] md:h-[99.5vh] md: object-cover"
+              className="w-full  h-[60vh] md:h-[99.5vh] md: object-cover"
             />
           </div>
 

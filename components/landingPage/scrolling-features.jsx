@@ -1,12 +1,8 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/commonComponents/Button";
 
 export default function SaaSSection() {
-  const containerRef = useRef(null);
-  const rightSectionRef = useRef(null);
   const [activeCategory, setActiveCategory] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -122,44 +118,42 @@ export default function SaaSSection() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  useLayoutEffect(() => {
-    if (!containerRef.current || !rightSectionRef.current || isMobile) return;
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    const sections =
-      rightSectionRef.current.querySelectorAll(".category-section");
-
-    sections.forEach((section, index) => {
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => setActiveCategory(index),
-        onEnterBack: () => setActiveCategory(index),
-      });
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, [isMobile]);
-
+  // Intersection Observer for desktop scroll tracking
   useEffect(() => {
     if (isMobile) return;
 
-    let resizeTimer;
-    const handleResize = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 250);
+    const sections = document.querySelectorAll(".category-section");
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-50% 0px -50% 0px",
+      threshold: 0,
     };
 
-    window.addEventListener("resize", handleResize);
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = Array.from(sections).indexOf(entry.target);
+          if (index !== -1) {
+            setActiveCategory(index);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
     return () => {
-      clearTimeout(resizeTimer);
-      window.removeEventListener("resize", handleResize);
+      sections.forEach((section) => {
+        observer.unobserve(section);
+      });
     };
   }, [isMobile]);
 
@@ -184,9 +178,8 @@ export default function SaaSSection() {
                         : "bg-white text-gray-700 border border-gray-200"
                     }
                   `}
-                >
-                  {category.name}
-                </Button>
+                  label={category.name}
+                ></Button>
               ))}
             </div>
           </div>
@@ -233,7 +226,7 @@ export default function SaaSSection() {
 
   // Desktop View (Original)
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#e0e0e00f] py-20 px-4">
+    <div className="min-h-screen bg-[#e0e0e00f] py-20 px-4">
       <div className="px-2 md:px-20 mx-auto">
         <div className="grid grid-cols-12 gap-8">
           {/* Left Section - Fixed Categories */}
@@ -244,9 +237,7 @@ export default function SaaSSection() {
                   key={category.id}
                   onClick={() => {
                     const sections =
-                      rightSectionRef.current.querySelectorAll(
-                        ".category-section"
-                      );
+                      document.querySelectorAll(".category-section");
                     sections[index]?.scrollIntoView({
                       behavior: "smooth",
                       block: "center",
@@ -278,10 +269,7 @@ export default function SaaSSection() {
           </div>
 
           {/* Right Section - Scrolling Content */}
-          <div
-            ref={rightSectionRef}
-            className="col-span-12 lg:col-span-9 space-y-24"
-          >
+          <div className="col-span-12 lg:col-span-9 space-y-24">
             {categories.map((category) => (
               <div key={category.id} className="category-section">
                 <h2 className="text-4xl md:text-5xl font-medium text-gray-900 mb-12 leading-tight">

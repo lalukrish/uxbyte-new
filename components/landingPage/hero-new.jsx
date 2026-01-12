@@ -382,7 +382,6 @@ export default function HeroNew() {
     const section = containerRef.current;
     const track = imagesRef.current;
 
-    // Calculate how much we need to scroll horizontally
     const getScrollDistance = () => {
       const scrollWidth = track.scrollWidth;
       const containerWidth = track.parentElement.offsetWidth;

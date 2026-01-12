@@ -123,7 +123,7 @@ export default function ScrollFaqGsap() {
         ref={blueRef}
         className="absolute top-0 left-0 w-full  h-[100vh] md:h-[120vh]  bg-white flex flex-col rounded-b-[0rem] md:rounded-b-[6rem] z-10"
       >
-        <div className="px-6 md:px-20 py-8 md:py-12 text-black h-full flex flex-col">
+        <div className="px-1 md:px-20 py-8 md:py-12 text-black h-full flex flex-col">
           <EncryptedText
             normaltext="SIMPLE"
             text=" ANSWERS, FAST"
