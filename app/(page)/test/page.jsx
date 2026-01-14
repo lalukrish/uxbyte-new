@@ -22,7 +22,6 @@ const page = () => {
       <DomainSearchSection />
       <NexusSciHero />
       <ScrollZoomSection />
-      <HoverImage />
       <ExplosionImage />
       {/* <AnimationCard /> */}
       {/* <SaaSSection /> */}

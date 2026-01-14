@@ -3,12 +3,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Title from "@/commonComponents/title";
-import { Button } from "@/commonComponents/Button";
-import { EncryptedText } from "../ui/encrypted-text";
-import Paragraph from "@/commonComponents/paragraph";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const ChevronDown = ({ className }) => (
   <svg
@@ -25,24 +23,6 @@ const ChevronDown = ({ className }) => (
     />
   </svg>
 );
-
-const reviews = [
-  {
-    name: "Sarah Johnson",
-    body: "They were incredibly helpful throughout the visa process!",
-    rating: 5,
-  },
-  {
-    name: "Priya Desai",
-    body: "Highly professional and always available for help.",
-    rating: 5,
-  },
-  {
-    name: "Harikrishnan M C",
-    body: "Made my dream of studying abroad come true!",
-    rating: 5,
-  },
-];
 
 const faqs = [
   {
@@ -84,110 +64,176 @@ const faqs = [
 
 export default function ScrollFaqGsap() {
   const [openIndex, setOpenIndex] = useState(null);
+  const [isMounted, setIsMounted] = useState(false);
   const sectionRef = useRef(null);
   const blueRef = useRef(null);
+  const scrollTriggerRef = useRef(null);
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to(blueRef.current, {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
+    const section = sectionRef.current;
+    const blue = blueRef.current;
+
+    if (!section || !blue) return;
+
+    // Disable ScrollTrigger's default pinning behavior
+    ScrollTrigger.config({
+      autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+      limitCallbacks: true,
+    });
+
+    const timer = setTimeout(() => {
+      // Create animation WITHOUT pin
+      const animation = gsap.to(blue, {
         y: "-101vh",
         ease: "none",
         scrollTrigger: {
-          trigger: sectionRef.current,
+          trigger: section,
           start: "top top",
           end: "+=100%",
           scrub: true,
-          pin: true,
-          anticipatePin: 1,
+          pin: false, // Disable GSAP pinning
           invalidateOnRefresh: true,
         },
       });
-    }, sectionRef);
 
-    return () => ctx.revert();
-  }, []);
+      scrollTriggerRef.current = animation.scrollTrigger;
+    }, 200);
+
+    return () => {
+      clearTimeout(timer);
+
+      // Clean up animation
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+        scrollTriggerRef.current = null;
+      }
+
+      // Kill all ScrollTriggers without using kill(true)
+      const triggers = ScrollTrigger.getAll();
+      triggers.forEach((trigger) => {
+        if (trigger.trigger === section) {
+          trigger.kill();
+        }
+      });
+
+      // Manual cleanup of any remaining pin spacers
+      if (section) {
+        const spacers = section.querySelectorAll(".pin-spacer");
+        spacers.forEach((spacer) => {
+          const parent = spacer.parentNode;
+          if (parent) {
+            while (spacer.firstChild) {
+              parent.insertBefore(spacer.firstChild, spacer);
+            }
+            parent.removeChild(spacer);
+          }
+        });
+      }
+    };
+  }, [isMounted]);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <section
       ref={sectionRef}
-      className="faq-section relative "
-      style={{ isolation: "isolate", zIndex: 10 }}
+      className="faq-section-wrapper"
+      style={{
+        position: "relative",
+        height: "200vh", // Double height for scroll effect
+        isolation: "isolate",
+        zIndex: 10,
+      }}
     >
-      {" "}
-      {/* FAQ Section (slides up to reveal black section below) */}
+      {/* Sticky container replaces GSAP pin */}
       <div
-        ref={blueRef}
-        className="absolute top-0 left-0 w-full  h-[100vh] md:h-[120vh]  bg-white flex flex-col rounded-b-[0rem] md:rounded-b-[6rem] z-10"
+        style={{
+          position: "sticky",
+          top: 0,
+          height: "100vh",
+          width: "100%",
+          overflow: "hidden",
+        }}
       >
-        <div className="px-1 md:px-20 py-8 md:py-12 text-black h-full flex flex-col">
-          <EncryptedText
-            normaltext="SIMPLE"
-            text=" ANSWERS, FAST"
-            className="text-sm pl-4"
-            normalClassName=""
-            encryptedClassName="text-[#adadae]"
-            revealedClassName="text-gray-500 dark:text-[#adadae]"
-            revealDelayMs={30}
-          />
-          <Title className="pl-4"> Frequently Asked Questions</Title>
+        {/* FAQ Section (slides up to reveal black section below) */}
+        <div
+          ref={blueRef}
+          className="absolute top-0 left-0 w-full h-[100vh] md:h-[120vh] bg-white flex flex-col rounded-b-[0rem] md:rounded-b-[6rem] z-10"
+        >
+          <div className="px-1 md:px-20 py-8 md:py-12 text-black h-full flex flex-col overflow-auto">
+            <div className="text-sm pl-4 mb-4">
+              <span className="text-black">SIMPLE</span>
+              <span className="text-gray-500"> ANSWERS, FAST</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold pl-4 mb-6">
+              Frequently Asked Questions
+            </h2>
 
-          <div className="divide-y divide-gray-300 flex-shrink-0">
-            {faqs.map((faq, index) => (
-              <div key={index} className="py-4 md:py-5">
-                <button
-                  onClick={() => toggleFAQ(index)}
-                  className="flex justify-between items-start w-full text-left cursor-pointer hover:bg-gray-50 transition-colors px-3 md:px-4 py-2 rounded-lg group"
-                >
-                  <p className="font-medium text-base md:text-lg pr-4 group-hover:cursor-pointer transition-colors">
-                    {faq.question}
-                  </p>
+            <div className="divide-y divide-gray-300 flex-shrink-0">
+              {faqs.map((faq, index) => (
+                <div key={index} className="py-4 md:py-5">
+                  <button
+                    onClick={() => toggleFAQ(index)}
+                    className="flex justify-between items-start w-full text-left cursor-pointer hover:bg-gray-50 transition-colors px-3 md:px-4 py-2 rounded-lg group"
+                  >
+                    <p className="font-medium text-base md:text-lg pr-4 group-hover:cursor-pointer transition-colors">
+                      {faq.question}
+                    </p>
 
-                  <ChevronDown
-                    className={`w-5 h-5 md:w-6 md:h-6  flex-shrink-0 transform transition-transform duration-300 ${
-                      openIndex === index ? "rotate-180 text-gray-800" : ""
+                    <ChevronDown
+                      className={`w-5 h-5 md:w-6 md:h-6 flex-shrink-0 transform transition-transform duration-300 ${
+                        openIndex === index ? "rotate-180 text-gray-800" : ""
+                      }`}
+                    />
+                  </button>
+
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      openIndex === index
+                        ? "max-h-96 opacity-100"
+                        : "max-h-0 opacity-0"
                     }`}
-                  />
-                </button>
-
-                <div
-                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    openIndex === index
-                      ? "max-h-96 opacity-100"
-                      : "max-h-0 opacity-0"
-                  }`}
-                >
-                  <Paragraph
-                    className="text-[17px]! md:text-[17px]! xl:text-[17px]! px-3 md:px-4 pt-3 pb-2"
-                    children={faq.answer}
-                  />
+                  >
+                    <p className="text-base md:text-[17px] px-3 md:px-4 pt-3 pb-2 text-gray-700">
+                      {faq.answer}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-      {/* Hero Section (revealed underneath as FAQ slides up) */}
-      <div className="absolute top-10 left-0 w-full h-[50vh] md:h-[100vh]  bg-black text-white rounded-t-[6rem] flex flex-col justify-center items-center px-4 md:px-6">
-        <div className="w-full flex flex-col items-center justify-center py-10 md:py-20 max-w-7xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[120px] 2xl:text-9xl font-semibold text-center leading-tight gradient-text mb-4">
-            The data you own,
-          </h1>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[120px] 2xl:text-9xl font-semibold text-center leading-tight gradient-text">
-            supercharged with AI
-          </h1>
+        {/* Hero Section (revealed underneath as FAQ slides up) */}
+        <div className="absolute top-10 left-0 w-full h-[50vh] md:h-[100vh] bg-black text-white rounded-t-[6rem] flex flex-col justify-center items-center px-4 md:px-6">
+          <div className="w-full flex flex-col items-center justify-center py-10 md:py-20 max-w-7xl mx-auto">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[120px] 2xl:text-9xl font-semibold text-center leading-tight gradient-text mb-4">
+              The data you own,
+            </h1>
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[120px] 2xl:text-9xl font-semibold text-center leading-tight gradient-text">
+              supercharged with AI
+            </h1>
+          </div>
+
+          <button className="mt-6 md:mt-8 py-4 px-10 border-2 border-white rounded-full hover:bg-white hover:text-black transition-colors">
+            Get Started
+          </button>
         </div>
-
-        <Button
-          className="mt-6 md:mt-8  py-4 px-10 hover:bg-black hover:text-white "
-          variant="outlined"
-          label={"Get Started"}
-        ></Button>
       </div>
+
       <style jsx>{`
         .gradient-text {
           background: linear-gradient(

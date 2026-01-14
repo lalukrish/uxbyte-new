@@ -1,6 +1,9 @@
+import Title from "@/commonComponents/title";
 import InspirationSection from "@/components/landingPage/blogSection";
 import { AuroraBackground } from "@/components/ui/aurora-background";
+import HoverImage from "@/components/ui/hover-image";
 import AlternatingSection from "@/components/ui/image-alteration";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { BLOGS } from "@/data/blog-data";
 
 const POPULAR_BLOGS = BLOGS.filter((b) => b.isPopular);
@@ -8,8 +11,9 @@ const Page = () => {
   return (
     <div>
       <AuroraBackground>
-        <h1 className="text-5xl font-bold text-white">OUR SPECIALIZED AREAS</h1>
+        <TextGenerateEffect words={"Signature Industries"} />{" "}
       </AuroraBackground>
+      <HoverImage />
 
       <AlternatingSection
         badgeText="PRODUCT DESIGN"

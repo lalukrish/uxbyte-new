@@ -6,7 +6,7 @@ import Title from "@/commonComponents/title";
 const FeatureSection = ({ image, title, services = [], imageLeft = true }) => {
   return (
     <div className="w-full bg-white py-16 px-4">
-      <div className="px-20 mx-auto">
+      <div className="md:px-20 px-2 mx-auto">
         <div
           className={`flex flex-col ${
             imageLeft ? "lg:flex-row" : "lg:flex-row-reverse"
@@ -31,7 +31,7 @@ const FeatureSection = ({ image, title, services = [], imageLeft = true }) => {
               {title}
             </Title>
 
-            <div className="space-y-6">
+            <div className="space-y-6 xl:mt-5">
               {services.map((service, index) => (
                 <motion.div
                   key={index}
@@ -39,7 +39,7 @@ const FeatureSection = ({ image, title, services = [], imageLeft = true }) => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
-                  className="flex items-center gap-4 group"
+                  className="flex items-center gap-4 group xl:mt-5"
                 >
                   {/* Animated Checkmark */}
                   <motion.div

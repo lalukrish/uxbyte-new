@@ -138,16 +138,171 @@ const page = () => {
         "Our process includes discovery and research, strategy development, wireframing and prototyping, visual design, development, testing, and launch. We maintain close collaboration with clients throughout each phase to ensure alignment with your vision and goals.",
     },
   ];
+  const myProjects = [
+    {
+      category: "SAAS",
+      title: "Custom project title",
+      image: "url",
+      challenges: ["Challenge 1", "Challenge 2"],
+      solutions: ["Solution 1", "Solution 2"],
+      bgColor: "from-blue-900 via-cyan-900 to-blue-800", // Optional
+    },
+    {
+      category: "HEALTHCARE",
+      title: "HIPAA-compliant design and development for health tech products",
+      image:
+        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop",
+      challenges: [
+        "UX complexity in health tracking, patient records, and telehealth",
+        "Data privacy and HIPAA compliance",
+        "Building trust with patients and practitioners",
+      ],
+      solutions: [
+        "Patient-first UX that simplifies complex workflows",
+        "Secure infrastructure aligned with regulatory standards",
+        "Clean, professional UI that builds user trust",
+      ],
+      bgColor: "from-black via-black to-black",
+    },
+    {
+      category: "FINTECH",
+      title: "Secure and scalable financial technology solutions",
+      image:
+        "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=600&fit=crop",
+      challenges: [
+        "Complex financial regulations and compliance requirements",
+        "Real-time transaction processing at scale",
+        "Building user trust in digital financial services",
+      ],
+      solutions: [
+        "Enterprise-grade security with end-to-end encryption",
+        "Microservices architecture for scalability",
+        "Intuitive UX that simplifies financial complexity",
+      ],
+      bgColor: "from-blue-900 via-cyan-900 to-blue-800",
+    },
+    {
+      category: "E-COMMERCE",
+      title: "Modern shopping experiences that drive conversions",
+      image:
+        "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
+      challenges: [
+        "High cart abandonment rates",
+        "Complex inventory management across channels",
+        "Creating seamless mobile shopping experiences",
+      ],
+      solutions: [
+        "Optimized checkout flow with minimal friction",
+        "Real-time inventory sync and analytics dashboard",
+        "Mobile-first design with native app performance",
+      ],
+      bgColor: "from-emerald-900 via-teal-900 to-emerald-800",
+    },
+    {
+      category: "REAL-ESTATE",
+      title: "Smart property solutions for modern real estate",
+      image:
+        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop",
+      challenges: [
+        "Complex property listing management",
+        "Virtual tour integration challenges",
+        "Connecting buyers, sellers, and agents efficiently",
+      ],
+      solutions: [
+        "Interactive 3D property tours and AR features",
+        "AI-powered property matching algorithms",
+        "Real-time communication platform for stakeholders",
+      ],
+      bgColor: "from-orange-900 via-red-900 to-orange-800",
+    },
+    {
+      category: "EDUTECH",
+      title: "Interactive learning platforms for the digital age",
+      image:
+        "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop",
+      challenges: [
+        "Engaging students in remote learning environments",
+        "Tracking progress across diverse curricula",
+        "Accessibility for different learning styles",
+      ],
+      solutions: [
+        "Gamified learning experiences with rewards",
+        "Adaptive learning paths powered by AI",
+        "Multi-modal content delivery (video, text, interactive)",
+      ],
+      bgColor: "from-indigo-900 via-purple-900 to-indigo-800",
+    },
+    {
+      category: "TRAVELTECH",
+      title: "Seamless travel booking and management experiences",
+      image:
+        "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=600&fit=crop",
+      challenges: [
+        "Complex itinerary management across multiple services",
+        "Real-time pricing and availability updates",
+        "Personalized recommendations at scale",
+      ],
+      solutions: [
+        "Unified booking platform with AI recommendations",
+        "Real-time synchronization with travel providers",
+        "Smart itinerary builder with collaborative features",
+      ],
+      bgColor: "from-sky-900 via-blue-900 to-sky-800",
+    },
+    {
+      category: "FOODTECH",
+      title: "Delightful dining experiences from order to delivery",
+      image:
+        "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=600&fit=crop",
+      challenges: [
+        "Managing high-volume orders during peak times",
+        "Maintaining food quality during delivery",
+        "Connecting restaurants with delivery partners efficiently",
+      ],
+      solutions: [
+        "Smart routing algorithms for faster delivery",
+        "Real-time kitchen display systems",
+        "Integrated restaurant management dashboard",
+      ],
+      bgColor: "from-amber-900 via-yellow-900 to-amber-800",
+    },
+    {
+      category: "FASHION",
+      title: "Trendsetting e-commerce for fashion-forward brands",
+      image:
+        "https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&h=600&fit=crop",
+      challenges: [
+        "Showcasing products with accurate color representation",
+        "Size recommendation and fitting challenges",
+        "Managing seasonal inventory and trends",
+      ],
+      solutions: [
+        "AR virtual try-on technology",
+        "AI-powered size and style recommendations",
+        "Dynamic inventory management with trend forecasting",
+      ],
+      bgColor: "from-pink-900 via-rose-900 to-pink-800",
+    },
+    {
+      category: "MEDIA",
+      title: "Content platforms that captivate and engage audiences",
+      image:
+        "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=800&h=600&fit=crop",
+      challenges: [
+        "Content discovery in vast media libraries",
+        "Streaming quality across varying bandwidths",
+        "Monetization without disrupting user experience",
+      ],
+      solutions: [
+        "AI-driven content recommendation engine",
+        "Adaptive bitrate streaming technology",
+        "Non-intrusive ad integration with user controls",
+      ],
+      bgColor: "from-violet-900 via-purple-900 to-violet-800",
+    },
+  ];
   return (
     <div>
-      {/* <BreadcrumbSection
-        title="Services"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "services", href: "/services" },
-          { label: "services" },
-        ]}
-      /> */}
       <Breadcrumb
         title="Services"
         path={["Home", "Services"]}
@@ -156,9 +311,8 @@ const page = () => {
       {projects.map((project, index) => (
         <FeatureSection key={index} {...project} />
       ))}
-      {/* {projectData.map((project, index) => ( */}
-      <ProjectDetailSection />
-      {/* ))} */}
+
+      <ProjectShowcase projects={myProjects} />
       <FAQAccordion
         title="Questions already answered"
         subtitle="FAQ"

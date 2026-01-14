@@ -18,12 +18,14 @@ import ServiceHoverCard from "@/components/landingPage/mason-grid";
 import SaaSSection from "@/components/landingPage/scrolling-features";
 import PopularBlogs from "@/components/blog/popular-blogs";
 import { BLOGS } from "@/data/blog-data";
+import AnimatedHeader from "@/components/landingPage/animated-header";
 
 const POPULAR_BLOGS = BLOGS.filter((b) => b.isPopular);
 
 export default function Home() {
   return (
     <>
+      <AnimatedHeader />
       <HeroNew />
       <AboutSection />
       <ScrollingBox />
