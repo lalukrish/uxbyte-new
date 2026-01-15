@@ -25,7 +25,7 @@ const POPULAR_BLOGS = BLOGS.filter((b) => b.isPopular);
 export default function Home() {
   return (
     <>
-      <AnimatedHeader />
+      {/* <AnimatedHeader /> */}
       <HeroNew />
       <AboutSection />
       <ScrollingBox />

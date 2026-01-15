@@ -256,3 +256,38 @@ html {
 .animate-aurora-wave {
   animation: aurora-wave 120s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
+
+.ml3 {
+  display: inline-block;
+  animation: textFadeOut 4.5s ease-out infinite;
+}
+
+.ml3 .letter {
+  opacity: 0;
+  display: inline-block;
+  animation: letterFadeIn 2.25s ease-in-out infinite;
+}
+
+@keyframes letterFadeIn {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes textFadeOut {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
