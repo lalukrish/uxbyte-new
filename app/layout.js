@@ -46,7 +46,6 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={`${ibmPlexSans.className} antialiased`}>
-        <TopHeader />
         {/* <SmoothScrollProvider> */}
         {children}
         {/* </SmoothScrollProvider> */}

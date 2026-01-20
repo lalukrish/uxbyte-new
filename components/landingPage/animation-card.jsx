@@ -3,300 +3,300 @@ import React, { useEffect, useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// const AnimationCard = () => {
-//   const scrollTriggerRef = useRef(null);
-//   const matchMediaRef = useRef(null);
-//   const isGapAnimationCompletedRef = useRef(false);
-//   const isFlipAnimationCompletedRef = useRef(false);
-
-//   useEffect(() => {
-//     gsap.registerPlugin(ScrollTrigger);
-
-//     const initAnimations = () => {
-//       const cardContainer = document.querySelector(".animation-card-container");
-//       const stickyHeader = document.querySelector(
-//         ".animation-sticky-header h1"
-//       );
-
-//       if (!cardContainer || !stickyHeader) return null;
-
-//       // Kill existing instances
-//       if (scrollTriggerRef.current) {
-//         scrollTriggerRef.current.kill();
-//         scrollTriggerRef.current = null;
-//       }
-
-//       if (matchMediaRef.current) {
-//         matchMediaRef.current.kill();
-//         matchMediaRef.current = null;
-//       }
-
-//       const mm = gsap.matchMedia();
-//       matchMediaRef.current = mm;
-
-//       mm.add("(max-width:999px)", () => {
-//         document
-//           .querySelectorAll(
-//             ".animation-card,.animation-card-container,.animation-sticky-header h1"
-//           )
-//           .forEach((el) => (el.style.cssText = ""));
-
-//         return () => {
-//           // Mobile cleanup
-//         };
-//       });
-
-//       mm.add("(min-width:1000px)", () => {
-//         const trigger = ScrollTrigger.create({
-//           trigger: ".animation-sticky",
-//           start: "top top",
-//           end: `+=${window.innerHeight * 4}px`,
-//           scrub: 1,
-//           pin: true,
-//           pinSpacing: true,
-//           onUpdate: (self) => {
-//             const progress = self.progress;
-
-//             // Header animation
-//             if (progress >= 0.1 && progress <= 0.25) {
-//               const headerProgress = gsap.utils.mapRange(
-//                 0.1,
-//                 0.25,
-//                 0,
-//                 1,
-//                 progress
-//               );
-//               const yValue = gsap.utils.mapRange(0, 1, 40, 0, headerProgress);
-//               const opacityValue = gsap.utils.mapRange(
-//                 0,
-//                 1,
-//                 0,
-//                 1,
-//                 headerProgress
-//               );
-//               gsap.set(stickyHeader, { y: yValue, opacity: opacityValue });
-//             } else if (progress < 0.1) {
-//               gsap.set(stickyHeader, { y: 40, opacity: 0 });
-//             } else if (progress > 0.25) {
-//               gsap.set(stickyHeader, { y: 0, opacity: 1 });
-//             }
-
-//             // Width animation
-//             if (progress <= 0.25) {
-//               const widthPercentage = gsap.utils.mapRange(
-//                 0,
-//                 0.25,
-//                 75,
-//                 60,
-//                 progress
-//               );
-//               gsap.set(cardContainer, { width: `${widthPercentage}%` });
-//             } else {
-//               gsap.set(cardContainer, { width: "60%" });
-//             }
-
-//             // Gap animation
-//             if (progress >= 0.35 && !isGapAnimationCompletedRef.current) {
-//               gsap.to(cardContainer, {
-//                 gap: "20px",
-//                 duration: 0.5,
-//                 ease: "power3.out",
-//               });
-//               gsap.to(
-//                 ["#animation-card-1", "#animation-card-2", "#animation-card-3"],
-//                 { borderRadius: "20px", duration: 0.5, ease: "power3.out" }
-//               );
-//               isGapAnimationCompletedRef.current = true;
-//             } else if (progress < 0.35 && isGapAnimationCompletedRef.current) {
-//               gsap.to(cardContainer, {
-//                 gap: "0px",
-//                 duration: 0.5,
-//                 ease: "power3.out",
-//               });
-//               gsap.to("#animation-card-1", {
-//                 borderRadius: "20px 0 0 20px",
-//                 duration: 0.5,
-//                 ease: "power3.out",
-//               });
-//               gsap.to("#animation-card-2", {
-//                 borderRadius: "0px",
-//                 duration: 0.5,
-//                 ease: "power3.out",
-//               });
-//               gsap.to("#animation-card-3", {
-//                 borderRadius: "0 20px 20px 0",
-//                 duration: 0.5,
-//                 ease: "power3.out",
-//               });
-//               isGapAnimationCompletedRef.current = false;
-//             }
-
-//             // Flip animation
-//             if (progress >= 0.7 && !isFlipAnimationCompletedRef.current) {
-//               gsap.to(".animation-card", {
-//                 rotationY: 180,
-//                 duration: 0.75,
-//                 ease: "power3.inOut",
-//                 stagger: 0.1,
-//               });
-//               gsap.to(["#animation-card-1", "#animation-card-3"], {
-//                 y: 30,
-//                 rotationZ: (i) => [-15, 15][i],
-//                 duration: 0.75,
-//                 ease: "power3.inOut",
-//               });
-//               isFlipAnimationCompletedRef.current = true;
-//             } else if (progress < 0.7 && isFlipAnimationCompletedRef.current) {
-//               gsap.to(".animation-card", {
-//                 rotationY: 0,
-//                 duration: 0.75,
-//                 ease: "power3.inOut",
-//                 stagger: -0.1,
-//               });
-//               gsap.to(["#animation-card-1", "#animation-card-3"], {
-//                 y: 0,
-//                 rotationZ: 0,
-//                 duration: 0.75,
-//                 ease: "power3.inOut",
-//               });
-//               isFlipAnimationCompletedRef.current = false;
-//             }
-//           },
-//         });
-
-//         scrollTriggerRef.current = trigger;
-
-//         return () => {
-//           // Desktop cleanup
-//           if (trigger) trigger.kill();
-//         };
-//       });
-
-//       return mm;
-//     };
-
-//     // Delay initialization to ensure Lenis is ready
-//     const timer = setTimeout(() => {
-//       initAnimations();
-//       ScrollTrigger.refresh();
-//     }, 300);
-
-//     // Resize handler
-//     let resizeTimer;
-//     const handleResize = () => {
-//       clearTimeout(resizeTimer);
-//       resizeTimer = setTimeout(() => {
-//         ScrollTrigger.refresh();
-//       }, 250);
-//     };
-
-//     window.addEventListener("resize", handleResize);
-
-//     // ✅ PROPER CLEANUP - This was the main issue!
-//     return () => {
-//       clearTimeout(timer);
-//       clearTimeout(resizeTimer);
-//       window.removeEventListener("resize", handleResize);
-
-//       if (scrollTriggerRef.current) {
-//         scrollTriggerRef.current.kill();
-//         scrollTriggerRef.current = null;
-//       }
-
-//       if (matchMediaRef.current) {
-//         matchMediaRef.current.kill();
-//         matchMediaRef.current = null;
-//       }
-//     };
-//   }, []);
-
-gsap.registerPlugin(ScrollTrigger);
-
 const AnimationCard = () => {
-  const sectionRef = useRef(null);
-  const cardContainerRef = useRef(null);
-  const headerRef = useRef(null);
+  const scrollTriggerRef = useRef(null);
+  const matchMediaRef = useRef(null);
+  const isGapAnimationCompletedRef = useRef(false);
+  const isFlipAnimationCompletedRef = useRef(false);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const initAnimations = () => {
+      const cardContainer = document.querySelector(".animation-card-container");
+      const stickyHeader = document.querySelector(
+        ".animation-sticky-header h1",
+      );
+
+      if (!cardContainer || !stickyHeader) return null;
+
+      // Kill existing instances
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+        scrollTriggerRef.current = null;
+      }
+
+      if (matchMediaRef.current) {
+        matchMediaRef.current.kill();
+        matchMediaRef.current = null;
+      }
+
       const mm = gsap.matchMedia();
+      matchMediaRef.current = mm;
 
-      /* ---------- MOBILE RESET ---------- */
-      mm.add("(max-width: 999px)", () => {
-        gsap.set(
-          [".animation-card", cardContainerRef.current, headerRef.current],
-          { clearProps: "all" }
-        );
+      mm.add("(max-width:999px)", () => {
+        document
+          .querySelectorAll(
+            ".animation-card,.animation-card-container,.animation-sticky-header h1",
+          )
+          .forEach((el) => (el.style.cssText = ""));
+
+        return () => {
+          // Mobile cleanup
+        };
       });
 
-      /* ---------- DESKTOP ---------- */
-      mm.add("(min-width: 1000px)", () => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "+=400%",
-            scrub: true,
-            pin: true,
-            pinSpacing: true,
-            anticipatePin: 1,
+      mm.add("(min-width:1000px)", () => {
+        const trigger = ScrollTrigger.create({
+          trigger: ".animation-sticky",
+          start: "top top",
+          end: `+=${window.innerHeight * 4}px`,
+          scrub: 1,
+          pin: true,
+          pinSpacing: true,
+          onUpdate: (self) => {
+            const progress = self.progress;
+
+            // Header animation
+            if (progress >= 0.1 && progress <= 0.25) {
+              const headerProgress = gsap.utils.mapRange(
+                0.1,
+                0.25,
+                0,
+                1,
+                progress,
+              );
+              const yValue = gsap.utils.mapRange(0, 1, 40, 0, headerProgress);
+              const opacityValue = gsap.utils.mapRange(
+                0,
+                1,
+                0,
+                1,
+                headerProgress,
+              );
+              gsap.set(stickyHeader, { y: yValue, opacity: opacityValue });
+            } else if (progress < 0.1) {
+              gsap.set(stickyHeader, { y: 40, opacity: 0 });
+            } else if (progress > 0.25) {
+              gsap.set(stickyHeader, { y: 0, opacity: 1 });
+            }
+
+            // Width animation
+            if (progress <= 0.25) {
+              const widthPercentage = gsap.utils.mapRange(
+                0,
+                0.25,
+                75,
+                60,
+                progress,
+              );
+              gsap.set(cardContainer, { width: `${widthPercentage}%` });
+            } else {
+              gsap.set(cardContainer, { width: "60%" });
+            }
+
+            // Gap animation
+            if (progress >= 0.35 && !isGapAnimationCompletedRef.current) {
+              gsap.to(cardContainer, {
+                gap: "20px",
+                duration: 0.5,
+                ease: "power3.out",
+              });
+              gsap.to(
+                ["#animation-card-1", "#animation-card-2", "#animation-card-3"],
+                { borderRadius: "20px", duration: 0.5, ease: "power3.out" },
+              );
+              isGapAnimationCompletedRef.current = true;
+            } else if (progress < 0.35 && isGapAnimationCompletedRef.current) {
+              gsap.to(cardContainer, {
+                gap: "0px",
+                duration: 0.5,
+                ease: "power3.out",
+              });
+              gsap.to("#animation-card-1", {
+                borderRadius: "20px 0 0 20px",
+                duration: 0.5,
+                ease: "power3.out",
+              });
+              gsap.to("#animation-card-2", {
+                borderRadius: "0px",
+                duration: 0.5,
+                ease: "power3.out",
+              });
+              gsap.to("#animation-card-3", {
+                borderRadius: "0 20px 20px 0",
+                duration: 0.5,
+                ease: "power3.out",
+              });
+              isGapAnimationCompletedRef.current = false;
+            }
+
+            // Flip animation
+            if (progress >= 0.7 && !isFlipAnimationCompletedRef.current) {
+              gsap.to(".animation-card", {
+                rotationY: 180,
+                duration: 0.75,
+                ease: "power3.inOut",
+                stagger: 0.1,
+              });
+              gsap.to(["#animation-card-1", "#animation-card-3"], {
+                y: 30,
+                rotationZ: (i) => [-15, 15][i],
+                duration: 0.75,
+                ease: "power3.inOut",
+              });
+              isFlipAnimationCompletedRef.current = true;
+            } else if (progress < 0.7 && isFlipAnimationCompletedRef.current) {
+              gsap.to(".animation-card", {
+                rotationY: 0,
+                duration: 0.75,
+                ease: "power3.inOut",
+                stagger: -0.1,
+              });
+              gsap.to(["#animation-card-1", "#animation-card-3"], {
+                y: 0,
+                rotationZ: 0,
+                duration: 0.75,
+                ease: "power3.inOut",
+              });
+              isFlipAnimationCompletedRef.current = false;
+            }
           },
         });
 
-        /* ---------- HEADER ---------- */
-        tl.fromTo(
-          headerRef.current,
-          { y: 40, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1 },
-          0
-        );
+        scrollTriggerRef.current = trigger;
 
-        /* ---------- WIDTH ---------- */
-        tl.fromTo(
-          cardContainerRef.current,
-          { width: "75%" },
-          { width: "60%", duration: 1 },
-          0
-        );
-
-        /* ---------- GAP & RADIUS ---------- */
-        tl.to(
-          cardContainerRef.current,
-          { gap: 20, duration: 0.6, ease: "power3.out" },
-          1.4
-        );
-
-        tl.to(".animation-card", { borderRadius: 20, duration: 0.6 }, 1.4);
-
-        /* ---------- FLIP ---------- */
-        tl.to(
-          ".animation-card",
-          {
-            rotationY: 180,
-            stagger: 0.1,
-            duration: 1,
-            ease: "power3.inOut",
-          },
-          2.8
-        );
-
-        tl.to(
-          ["#animation-card-1", "#animation-card-3"],
-          {
-            y: 30,
-            rotationZ: (i) => [-15, 15][i],
-            duration: 1,
-            ease: "power3.inOut",
-          },
-          2.8
-        );
+        return () => {
+          // Desktop cleanup
+          if (trigger) trigger.kill();
+        };
       });
 
-      return () => mm.kill();
-    }, sectionRef);
+      return mm;
+    };
 
-    return () => ctx.revert();
+    // Delay initialization to ensure Lenis is ready
+    const timer = setTimeout(() => {
+      initAnimations();
+      ScrollTrigger.refresh();
+    }, 300);
+
+    // Resize handler
+    let resizeTimer;
+    const handleResize = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 250);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // ✅ PROPER CLEANUP - This was the main issue!
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(resizeTimer);
+      window.removeEventListener("resize", handleResize);
+
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+        scrollTriggerRef.current = null;
+      }
+
+      if (matchMediaRef.current) {
+        matchMediaRef.current.kill();
+        matchMediaRef.current = null;
+      }
+    };
   }, []);
+
+  // gsap.registerPlugin(ScrollTrigger);
+
+  // const AnimationCard = () => {
+  //   const sectionRef = useRef(null);
+  //   const cardContainerRef = useRef(null);
+  //   const headerRef = useRef(null);
+
+  //   useLayoutEffect(() => {
+  //     const ctx = gsap.context(() => {
+  //       const mm = gsap.matchMedia();
+
+  //       /* ---------- MOBILE RESET ---------- */
+  //       mm.add("(max-width: 999px)", () => {
+  //         gsap.set(
+  //           [".animation-card", cardContainerRef.current, headerRef.current],
+  //           { clearProps: "all" }
+  //         );
+  //       });
+
+  //       /* ---------- DESKTOP ---------- */
+  //       mm.add("(min-width: 1000px)", () => {
+  //         const tl = gsap.timeline({
+  //           scrollTrigger: {
+  //             trigger: sectionRef.current,
+  //             start: "top top",
+  //             end: "+=400%",
+  //             scrub: true,
+  //             pin: true,
+  //             pinSpacing: true,
+  //             anticipatePin: 1,
+  //           },
+  //         });
+
+  //         /* ---------- HEADER ---------- */
+  //         tl.fromTo(
+  //           headerRef.current,
+  //           { y: 40, opacity: 0 },
+  //           { y: 0, opacity: 1, duration: 1 },
+  //           0
+  //         );
+
+  //         /* ---------- WIDTH ---------- */
+  //         tl.fromTo(
+  //           cardContainerRef.current,
+  //           { width: "75%" },
+  //           { width: "60%", duration: 1 },
+  //           0
+  //         );
+
+  //         /* ---------- GAP & RADIUS ---------- */
+  //         tl.to(
+  //           cardContainerRef.current,
+  //           { gap: 20, duration: 0.6, ease: "power3.out" },
+  //           1.4
+  //         );
+
+  //         tl.to(".animation-card", { borderRadius: 20, duration: 0.6 }, 1.4);
+
+  //         /* ---------- FLIP ---------- */
+  //         tl.to(
+  //           ".animation-card",
+  //           {
+  //             rotationY: 180,
+  //             stagger: 0.1,
+  //             duration: 1,
+  //             ease: "power3.inOut",
+  //           },
+  //           2.8
+  //         );
+
+  //         tl.to(
+  //           ["#animation-card-1", "#animation-card-3"],
+  //           {
+  //             y: 30,
+  //             rotationZ: (i) => [-15, 15][i],
+  //             duration: 1,
+  //             ease: "power3.inOut",
+  //           },
+  //           2.8
+  //         );
+  //       });
+
+  //       return () => mm.kill();
+  //     }, sectionRef);
+
+  //     return () => ctx.revert();
+  //   }, []);
 
   return (
     <>

@@ -28,7 +28,6 @@ const page = () => {
       {/* <CardMovingSection /> */}
       {/* <DomainSearchSection /> */}
       <ScrollingFeatures />
-      <AnimationCard />
       {/* <ProjectFilterSection />
       <ServiceCard /> */}
       {/* <AboutUs /> */}

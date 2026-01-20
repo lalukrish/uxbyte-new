@@ -38,86 +38,52 @@ const AlternatingSection = ({
   textColor = "bg-black",
 }) => {
   return (
-    <section
-      className={cn("min-h-screen overflow-hidden flex items-center", bgClass)}
-    >
-      <div
-        className={cn(
-          "grid grid-cols-1 xl:grid-cols-2 w-full items-center",
-          reverse && "xl:flex-row-reverse"
-        )}
-      >
-        {/* TEXT */}
+    <div className={`w-full py-20 px-6 ${bgClass}`}>
+      <div className="max-w-7xl mx-auto">
         <div
-          className={cn(
-            "px-3 sm:px-10 xl:px-24 2xl:px-48 pt-12",
-            reverse && "xl:order-2"
-          )}
+          className={`grid lg:grid-cols-2 gap-12 items-center ${
+            reverse ? "lg:flex-row-reverse" : ""
+          }`}
         >
-          <EncryptedText
-            normaltext={badgeText}
-            text={badgeEncryptedText}
-            className="text-sm"
-            encryptedClassName="text-[#535658]"
-            revealedClassName="text-[#535658]"
-            revealDelayMs={30}
-          />
+          {/* TEXT */}
+          <div className={`space-y-2 ${reverse ? "lg:order-2" : ""}`}>
+            <div className="inline-block px-1 py-1 bg-white/10 rounded-full backdrop-blur-sm">
+              <span className={`text-sm font-medium ${textColor}`}>
+                {badgeText}{" "}
+                <EncryptedText text={badgeEncryptedText} className="" />
+              </span>
+            </div>
 
-          <Title className={textColor}>{title}</Title>
+            <Title
+              className={`text-4xl leading-16 lg:text-5xl  font-bold ${textColor}`}
+            >
+              {title}
+            </Title>
 
-          <Paragraph className={cn(textColor, "mt-5")}>{description}</Paragraph>
-        </div>
+            <Paragraph className={`text-lg ${textColor} opacity-80`}>
+              {description}
+            </Paragraph>
+          </div>
 
-        {/* IMAGES */}
-        <div
-          className={cn(
-            "relative flex justify-center items-end",
-            reverse ? "xl:order-1" : "xl:order-2"
-          )}
-        >
-          {/* Small Image */}
+          {/* IMAGE */}
           <motion.div
-            className={cn(
-              "relative z-10",
-              "h-[260px] w-[200px]",
-              "xl:h-[450px] xl:w-[350px]",
-              "2xl:h-[590px] 2xl:w-[420px]",
-              reverse
-                ? "xl:absolute xl:left-[350px] 2xl:left-[440px]"
-                : "xl:absolute xl:right-[350px] 2xl:right-[440px]"
-            )}
+            className={`relative ${reverse ? "lg:order-1" : ""}`}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: true, margin: "-100px" }}
             variants={imageVariants}
           >
-            <Image
-              src={primaryImage}
-              alt="Primary"
-              fill
-              className="object-cover"
-            />
-          </motion.div>
-
-          {/* Large Image */}
-          <motion.div
-            className="
-              relative
-              h-[320px] w-[260px]
-              xl:h-[570px] xl:w-[400px]
-              2xl:h-[750px] 2xl:w-[600px]
-            "
-          >
-            <Image
-              src={secondaryImage}
-              alt="Secondary"
-              fill
-              className="object-cover"
-            />
+            <div className="relative w-full aspect-[4/3] overflow-hidden ">
+              <img
+                src={primaryImage}
+                alt={title}
+                className="w-full h-full object-cover"
+              />
+            </div>
           </motion.div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

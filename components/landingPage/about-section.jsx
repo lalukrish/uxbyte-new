@@ -35,10 +35,10 @@ const AboutSection = () => {
       <div className="px-3 sm:px-10 xl:pl-24 2xl:pl-48 w-full xl:w-1/2 pt-12">
         <EncryptedText
           normaltext="PRODUCT DESIGN"
-          text="AND DEVELOPMENT AGENCY"
-          className="text-sm"
+          text=" AND DEVELOPMENT AGENCY"
+          className="text-[11px]! md:text-[14px]!"
           normalClassName=""
-          encryptedClassName="text-[#535658]"
+          encryptedClassName="text-[#535658] "
           revealedClassName="text-[#535658] dark:text-[#535658]"
           revealDelayMs={30}
         />

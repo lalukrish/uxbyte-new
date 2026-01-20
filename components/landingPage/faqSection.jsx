@@ -85,14 +85,12 @@ export default function ScrollFaqGsap() {
 
     if (!section || !blue) return;
 
-    // Disable ScrollTrigger's default pinning behavior
     ScrollTrigger.config({
       autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
       limitCallbacks: true,
     });
 
     const timer = setTimeout(() => {
-      // Create animation WITHOUT pin
       const animation = gsap.to(blue, {
         y: "-101vh",
         ease: "none",
@@ -101,7 +99,7 @@ export default function ScrollFaqGsap() {
           start: "top top",
           end: "+=100%",
           scrub: true,
-          pin: false, // Disable GSAP pinning
+          pin: false,
           invalidateOnRefresh: true,
         },
       });
@@ -112,13 +110,11 @@ export default function ScrollFaqGsap() {
     return () => {
       clearTimeout(timer);
 
-      // Clean up animation
       if (scrollTriggerRef.current) {
         scrollTriggerRef.current.kill();
         scrollTriggerRef.current = null;
       }
 
-      // Kill all ScrollTriggers without using kill(true)
       const triggers = ScrollTrigger.getAll();
       triggers.forEach((trigger) => {
         if (trigger.trigger === section) {
@@ -126,7 +122,6 @@ export default function ScrollFaqGsap() {
         }
       });
 
-      // Manual cleanup of any remaining pin spacers
       if (section) {
         const spacers = section.querySelectorAll(".pin-spacer");
         spacers.forEach((spacer) => {
@@ -149,46 +144,50 @@ export default function ScrollFaqGsap() {
   return (
     <section
       ref={sectionRef}
-      className="faq-section-wrapper"
+      className="faq-section-wrapper h-[200vh]"
       style={{
         position: "relative",
-        height: "200vh", // Double height for scroll effect
         isolation: "isolate",
         zIndex: 10,
       }}
     >
-      {/* Sticky container replaces GSAP pin */}
+      {/* Sticky container */}
       <div
         style={{
           position: "sticky",
           top: 0,
-          height: "100vh",
           width: "100%",
           overflow: "hidden",
         }}
+        className="h-screen"
       >
-        {/* FAQ Section (slides up to reveal black section below) */}
+        {/* FAQ Section (slides up) */}
         <div
           ref={blueRef}
-          className="absolute top-0 left-0 w-full h-[100vh] md:h-[120vh] bg-white flex flex-col rounded-b-[0rem] md:rounded-b-[6rem] z-10"
+          className="absolute top-0 left-0 w-full bg-white flex flex-col z-10"
+          style={{
+            height: "120vh",
+            borderBottomLeftRadius: "3rem",
+            borderBottomRightRadius: "3rem",
+          }}
         >
-          <div className="px-1 md:px-20 py-8 md:py-12 text-black h-full flex flex-col overflow-auto">
-            <div className="text-sm pl-4 mb-4">
+          <div className="px-4 md:px-20 py-6 md:py-12 text-black h-full flex flex-col overflow-auto">
+            <div className="text-xs md:text-sm pl-2 md:pl-4 mb-3 md:mb-4">
               <span className="text-black">SIMPLE</span>
               <span className="text-gray-500"> ANSWERS, FAST</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold pl-4 mb-6">
+            <h2 className="text-2xl md:text-4xl font-bold pl-2 md:pl-4 mb-4 md:mb-6">
               Frequently Asked Questions
             </h2>
 
             <div className="divide-y divide-gray-300 flex-shrink-0">
               {faqs.map((faq, index) => (
-                <div key={index} className="py-4 md:py-5">
+                <div key={index} className="py-3 md:py-5">
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="flex justify-between items-start w-full text-left cursor-pointer hover:bg-gray-50 transition-colors px-3 md:px-4 py-2 rounded-lg group"
+                    className="flex justify-between items-start w-full text-left cursor-pointer hover:bg-gray-50 transition-colors px-2 md:px-4 py-2 rounded-lg group"
                   >
-                    <p className="font-medium text-base md:text-lg pr-4 group-hover:cursor-pointer transition-colors">
+                    <p className="font-medium text-sm md:text-lg pr-3 md:pr-4 group-hover:cursor-pointer transition-colors">
                       {faq.question}
                     </p>
 
@@ -206,7 +205,7 @@ export default function ScrollFaqGsap() {
                         : "max-h-0 opacity-0"
                     }`}
                   >
-                    <p className="text-base md:text-[17px] px-3 md:px-4 pt-3 pb-2 text-gray-700">
+                    <p className="text-sm md:text-[17px] px-2 md:px-4 pt-2 md:pt-3 pb-2 text-gray-700">
                       {faq.answer}
                     </p>
                   </div>
@@ -216,19 +215,27 @@ export default function ScrollFaqGsap() {
           </div>
         </div>
 
-        {/* Hero Section (revealed underneath as FAQ slides up) */}
-        <div className="absolute top-10 left-0 w-full h-[50vh] md:h-[100vh] bg-black text-white rounded-t-[6rem] flex flex-col justify-center items-center px-4 md:px-6">
-          <div className="w-full flex flex-col items-center justify-center py-10 md:py-20 max-w-7xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[120px] 2xl:text-9xl font-semibold text-center leading-tight gradient-text mb-4">
+        {/* Hero Section (revealed underneath) */}
+        <div
+          className="absolute left-0 w-full bg-black text-white flex flex-col justify-center items-center px-4 md:px-6"
+          style={{
+            top: "10vh",
+            height: "100vh",
+            borderTopLeftRadius: "3rem",
+            borderTopRightRadius: "3rem",
+          }}
+        >
+          <div className="w-full flex flex-col items-center justify-center py-8 md:py-20 max-w-7xl mx-auto">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[120px] font-semibold text-center leading-tight gradient-text mb-2 md:mb-4">
               The data you own,
             </h1>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[120px] 2xl:text-9xl font-semibold text-center leading-tight gradient-text">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[120px] font-semibold text-center leading-tight gradient-text">
               supercharged with AI
             </h1>
           </div>
 
-          <button className="mt-6 md:mt-8 py-4 px-10 border-2 border-white rounded-full hover:bg-white hover:text-black transition-colors">
+          <button className="mt-4 md:mt-8 py-3 md:py-4 px-8 md:px-10 text-sm md:text-base border-2 border-white rounded-full hover:bg-white hover:text-black transition-colors">
             Get Started
           </button>
         </div>

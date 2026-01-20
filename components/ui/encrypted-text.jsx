@@ -39,7 +39,7 @@ export const EncryptedText = ({
   const startTimeRef = useRef(0);
   const lastFlipTimeRef = useRef(0);
   const scrambleCharsRef = useRef(
-    text ? text.split("").map((ch) => (ch === " " ? " " : "?")) : []
+    text ? text.split("").map((ch) => (ch === " " ? " " : "?")) : [],
   );
 
   useEffect(() => {
@@ -66,7 +66,7 @@ export const EncryptedText = ({
       const totalLength = text.length;
       const currentRevealCount = Math.min(
         totalLength,
-        Math.floor(elapsedMs / Math.max(1, revealDelayMs))
+        Math.floor(elapsedMs / Math.max(1, revealDelayMs)),
       );
 
       setRevealCount(currentRevealCount);
@@ -118,10 +118,10 @@ export const EncryptedText = ({
             ? " "
             : "?"
           : isRevealed
-          ? char
-          : char === " "
-          ? " "
-          : scrambleCharsRef.current[index] ?? "?";
+            ? char
+            : char === " "
+              ? " "
+              : (scrambleCharsRef.current[index] ?? "?");
 
         return (
           <motion.span

@@ -6,7 +6,7 @@ export const AuroraBackground = ({ children, className }) => {
     <div
       className={cn(
         "relative h-screen w-full overflow-hidden bg-black flex items-center justify-center",
-        className
+        className,
       )}
     >
       {/* PURPLE AURORA */}

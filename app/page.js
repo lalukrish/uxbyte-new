@@ -1,5 +1,5 @@
 "use client";
-import { AboutUs } from "./about";
+import { AboutUs } from "../components/landingPage/about";
 import DomainSearchSection from "@/components/landingPage/testimonial-section";
 import StrategiGrid from "@/components/landingPage/startegiMarket";
 import FaqSection from "@/components/landingPage/faqSection";
@@ -19,6 +19,7 @@ import SaaSSection from "@/components/landingPage/scrolling-features";
 import PopularBlogs from "@/components/blog/popular-blogs";
 import { BLOGS } from "@/data/blog-data";
 import AnimatedHeader from "@/components/landingPage/animated-header";
+import TopHeader from "@/components/topHeader";
 
 const POPULAR_BLOGS = BLOGS.filter((b) => b.isPopular);
 
@@ -26,6 +27,8 @@ export default function Home() {
   return (
     <>
       {/* <AnimatedHeader /> */}
+      <TopHeader />
+
       <HeroNew />
       <AboutSection />
       <ScrollingBox />

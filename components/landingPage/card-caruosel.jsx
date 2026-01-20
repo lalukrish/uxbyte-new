@@ -65,11 +65,9 @@ export default function MobileCenterCarousel() {
     const isRightSwipe = distance < -50;
 
     if (isLeftSwipe) {
-      // Swipe left - go to next
       setActive((prev) => (prev + 1) % articles.length);
     }
     if (isRightSwipe) {
-      // Swipe right - go to previous
       setActive((prev) => (prev - 1 + articles.length) % articles.length);
     }
 
@@ -126,26 +124,22 @@ export default function MobileCenterCarousel() {
                   height: "330px",
                 }}
               >
-                <div className="relative w-full h-full overflow-hidden shadow-2xl">
-                  {/* Background Image */}
+                <div className="relative w-full h-full overflow-hidden ">
                   <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ backgroundImage: `url(${article.image})` }}
                   />
 
-                  {/* Dark Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/60" />
 
-                  {/* Category Badge */}
                   <div className="absolute top-6 left-6 z-10">
                     <span className="px-4 py-1.5 text-xs font-bold tracking-wider text-white bg-blue-600 rounded-full uppercase">
                       {article.category}
                     </span>
                   </div>
 
-                  {/* Content Card */}
                   <div className="absolute bottom-6 left-6 right-6 z-10">
-                    <div className="bg-white rounded-2xl p-5 shadow-xl">
+                    <div className="bg-white rounded-2xl p-5 ">
                       <p className="text-xs text-gray-500 font-medium mb-2 tracking-wide">
                         {article.date}
                       </p>
@@ -177,17 +171,16 @@ export default function MobileCenterCarousel() {
           ))}
         </div>
 
-        {/* Navigation Arrows - Positioned on Left Bottom */}
         <div className="absolute left-4 mt-24 flex gap-2 z-40">
           <button
             onClick={handlePrev}
-            className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-50 transition-colors text-xl"
+            className="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-gray-700 hover:bg-gray-50 transition-colors text-xl"
           >
             ‹
           </button>
           <button
             onClick={handleNext}
-            className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-gray-700 hover:bg-gray-50 transition-colors text-xl"
+            className="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-gray-700 hover:bg-gray-50 transition-colors text-xl"
           >
             ›
           </button>

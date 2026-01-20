@@ -1,12 +1,70 @@
 // "use client";
 
 // import { useEffect, useLayoutEffect, useRef, useState } from "react";
-// import gsap from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
-// import Image from "next/image";
-// import { EncryptedText } from "../ui/encrypted-text";
-// import MobileArticleCarousel from "./card-caruosel";
+// import { motion } from "framer-motion";
+// import MobileCenterCarousel from "./card-caruosel";
+
+// const draw = {
+//   hidden: { pathLength: 0, opacity: 0 },
+//   visible: (i = 0) => ({
+//     pathLength: 1,
+//     opacity: 1,
+//     transition: {
+//       pathLength: {
+//         duration: 3,
+//         delay: i * 0.25,
+//         ease: "easeInOut",
+//       },
+//       opacity: {
+//         duration: 0.5,
+//         delay: i * 0.25,
+//       },
+//     },
+//   }),
+// };
+
+// const paths = [
+//   // U
+//   "M20 20 V80 C20 100 60 100 60 80 V20",
+
+//   // X
+//   "M90 20 L130 80",
+//   "M130 20 L90 80",
+
+//   // B
+//   "M160 20 V80 H190 C215 80 215 60 190 55 C215 50 215 20 190 20 Z",
+
+//   // Y
+//   "M240 20 L260 45 L280 20 M260 45 V80",
+
+//   // T
+//   "M310 20 H350 M330 20 V80",
+
+//   // E
+//   "M380 20 V80 M380 20 H420 M380 50 H410 M380 80 H420",
+
+//   // Space
+//   "",
+
+//   // S
+//   "M470 25 C440 15 440 55 470 55 C500 55 500 95 470 85",
+
+//   // T
+//   "M510 20 H550 M530 20 V80",
+
+//   // U
+//   "M580 20 V80 C580 100 620 100 620 80 V20",
+
+//   // D
+//   "M650 20 V80 H680 C720 80 720 20 680 20 Z",
+
+//   // I
+//   "M750 20 V80",
+
+//   // O
+//   "M790 50 C790 20 840 20 840 50 C840 80 790 80 790 50 Z",
+// ];
 
 // // Simple text flip component
 // function LayoutTextFlip({ words }) {
@@ -22,9 +80,58 @@
 //   return <span className="inline-block">{words[index]}</span>;
 // }
 
+// // // Simple carousel for mobile
+// // function MobileArticleCarousel() {
+// //   const images = [
+// //     {
+// //       src: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop",
+// //       chip: "Innovation",
+// //     },
+// //     {
+// //       src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=400&fit=crop",
+// //       chip: "Cloud Solutions",
+// //     },
+// //     {
+// //       src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=400&fit=crop",
+// //       chip: "Development",
+// //     },
+// //   ];
+
+// //   return (
+// //     <div className="overflow-x-auto px-4 py-6 snap-x snap-mandatory scrollbar-hide">
+// //       <div className="flex gap-4 w-max">
+// //         {images.map((img, i) => (
+// //           <div key={i} className="flex-shrink-0 w-[280px] snap-center">
+// //             <div className="relative h-[280px] rounded-lg overflow-hidden shadow-lg">
+// //               <img
+// //                 src={img.src}
+// //                 alt={img.chip}
+// //                 className="w-full h-full object-cover"
+// //               />
+// //             </div>
+// //             <div className="mt-3 flex justify-center">
+// //               <span className="px-6 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
+// //                 {img.chip}
+// //               </span>
+// //             </div>
+// //           </div>
+// //         ))}
+// //       </div>
+// //     </div>
+// //   );
+// // }
+
+// // Encrypted text effect
+// function EncryptedText({ text, className = "" }) {
+//   return <span className={className}>{text}</span>;
+// }
+
 // export default function HeroNew() {
 //   const containerRef = useRef(null);
 //   const imagesRef = useRef(null);
+//   const logoRef = useRef(null);
+//   const overlayRef = useRef(null);
+//   const [animationComplete, setAnimationComplete] = useState(false);
 
 //   const images = [
 //     {
@@ -53,46 +160,139 @@
 //       chip: "AI & Analytics",
 //     },
 //   ];
+
+//   // Logo animation
+//   useEffect(() => {
+//     const isMobile = window.innerWidth < 768;
+
+//     const timer1 = setTimeout(() => {
+//       if (!logoRef.current) return;
+
+//       logoRef.current.style.transition =
+//         "all 3.5s cubic-bezier(0.76, 0, 0.24, 1)";
+
+//       if (isMobile) {
+//         // 📱 Mobile → Left aligned
+//         logoRef.current.style.left = "16px";
+//         logoRef.current.style.top = "16px";
+//         logoRef.current.style.transform = "translate(0, 0) scale(1)";
+//       } else {
+//         // 💻 Desktop → Center / branded position
+//         logoRef.current.style.left = "100px";
+//         logoRef.current.style.top = "24px";
+//         logoRef.current.style.transform = "translate(0, 0) scale(1)";
+//       }
+//     }, 2000);
+
+//     const timer2 = setTimeout(() => {
+//       if (overlayRef.current) {
+//         overlayRef.current.style.transition = "opacity 1s ease-out";
+//         overlayRef.current.style.opacity = "0";
+//       }
+//     }, 4500);
+
+//     const timer3 = setTimeout(() => {
+//       // Fade out the logo
+//       if (logoRef.current) {
+//         logoRef.current.style.transition = "opacity 0.5s ease-out";
+//         logoRef.current.style.opacity = "0";
+//       }
+//     }, 5300);
+
+//     const timer4 = setTimeout(() => {
+//       setAnimationComplete(true);
+//     }, 5800);
+
+//     return () => {
+//       clearTimeout(timer1);
+//       clearTimeout(timer2);
+//       clearTimeout(timer3);
+//       clearTimeout(timer4);
+//     };
+//   }, []);
+
+//   // Horizontal scroll animation with GSAP - loaded from CDN
 //   useLayoutEffect(() => {
 //     if (!containerRef.current || !imagesRef.current) return;
 
-//     gsap.registerPlugin(ScrollTrigger);
+//     // Load GSAP from CDN
+//     const loadGSAP = () => {
+//       // Check if GSAP is already loaded
+//       if (window.gsap && window.ScrollTrigger) {
+//         initAnimation();
+//         return;
+//       }
 
-//     const section = containerRef.current;
-//     const track = imagesRef.current;
+//       // Load GSAP script
+//       const gsapScript = document.createElement("script");
+//       gsapScript.src =
+//         "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js";
+//       gsapScript.async = true;
 
-//     const getScrollDistance = () => {
-//       const scrollWidth = track.scrollWidth;
-//       const containerWidth = track.parentElement.offsetWidth;
-//       return scrollWidth - containerWidth;
+//       gsapScript.onload = () => {
+//         // Load ScrollTrigger after GSAP
+//         const scrollTriggerScript = document.createElement("script");
+//         scrollTriggerScript.src =
+//           "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js";
+//         scrollTriggerScript.async = true;
+
+//         scrollTriggerScript.onload = () => {
+//           initAnimation();
+//         };
+
+//         document.head.appendChild(scrollTriggerScript);
+//       };
+
+//       document.head.appendChild(gsapScript);
 //     };
 
-//     const scrollDistance = getScrollDistance();
+//     const initAnimation = () => {
+//       const gsap = window.gsap;
+//       const ScrollTrigger = window.ScrollTrigger;
 
-//     if (scrollDistance <= 0) return;
+//       if (!gsap || !ScrollTrigger) return;
 
-//     // Horizontal animation - calculate dynamically
-//     const animation = gsap.to(track, {
-//       x: () => -getScrollDistance(),
-//       ease: "none",
-//     });
+//       gsap.registerPlugin(ScrollTrigger);
 
-//     // ScrollTrigger
-//     const st = ScrollTrigger.create({
-//       trigger: section,
-//       start: "top top",
-//       end: () => `+=${scrollDistance * 3}`,
-//       scrub: 1.1,
-//       pin: true,
-//       anticipatePin: 1,
-//       animation,
-//       invalidateOnRefresh: true,
-//     });
+//       const section = containerRef.current;
+//       const track = imagesRef.current;
 
-//     return () => {
-//       st.kill();
-//       animation.kill();
+//       const getScrollDistance = () => {
+//         const scrollWidth = track.scrollWidth;
+//         const containerWidth = track.parentElement.offsetWidth;
+//         return scrollWidth - containerWidth;
+//       };
+
+//       const scrollDistance = getScrollDistance();
+
+//       if (scrollDistance <= 0) return;
+
+//       // Horizontal animation
+//       const animation = gsap.to(track, {
+//         x: () => -getScrollDistance(),
+//         ease: "none",
+//       });
+
+//       // ScrollTrigger
+//       const st = ScrollTrigger.create({
+//         trigger: section,
+//         start: "top top",
+//         end: () => `+=${scrollDistance * 3}`,
+//         scrub: 1.1,
+//         pin: true,
+//         anticipatePin: 1,
+//         animation,
+//         invalidateOnRefresh: true,
+//       });
+
+//       // Cleanup function
+//       return () => {
+//         st.kill();
+//         animation.kill();
+//       };
 //     };
+
+//     loadGSAP();
 //   }, []);
 
 //   // Handle resize
@@ -101,7 +301,9 @@
 //     const handleResize = () => {
 //       clearTimeout(resizeTimer);
 //       resizeTimer = setTimeout(() => {
-//         ScrollTrigger.refresh();
+//         if (window.ScrollTrigger) {
+//           window.ScrollTrigger.refresh();
+//         }
 //       }, 250);
 //     };
 
@@ -113,123 +315,591 @@
 //   }, []);
 
 //   return (
-//     <section data-hero-section className="data-hero-section bg-white">
-//       <nav className="flex items-center justify-between px-4 py-4 md:py-6 lg:px-24 mx-auto">
-//         <div className="flex items-center gap-2">
-//           <Image
-//             src="/logo-1.png"
-//             alt="Uxbyte Studio"
-//             width={50}
-//             height={50}
-//             className="object-contain"
-//             priority
-//           />
-//           <span className="text-xl md:text-2xl font-bold text-gray-900">
-//             Uxbyte Studio
-//           </span>
+//     <>
+//       <div
+//         ref={overlayRef}
+//         className="fixed inset-0 bg-white z-50 pointer-events-none"
+//         style={{ opacity: 1 }}
+//       />
+
+//       {!animationComplete && (
+//         <div
+//           ref={logoRef}
+//           className="fixed z-[60] pl-2 md:pl-0 flex items-center gap-1 md:gap-2  left-1/2 top-1/2 md:left-1/2 md:top-1/2"
+//           style={{
+//             transform: "translate(-50%, -50%) scale(2)",
+//             opacity: 1,
+//           }}
+//         >
+//           <div className="h-10 w-10 md:w-11 md:h-11 bg-black  items-center justify-center flex">
+//             <span className="text-white font-bold text-xl">UXB</span>
+//           </div>
+//           <span className="text-xl md:text-xl font-bold ">Uxbyte Studio</span>
 //         </div>
-//       </nav>
+//       )}
 
-//       <div className="hidden md:block">
-//         <div ref={containerRef} className="bg-white relative  mt-14 ">
-//           <div className="h-screen flex items-center  ">
-//             <main className="w-full 2xl:px-56 xl:px-24 px-8 ">
-//               <div className="flex items-center justify-between gap-12 ">
-//                 <div className="max-w-4xl mb-12">
-//                   <h1 className="text-4xl md:text-6xl font-medium leading-tight mb-6 ">
-//                     <span>Where thinking</span>
-//                     <br />
-//                     <span>flows, </span>
-//                     <LayoutTextFlip
-//                       words={[
-//                         "innovation grows.",
-//                         "creativity moves.",
-//                         "insight blooms",
-//                       ]}
-//                     />
-//                   </h1>
+//       {/* MAIN CONTENT */}
+//       <section
+//         data-hero-section
+//         className="data-hero-section bg-white"
+//         style={{
+//           opacity: animationComplete ? 1 : 0,
+//           transition: "opacity 0.5s ease-in",
+//         }}
+//       >
+//         <nav className="flex items-center justify-between px-4 py-4 md:py-6 lg:px-24 mx-auto">
+//           <div className="flex items-center gap-2">
+//             <div className="w-12 h-12 bg-black  flex items-center justify-center">
+//               <span className="text-white font-bold text-xl">UXB</span>
+//             </div>
+//             <span className="text-xl md:text-xl font-bold ">Uxbyte Studio</span>
+//           </div>
+//         </nav>
 
-//                   <p className="text-xl text-gray-500">
-//                     Your digital world, managed and organized with ease by
-//                     UXByte.{" "}
-//                   </p>
-//                 </div>
+//         <div className="hidden md:block">
+//           <div ref={containerRef} className="bg-white relative mt-14">
+//             <div className="h-screen flex items-center">
+//               <main className="w-full 2xl:px-56 xl:px-24 px-8">
+//                 <div className="flex items-center justify-between gap-12">
+//                   <div className="max-w-4xl mb-12">
+//                     <h1 className="text-4xl md:text-6xl font-medium leading-tight mb-6">
+//                       <span>Where thinking</span>
+//                       <br />
+//                       <span>flows, </span>
+//                       <LayoutTextFlip
+//                         words={[
+//                           "innovation grows.",
+//                           "creativity moves.",
+//                           "insight blooms",
+//                         ]}
+//                       />
+//                     </h1>
 
-//                 <div className="flex-shrink-0 w-[460px] h-74 relative xl:-mt-25 md:block hidden">
-//                   <div className="w-full h-full rounded-none flex items-center justify-center overflow-hidden">
-//                     <img
-//                       src="/2026.png"
-//                       alt="Abstract art"
-//                       className="w-full h-full object-cover"
-//                     />
+//                     <p className="text-xl text-gray-500">
+//                       Your digital world, managed and organized with ease by
+//                       UXByte.
+//                     </p>
 //                   </div>
 
-//                   <div className="flex flex-col items-start gap-4 md:-mt-16 md:pl-10">
-//                     <EncryptedText
-//                       normaltext=""
-//                       text="VERSION 2.0"
-//                       className="text-sm"
-//                       normalClassName=""
-//                       encryptedClassName="text-[#adadae]"
-//                       revealedClassName="text-gray-500 dark:text-[#adadae]"
-//                       revealDelayMs={30}
-//                     />
-//                   </div>
-//                 </div>
-//               </div>
-
-//               {/* Horizontal Image Scroll */}
-//               <div className="overflow-hidden">
-//                 <div
-//                   ref={imagesRef}
-//                   className="flex gap-5 w-max will-change-transform"
-//                 >
-//                   {images.map((img, i) => (
-//                     <div key={i} className="flex-shrink-0 w-[300px]">
-//                       <div className="relative h-[300px] rounded-none shadow-lg overflow-hidden">
-//                         <img
-//                           src={img.src}
-//                           alt={img.alt}
-//                           className="w-full h-full object-cover"
-//                         />
-//                       </div>
-
-//                       <div className="mt-3 flex justify-center">
-//                         <span className="px-4 xl:px-8 py-1 border-1-black text-gray-700 rounded-none text-sm font-medium">
-//                           {img.chip}
-//                         </span>
-//                       </div>
+//                   <div className="flex-shrink-0 w-[460px] h-74 relative xl:-mt-25 md:block hidden">
+//                     <div className="w-full h-full rounded-none flex items-center justify-center overflow-hidden">
+//                       <img
+//                         src="/2026.png"
+//                         alt="Abstract art"
+//                         className="w-full h-full object-cover"
+//                       />
 //                     </div>
-//                   ))}
+
+//                     <div className="flex flex-col items-start gap-4 md:-mt-16 md:pl-10">
+//                       <EncryptedText
+//                         text="VERSION 2.0"
+//                         className="text-sm text-gray-500"
+//                       />
+//                     </div>
+//                   </div>
 //                 </div>
-//               </div>
-//             </main>
+
+//                 {/* Horizontal Image Scroll */}
+//                 <div className="overflow-hidden">
+//                   <div
+//                     ref={imagesRef}
+//                     className="flex gap-5 w-max will-change-transform"
+//                   >
+//                     {images.map((img, i) => (
+//                       <div key={i} className="flex-shrink-0 w-[300px]">
+//                         <div className="relative h-[300px] rounded-none  overflow-hidden">
+//                           <img
+//                             src={img.src}
+//                             alt={img.alt}
+//                             className="w-full h-full object-cover"
+//                           />
+//                         </div>
+
+//                         <div className="mt-3 flex justify-center">
+//                           <span className="px-4 xl:px-8 py-1 border border-gray-300 text-gray-700 rounded-none text-sm font-medium">
+//                             {img.chip}
+//                           </span>
+//                         </div>
+//                       </div>
+//                     ))}
+//                   </div>
+//                 </div>
+//               </main>
+//             </div>
 //           </div>
 //         </div>
-//       </div>
-//       <div className="flex flex-col  md:hidden overflow-x-hidden">
-//         {/* TEXT SECTION */}
-//         <div className="px-4 mb-1 mt-9">
-//           <h1 className="text-[36px] font-semibold leading-tight mb-6 text-center">
-//             <span>Where curiosity</span>
-//             <br />
-//             <span>roams, </span>
-//             <LayoutTextFlip words={["you think.", "imagine", "you create."]} />
-//           </h1>
 
-//           <p className="text-md text-gray-500 text-center">
-//             All of your notes, bookmarks, and documents at your fingertips.
-//           </p>
-//         </div>
+//         <div className="flex flex-col md:hidden overflow-x-hidden">
+//           {/* TEXT SECTION */}
+//           <div className="px-4 mb-1 mt-9">
+//             <h1 className="text-[36px] font-semibold leading-tight mb-6 text-center">
+//               <span>Where curiosity</span>
+//               <br />
+//               <span>roams, </span>
+//               <LayoutTextFlip
+//                 words={["you think.", "imagine", "you create."]}
+//               />
+//             </h1>
 
-//         {/* IMAGE / CAROUSEL */}
-//         <div className="relative z-10">
-//           <MobileArticleCarousel />
+//             <p className="text-md text-gray-500 text-center">
+//               All of your notes, bookmarks, and documents at your fingertips.
+//             </p>
+//           </div>
+
+//           {/* IMAGE / CAROUSEL */}
+//           <div className="relative z-10">
+//             <MobileCenterCarousel />
+//           </div>
 //         </div>
-//       </div>
-//     </section>
+//       </section>
+//     </>
 //   );
 // }
+
+// this is the code checking the uxbyte once show
+
+// "use client";
+
+// import { useEffect, useLayoutEffect, useRef, useState } from "react";
+// import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
+// import { motion } from "framer-motion";
+// import MobileCenterCarousel from "./card-caruosel";
+
+// const draw = {
+//   hidden: { pathLength: 0, opacity: 0 },
+//   visible: (i = 0) => ({
+//     pathLength: 1,
+//     opacity: 1,
+//     transition: {
+//       pathLength: {
+//         duration: 3,
+//         delay: i * 0.25,
+//         ease: "easeInOut",
+//       },
+//       opacity: {
+//         duration: 0.5,
+//         delay: i * 0.25,
+//       },
+//     },
+//   }),
+// };
+
+// const paths = [
+//   // U
+//   "M20 20 V80 C20 100 60 100 60 80 V20",
+
+//   // X
+//   "M90 20 L130 80",
+//   "M130 20 L90 80",
+
+//   // B
+//   "M160 20 V80 H190 C215 80 215 60 190 55 C215 50 215 20 190 20 Z",
+
+//   // Y
+//   "M240 20 L260 45 L280 20 M260 45 V80",
+
+//   // T
+//   "M310 20 H350 M330 20 V80",
+
+//   // E
+//   "M380 20 V80 M380 20 H420 M380 50 H410 M380 80 H420",
+
+//   // Space
+//   "",
+
+//   // S
+//   "M470 25 C440 15 440 55 470 55 C500 55 500 95 470 85",
+
+//   // T
+//   "M510 20 H550 M530 20 V80",
+
+//   // U
+//   "M580 20 V80 C580 100 620 100 620 80 V20",
+
+//   // D
+//   "M650 20 V80 H680 C720 80 720 20 680 20 Z",
+
+//   // I
+//   "M750 20 V80",
+
+//   // O
+//   "M790 50 C790 20 840 20 840 50 C840 80 790 80 790 50 Z",
+// ];
+
+// // Simple text flip component
+// function LayoutTextFlip({ words }) {
+//   const [index, setIndex] = useState(0);
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setIndex((i) => (i + 1) % words.length);
+//     }, 2000);
+//     return () => clearInterval(interval);
+//   }, [words.length]);
+
+//   return <span className="inline-block">{words[index]}</span>;
+// }
+
+// // Encrypted text effect
+// function EncryptedText({ text, className = "" }) {
+//   return <span className={className}>{text}</span>;
+// }
+
+// export default function HeroNew() {
+//   const containerRef = useRef(null);
+//   const imagesRef = useRef(null);
+//   const logoRef = useRef(null);
+//   const overlayRef = useRef(null);
+//   const [animationComplete, setAnimationComplete] = useState(false);
+//   const [shouldPlayAnimation, setShouldPlayAnimation] = useState(true);
+
+//   const images = [
+//     {
+//       src: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop",
+//       alt: "Modern laptop with code",
+//       chip: "Innovation",
+//     },
+//     {
+//       src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=400&fit=crop",
+//       alt: "Digital network and connectivity",
+//       chip: "Cloud Solutions",
+//     },
+//     {
+//       src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=400&fit=crop",
+//       alt: "Developers coding together",
+//       chip: "Development",
+//     },
+//     {
+//       src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=400&fit=crop",
+//       alt: "Team collaboration",
+//       chip: "Solutions",
+//     },
+//     {
+//       src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=400&fit=crop",
+//       alt: "AI and machine learning",
+//       chip: "AI & Analytics",
+//     },
+//   ];
+
+//   // Check if animation has been played before
+//   useEffect(() => {
+//     const hasSeenAnimation = sessionStorage.getItem("uxbyte_intro_seen");
+
+//     if (hasSeenAnimation) {
+//       setShouldPlayAnimation(false);
+//       setAnimationComplete(true);
+//     }
+//   }, []);
+
+//   // Logo animation
+//   useEffect(() => {
+//     // Skip animation if already seen
+//     if (!shouldPlayAnimation) return;
+
+//     const isMobile = window.innerWidth < 768;
+
+//     // Show logo centered for only 500ms (reduced from 800ms)
+//     const timer1 = setTimeout(() => {
+//       if (!logoRef.current) return;
+
+//       // Ultra smooth transition with custom easing
+//       logoRef.current.style.transition =
+//         "all 1.8s cubic-bezier(0.65, 0, 0.35, 1)"; // Smoother easing curve
+
+//       if (isMobile) {
+//         logoRef.current.style.left = "16px";
+//         logoRef.current.style.top = "16px";
+//         logoRef.current.style.transform = "translate(0, 0) scale(1)";
+//       } else {
+//         logoRef.current.style.left = "100px";
+//         logoRef.current.style.top = "24px";
+//         logoRef.current.style.transform = "translate(0, 0) scale(1)";
+//       }
+//     }, 500); // Reduced wait time
+
+//     // Fade out overlay
+//     const timer2 = setTimeout(() => {
+//       if (overlayRef.current) {
+//         overlayRef.current.style.transition = "opacity 0.6s ease-out";
+//         overlayRef.current.style.opacity = "0";
+//       }
+//     }, 2000);
+
+//     // Fade out logo
+//     const timer3 = setTimeout(() => {
+//       if (logoRef.current) {
+//         logoRef.current.style.transition = "opacity 0.5s ease-out";
+//         logoRef.current.style.opacity = "0";
+//       }
+//     }, 2600);
+
+//     // Complete animation and save to session
+//     const timer4 = setTimeout(() => {
+//       setAnimationComplete(true);
+//       sessionStorage.setItem("uxbyte_intro_seen", "true");
+//     }, 3100);
+
+//     return () => {
+//       clearTimeout(timer1);
+//       clearTimeout(timer2);
+//       clearTimeout(timer3);
+//       clearTimeout(timer4);
+//     };
+//   }, [shouldPlayAnimation]);
+
+//   // Horizontal scroll animation with GSAP - loaded from CDN
+//   useLayoutEffect(() => {
+//     if (!containerRef.current || !imagesRef.current) return;
+
+//     // Load GSAP from CDN
+//     const loadGSAP = () => {
+//       // Check if GSAP is already loaded
+//       if (window.gsap && window.ScrollTrigger) {
+//         initAnimation();
+//         return;
+//       }
+
+//       // Load GSAP script
+//       const gsapScript = document.createElement("script");
+//       gsapScript.src =
+//         "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js";
+//       gsapScript.async = true;
+
+//       gsapScript.onload = () => {
+//         // Load ScrollTrigger after GSAP
+//         const scrollTriggerScript = document.createElement("script");
+//         scrollTriggerScript.src =
+//           "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js";
+//         scrollTriggerScript.async = true;
+
+//         scrollTriggerScript.onload = () => {
+//           initAnimation();
+//         };
+
+//         document.head.appendChild(scrollTriggerScript);
+//       };
+
+//       document.head.appendChild(gsapScript);
+//     };
+
+//     const initAnimation = () => {
+//       const gsap = window.gsap;
+//       const ScrollTrigger = window.ScrollTrigger;
+
+//       if (!gsap || !ScrollTrigger) return;
+
+//       gsap.registerPlugin(ScrollTrigger);
+
+//       const section = containerRef.current;
+//       const track = imagesRef.current;
+
+//       const getScrollDistance = () => {
+//         const scrollWidth = track.scrollWidth;
+//         const containerWidth = track.parentElement.offsetWidth;
+//         return scrollWidth - containerWidth;
+//       };
+
+//       const scrollDistance = getScrollDistance();
+
+//       if (scrollDistance <= 0) return;
+
+//       // Horizontal animation
+//       const animation = gsap.to(track, {
+//         x: () => -getScrollDistance(),
+//         ease: "none",
+//       });
+
+//       // ScrollTrigger
+//       const st = ScrollTrigger.create({
+//         trigger: section,
+//         start: "top top",
+//         end: () => `+=${scrollDistance * 3}`,
+//         scrub: 1.1,
+//         pin: true,
+//         anticipatePin: 1,
+//         animation,
+//         invalidateOnRefresh: true,
+//       });
+
+//       // Cleanup function
+//       return () => {
+//         st.kill();
+//         animation.kill();
+//       };
+//     };
+
+//     loadGSAP();
+//   }, []);
+
+//   // Handle resize
+//   useEffect(() => {
+//     let resizeTimer;
+//     const handleResize = () => {
+//       clearTimeout(resizeTimer);
+//       resizeTimer = setTimeout(() => {
+//         if (window.ScrollTrigger) {
+//           window.ScrollTrigger.refresh();
+//         }
+//       }, 250);
+//     };
+
+//     window.addEventListener("resize", handleResize);
+//     return () => {
+//       clearTimeout(resizeTimer);
+//       window.removeEventListener("resize", handleResize);
+//     };
+//   }, []);
+
+//   return (
+//     <>
+//       {shouldPlayAnimation && (
+//         <>
+//           <div
+//             ref={overlayRef}
+//             className="fixed inset-0 bg-white z-50 pointer-events-none"
+//             style={{ opacity: 1 }}
+//           />
+
+//           {!animationComplete && (
+//             <div
+//               ref={logoRef}
+//               className="fixed z-[60] pl-2 md:pl-0 flex items-center gap-1 md:gap-2 left-1/2 top-1/2 md:left-1/2 md:top-1/2"
+//               style={{
+//                 transform: "translate(-50%, -50%) scale(2)",
+//                 opacity: 1,
+//               }}
+//             >
+//               <div className="h-10 w-10 md:w-11 md:h-11 bg-black items-center justify-center flex">
+//                 <span className="text-white font-bold text-xl">UXB</span>
+//               </div>
+//               <span className="text-xl md:text-xl font-bold">
+//                 Uxbyte Studio
+//               </span>
+//             </div>
+//           )}
+//         </>
+//       )}
+
+//       {/* MAIN CONTENT */}
+//       <section
+//         data-hero-section
+//         className="data-hero-section bg-white"
+//         style={{
+//           opacity: animationComplete ? 1 : 0,
+//           transition: "opacity 0.5s ease-in",
+//         }}
+//       >
+//         <nav className="flex items-center justify-between px-4 py-4 md:py-6 lg:px-24 mx-auto">
+//           <div className="flex items-center gap-2">
+//             <div className="w-12 h-12 bg-black flex items-center justify-center">
+//               <span className="text-white font-bold text-xl">UXB</span>
+//             </div>
+//             <span className="text-xl md:text-xl font-bold">Uxbyte Studio</span>
+//           </div>
+//         </nav>
+
+//         <div className="hidden md:block">
+//           <div ref={containerRef} className="bg-white relative mt-14">
+//             <div className="h-screen flex items-center">
+//               <main className="w-full 2xl:px-56 xl:px-24 px-8">
+//                 <div className="flex items-center justify-between gap-12">
+//                   <div className="max-w-4xl mb-12">
+//                     <h1 className="text-4xl md:text-6xl font-medium leading-tight mb-6">
+//                       <span>Where thinking</span>
+//                       <br />
+//                       <span>flows, </span>
+//                       <LayoutTextFlip
+//                         words={[
+//                           "innovation grows.",
+//                           "creativity moves.",
+//                           "insight blooms",
+//                         ]}
+//                       />
+//                     </h1>
+
+//                     <p className="text-xl text-gray-500">
+//                       Your digital world, managed and organized with ease by
+//                       UXByte.
+//                     </p>
+//                   </div>
+
+//                   <div className="flex-shrink-0 w-[460px] h-74 relative xl:-mt-25 md:block hidden">
+//                     <div className="w-full h-full rounded-none flex items-center justify-center overflow-hidden">
+//                       <img
+//                         src="/2026.png"
+//                         alt="Abstract art"
+//                         className="w-full h-full object-cover"
+//                       />
+//                     </div>
+
+//                     <div className="flex flex-col items-start gap-4 md:-mt-16 md:pl-10">
+//                       <EncryptedText
+//                         text="VERSION 2.0"
+//                         className="text-sm text-gray-500"
+//                       />
+//                     </div>
+//                   </div>
+//                 </div>
+
+//                 {/* Horizontal Image Scroll */}
+//                 <div className="overflow-hidden">
+//                   <div
+//                     ref={imagesRef}
+//                     className="flex gap-5 w-max will-change-transform"
+//                   >
+//                     {images.map((img, i) => (
+//                       <div key={i} className="flex-shrink-0 w-[300px]">
+//                         <div className="relative h-[300px] rounded-none overflow-hidden">
+//                           <img
+//                             src={img.src}
+//                             alt={img.alt}
+//                             className="w-full h-full object-cover"
+//                           />
+//                         </div>
+
+//                         <div className="mt-3 flex justify-center">
+//                           <span className="px-4 xl:px-8 py-1 border border-gray-300 text-gray-700 rounded-none text-sm font-medium">
+//                             {img.chip}
+//                           </span>
+//                         </div>
+//                       </div>
+//                     ))}
+//                   </div>
+//                 </div>
+//               </main>
+//             </div>
+//           </div>
+//         </div>
+
+//         <div className="flex flex-col md:hidden overflow-x-hidden">
+//           {/* TEXT SECTION */}
+//           <div className="px-4 mb-1 mt-9">
+//             <h1 className="text-[36px] font-semibold leading-tight mb-6 text-center">
+//               <span>Where curiosity</span>
+//               <br />
+//               <span>roams, </span>
+//               <LayoutTextFlip
+//                 words={["you think.", "imagine", "you create."]}
+//               />
+//             </h1>
+
+//             <p className="text-md text-gray-500 text-center">
+//               All of your notes, bookmarks, and documents at your fingertips.
+//             </p>
+//           </div>
+
+//           {/* IMAGE / CAROUSEL */}
+//           <div className="relative z-10">
+//             <MobileCenterCarousel />
+//           </div>
+//         </div>
+//       </section>
+//     </>
+//   );
+// }
+
+// shows everytime
+
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -312,47 +982,6 @@ function LayoutTextFlip({ words }) {
   return <span className="inline-block">{words[index]}</span>;
 }
 
-// // Simple carousel for mobile
-// function MobileArticleCarousel() {
-//   const images = [
-//     {
-//       src: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop",
-//       chip: "Innovation",
-//     },
-//     {
-//       src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=400&fit=crop",
-//       chip: "Cloud Solutions",
-//     },
-//     {
-//       src: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=400&fit=crop",
-//       chip: "Development",
-//     },
-//   ];
-
-//   return (
-//     <div className="overflow-x-auto px-4 py-6 snap-x snap-mandatory scrollbar-hide">
-//       <div className="flex gap-4 w-max">
-//         {images.map((img, i) => (
-//           <div key={i} className="flex-shrink-0 w-[280px] snap-center">
-//             <div className="relative h-[280px] rounded-lg overflow-hidden shadow-lg">
-//               <img
-//                 src={img.src}
-//                 alt={img.chip}
-//                 className="w-full h-full object-cover"
-//               />
-//             </div>
-//             <div className="mt-3 flex justify-center">
-//               <span className="px-6 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
-//                 {img.chip}
-//               </span>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
 // Encrypted text effect
 function EncryptedText({ text, className = "" }) {
   return <span className={className}>{text}</span>;
@@ -364,6 +993,7 @@ export default function HeroNew() {
   const logoRef = useRef(null);
   const overlayRef = useRef(null);
   const [animationComplete, setAnimationComplete] = useState(false);
+  const [shouldPlayAnimation, setShouldPlayAnimation] = useState(true);
 
   const images = [
     {
@@ -393,47 +1023,64 @@ export default function HeroNew() {
     },
   ];
 
+  // Check if animation has been played before
+  useEffect(() => {
+    // TEMPORARILY DISABLED - Animation will play every time
+    // const hasSeenAnimation = sessionStorage.getItem('uxbyte_intro_seen');
+    // if (hasSeenAnimation) {
+    //   setShouldPlayAnimation(false);
+    //   setAnimationComplete(true);
+    // }
+  }, []);
+
   // Logo animation
   useEffect(() => {
+    // Skip animation if already seen
+    if (!shouldPlayAnimation) return;
+
     const isMobile = window.innerWidth < 768;
 
+    // Show logo centered for only 500ms (reduced from 800ms)
     const timer1 = setTimeout(() => {
       if (!logoRef.current) return;
 
+      // Ultra smooth transition with custom easing
       logoRef.current.style.transition =
-        "all 3.5s cubic-bezier(0.76, 0, 0.24, 1)";
+        "all 1.8s cubic-bezier(0.65, 0, 0.35, 1)"; // Smoother easing curve
 
       if (isMobile) {
-        // 📱 Mobile → Left aligned
         logoRef.current.style.left = "16px";
         logoRef.current.style.top = "16px";
         logoRef.current.style.transform = "translate(0, 0) scale(1)";
       } else {
-        // 💻 Desktop → Center / branded position
         logoRef.current.style.left = "100px";
         logoRef.current.style.top = "24px";
         logoRef.current.style.transform = "translate(0, 0) scale(1)";
       }
-    }, 2000);
+    }, 500); // Reduced wait time
 
+    // Fade out overlay
     const timer2 = setTimeout(() => {
       if (overlayRef.current) {
-        overlayRef.current.style.transition = "opacity 1s ease-out";
+        overlayRef.current.style.transition = "opacity 0.6s ease-out";
         overlayRef.current.style.opacity = "0";
       }
-    }, 4500);
+    }, 2000);
 
+    // Fade out logo
     const timer3 = setTimeout(() => {
-      // Fade out the logo
       if (logoRef.current) {
         logoRef.current.style.transition = "opacity 0.5s ease-out";
         logoRef.current.style.opacity = "0";
       }
-    }, 5300);
+    }, 2600);
 
+    // Complete animation and save to session
     const timer4 = setTimeout(() => {
       setAnimationComplete(true);
-    }, 5800);
+      // TEMPORARILY DISABLED - Not saving to session for testing
+      // sessionStorage.setItem('uxbyte_intro_seen', 'true');
+    }, 3100);
 
     return () => {
       clearTimeout(timer1);
@@ -441,7 +1088,7 @@ export default function HeroNew() {
       clearTimeout(timer3);
       clearTimeout(timer4);
     };
-  }, []);
+  }, [shouldPlayAnimation]);
 
   // Horizontal scroll animation with GSAP - loaded from CDN
   useLayoutEffect(() => {
@@ -548,30 +1195,32 @@ export default function HeroNew() {
 
   return (
     <>
-      {/* WHITE BACKGROUND OVERLAY */}
-      <div
-        ref={overlayRef}
-        className="fixed inset-0 bg-white z-50 pointer-events-none"
-        style={{ opacity: 1 }}
-      />
+      {shouldPlayAnimation && (
+        <>
+          <div
+            ref={overlayRef}
+            className="fixed inset-0 bg-white z-50 pointer-events-none"
+            style={{ opacity: 1 }}
+          />
 
-      {/* ANIMATED LOGO - Will fade out after animation */}
-      {!animationComplete && (
-        <div
-          ref={logoRef}
-          className="fixed z-[60] pl-2 md:pl-0 flex items-center gap-1 md:gap-2  left-1/2 top-1/2 md:left-1/2 md:top-1/2"
-          style={{
-            transform: "translate(-50%, -50%) scale(2)",
-            opacity: 1,
-          }}
-        >
-          <div className="h-10 w-10 md:w-11 md:h-11 bg-black  items-center justify-center flex">
-            <span className="text-white font-bold text-xl">UXB</span>
-          </div>
-          <span className="text-xl md:text-2xl font-bold text-gray-900 ">
-            Uxbyte Studio
-          </span>
-        </div>
+          {!animationComplete && (
+            <div
+              ref={logoRef}
+              className="fixed z-[60] pl-2 md:pl-0 flex items-center gap-1 md:gap-2 left-1/2 top-1/2 md:left-1/2 md:top-1/2"
+              style={{
+                transform: "translate(-50%, -50%) scale(2)",
+                opacity: 1,
+              }}
+            >
+              <div className="h-10 w-10 md:w-11 md:h-11 bg-black items-center justify-center flex">
+                <span className="text-white font-bold text-xl">UXB</span>
+              </div>
+              <span className="text-xl md:text-xl font-bold">
+                Uxbyte Studio
+              </span>
+            </div>
+          )}
+        </>
       )}
 
       {/* MAIN CONTENT */}
@@ -585,12 +1234,10 @@ export default function HeroNew() {
       >
         <nav className="flex items-center justify-between px-4 py-4 md:py-6 lg:px-24 mx-auto">
           <div className="flex items-center gap-2">
-            <div className="w-12 h-12 bg-black  flex items-center justify-center">
+            <div className="w-12 h-12 bg-black flex items-center justify-center">
               <span className="text-white font-bold text-xl">UXB</span>
             </div>
-            <span className="text-xl md:text-2xl font-bold text-gray-900">
-              Uxbyte Studio
-            </span>
+            <span className="text-xl md:text-xl font-bold">Uxbyte Studio</span>
           </div>
         </nav>
 
@@ -645,7 +1292,7 @@ export default function HeroNew() {
                   >
                     {images.map((img, i) => (
                       <div key={i} className="flex-shrink-0 w-[300px]">
-                        <div className="relative h-[300px] rounded-none shadow-lg overflow-hidden">
+                        <div className="relative h-[300px] rounded-none overflow-hidden">
                           <img
                             src={img.src}
                             alt={img.alt}

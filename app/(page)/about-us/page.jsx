@@ -1,9 +1,11 @@
-import { AboutUs } from "@/app/about";
+import { AboutUs } from "@/components/landingPage/about";
 import Counter from "@/components/about/counter";
 import ExpertiseTabs from "@/components/about/tab-section";
 import Breadcrumb from "@/components/landingPage/breadcrumb-new";
 import CreativeHero from "@/components/landingPage/hero-section";
 import React from "react";
+import MonitorHero from "@/components/ui/deskotp-section";
+import AnimationCard from "@/components/landingPage/animation-card";
 
 const page = () => {
   return (
@@ -13,12 +15,15 @@ const page = () => {
         path={["Home", "Services"]}
         shape="organicBlob"
       />
-
-      <CreativeHero />
+      <AnimationCard />
       <Counter />
 
-      <ExpertiseTabs />
-      <AboutUs />
+      <CreativeHero />
+
+      {/* <ExpertiseTabs /> */}
+      <MonitorHero />
+
+      {/* <AboutUs /> */}
     </div>
   );
 };
