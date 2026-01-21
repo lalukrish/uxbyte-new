@@ -96,8 +96,6 @@ const Page = () => {
       <AuroraBackground>
         <IndustrySignature />{" "}
       </AuroraBackground>
-      <EnergyScrollSections />
-      {/* <HoverImage /> */}
       <HoverImageGrid items={myItems} bgColor="white" />
       <AlternatingSection
         badgeText="PRODUCT DESIGN"

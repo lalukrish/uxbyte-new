@@ -6,6 +6,7 @@ import CreativeHero from "@/components/landingPage/hero-section";
 import React from "react";
 import MonitorHero from "@/components/ui/deskotp-section";
 import AnimationCard from "@/components/landingPage/animation-card";
+import EnergyScrollSections from "@/components/ui/scrolling-section";
 
 const page = () => {
   return (
@@ -17,6 +18,7 @@ const page = () => {
       />
       <AnimationCard />
       <Counter />
+      <EnergyScrollSections />
 
       <CreativeHero />
 
