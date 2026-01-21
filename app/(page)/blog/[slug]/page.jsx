@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import BlogShare from "@/components/blog/blog-share";
 import BlogGrid from "@/components/blog/blog-grid";
 import { BLOGS } from "@/data/blog-data";
+import Breadcrumb from "@/components/landingPage/breadcrumb-new";
 
 export function generateStaticParams() {
   return BLOGS.map((blog) => ({
@@ -23,6 +24,7 @@ export default function BlogDetailPage({ params }) {
 
   return (
     <main className="w-full">
+      <Breadcrumb />
       <section className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-[clamp(10rem,5vw,12rem)]">
         <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-10 items-start">
           <aside className="hidden lg:block sticky top-[6rem]">
@@ -79,7 +81,7 @@ export default function BlogDetailPage({ params }) {
                     <h2
                       key={i}
                       id={`section-${toc.findIndex(
-                        (t) => t.text === block.text
+                        (t) => t.text === block.text,
                       )}`}
                     >
                       {block.text}

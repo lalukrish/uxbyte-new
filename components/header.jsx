@@ -48,6 +48,12 @@ const menuData = [
   //   href: "/insights",
   //   items: [{ label: "Blogs", href: "/blog" }],
   // },
+
+  {
+    label: "BLOG",
+    href: "/blog",
+    //  items: [{ label: "Blogs", href: "/blog" }],
+  },
 ];
 
 export default function Header() {
@@ -219,7 +225,7 @@ export default function Header() {
                         ? getActiveColor(item.href)
                         : `${textColor} ${textHoverColor}`
                     } transition-colors h-full flex items-center ${getActiveIndicator(
-                      item.href
+                      item.href,
                     )}`}
                   >
                     {item.label}
@@ -231,7 +237,7 @@ export default function Header() {
                         ? getActiveColor(item.href)
                         : `${textColor} ${textHoverColor}`
                     } transition-colors h-full ${getActiveIndicator(
-                      item.href
+                      item.href,
                     )}`}
                   >
                     {item.label}
@@ -286,15 +292,15 @@ export default function Header() {
                         {item.label === "SERVICES"
                           ? "Ready to bring your idea to life?"
                           : item.label === "INDUSTRIES"
-                          ? "Industry Expertise"
-                          : item.label}
+                            ? "Industry Expertise"
+                            : item.label}
                       </h3>
                       <p className="text-gray-400 mb-8 leading-relaxed">
                         {item.label === "SERVICES"
                           ? "Explore our comprehensive range of services designed to help you succeed."
                           : item.label === "INDUSTRIES"
-                          ? "Specialized solutions tailored for your industry."
-                          : `Discover more about ${item.label.toLowerCase()}.`}
+                            ? "Specialized solutions tailored for your industry."
+                            : `Discover more about ${item.label.toLowerCase()}.`}
                       </p>
 
                       <Link
@@ -333,7 +339,7 @@ export default function Header() {
                   </div>
                 </div>
               </div>
-            )
+            ),
         )}
       </div>
 

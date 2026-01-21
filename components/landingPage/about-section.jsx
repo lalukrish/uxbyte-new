@@ -113,7 +113,7 @@ const AboutSection = () => {
           >
             {" "}
             <Image
-              src="/education.jpg"
+              src="/about-4.webp"
               alt="About big"
               fill
               className="object-cover"

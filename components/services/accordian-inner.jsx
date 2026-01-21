@@ -19,7 +19,7 @@ const FAQItem = ({ number, question, answer, isOpen, onToggle }) => {
           ></Paragraph>
         </div>
         <div className="flex items-center gap-2 ml-4">
-          <span className="text-sm font-medium text-gray-900">MORE</span>
+          {/* <span className="text-sm font-medium text-gray-900">MORE</span> */}
           <svg
             className={`w-4 h-4 transition-transform duration-300 ${
               isOpen ? "rotate-180" : ""

@@ -24,7 +24,7 @@ export const Button = (
     onClick,
     color = "b",
   },
-  ref
+  ref,
 ) => {
   const baseStyles =
     "group inline-flex items-center justify-center gap-2 font-medium transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 min-h-[40px]";
@@ -32,7 +32,7 @@ export const Button = (
   const variants = {
     filled: "bg-[#000000] text-white  focus-visible:outline-neutral-900",
     outlined:
-      "border border-[#00000] text-[#00000] hover:bg-[#fff] hover:text-white focus-visible:outline-[#00000]",
+      "border border-gray-500 text-[#00000] hover:bg-[#fff] hover:text-white focus-visible:outline-[#00000]",
     ghost:
       "text-neutral-900 hover:bg-neutral-100 focus-visible:outline-neutral-900",
   };
@@ -43,7 +43,7 @@ export const Button = (
     sizes[size],
     fullWidth && "w-full",
     disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer",
-    className
+    className,
   );
 
   const content = (
@@ -52,7 +52,7 @@ export const Button = (
         <span
           className={cn(
             "transition-transform duration-200 ease-out motion-reduce:transform-none",
-            !disabled && "group-hover:-translate-x-1"
+            !disabled && "group-hover:-translate-x-1",
           )}
         >
           {iconLeft}
@@ -65,7 +65,7 @@ export const Button = (
         <span
           className={cn(
             "transition-transform duration-200 ease-out motion-reduce:transform-none",
-            !disabled && "group-hover:translate-x-1"
+            !disabled && "group-hover:translate-x-1",
           )}
         >
           {iconRight}

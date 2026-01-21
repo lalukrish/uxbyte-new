@@ -52,7 +52,7 @@ export default function MultiSection() {
       {/* RIGHT SIDE */}
       <div className="relative md:min-h-screen min-h-[50vh]  bg-black">
         <Image
-          src="/run-man.png"
+          src="/run-man.webp"
           alt="TX-01 Carbon Aero"
           fill
           className="object-cover animate-fadeInSlow"

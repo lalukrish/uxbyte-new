@@ -35,7 +35,7 @@ export default function Counter() {
   }, []);
 
   return (
-    <section className="w-full  text-center items-center justify-center xl:py-1 mb-8 py-4">
+    <section className="w-full  text-center items-center justify-center xl:py-1 mb-0 py-18!">
       <div className=" xl:mx-28 2xl:gap-0 2xl:mx-32 xl:gap-14 flex flex-col md:flex-row justify-center items-center gap-4  px-4 mt-5 xl:mt-2">
         {StatsData.map((stat, index) => (
           <div

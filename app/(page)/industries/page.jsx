@@ -6,6 +6,7 @@ import PillarHero from "@/components/ui/hero-box";
 import HoverImageGrid from "@/components/ui/hover-image";
 import HoverImage from "@/components/ui/hover-image";
 import AlternatingSection from "@/components/ui/image-alteration";
+import EnergyScrollSections from "@/components/ui/scrolling-section";
 import IndustrySignature, {
   TextGenerateEffect,
 } from "@/components/ui/text-generate-effect";
@@ -14,78 +15,88 @@ import { BLOGS } from "@/data/blog-data";
 const POPULAR_BLOGS = BLOGS.filter((b) => b.isPopular);
 const myItems = [
   {
-    text: "Project Alpha",
-    image: "https://picsum.photos/800/600?random=${index + 1}",
+    text: "E-Commerce",
+    image: "/ecommerce.jpg",
     backgroundColor: "white",
-    icon: "https://example.com/icon.svg",
+    // iconName: "ecommerce",
   },
   {
-    text: "Project Beta",
-    image: "https://picsum.photos/800/600?random=${index + 1}",
+    text: "FinTech",
+    image: "/fintech.webp",
     backgroundColor: "white",
+    // iconName: "fintech",
   },
   {
-    text: "Project Alpha",
-    image: "https://picsum.photos/800/600?random=${index + 1}",
+    text: "Healthcare",
+    image: "/health.webp",
     backgroundColor: "white",
-    icon: "https://example.com/icon.svg",
+    // iconName: "healthcare",
   },
   {
-    text: "Project Beta",
-    image: "https://picsum.photos/800/600?random=${index + 1}",
+    text: "SaaS",
+    image: "https://picsum.photos/800/600?random=4",
     backgroundColor: "white",
+    // iconName: "saas",
   },
+
   {
-    text: "Project Alpha",
-    image: "https://picsum.photos/800/600?random=${index + 1}",
-    backgroundColor: "",
-    icon: "https://example.com/icon.svg",
-  },
-  {
-    text: "Project Beta",
-    image: "https://picsum.photos/800/600?random=${index + 1}",
-    backgroundColor: "",
-  },
-  {
-    text: "Project Alpha",
-    image: "https://picsum.photos/800/600?random=${index + 1}",
+    text: "Fashion",
+    image: "/fashion.webp",
     backgroundColor: "white",
-    icon: "https://example.com/icon.svg",
+    // icon: Building2,
   },
   {
-    text: "Project Beta",
-    image: "https://picsum.photos/800/600?random=${index + 1}",
-    backgroundColor: "",
-  },
-  {
-    text: "Project Alpha",
-    image: "https://picsum.photos/800/600?random=${index + 1}",
+    text: "Education",
+    image: "/education.jpg",
     backgroundColor: "white",
-    icon: "https://example.com/icon.svg",
+    // icon: GraduationCap,
   },
   {
-    text: "Project Beta",
-    image: "https://picsum.photos/800/600?random=${index + 1}",
+    text: "Entertainment",
+    image: "/entertainment1.webp",
     backgroundColor: "white",
+    // icon: Film,
   },
   {
-    text: "Project Alpha",
-    image: "https://picsum.photos/800/600?random=${index + 1}",
-    backgroundColor: "",
-    icon: "https://example.com/icon.svg",
+    text: "Food",
+    image: "https://picsum.photos/800/600?random=9",
+    backgroundColor: "white",
+    // icon: Utensils,
   },
   {
-    text: "Project Beta",
-    image: "https://picsum.photos/800/600?random=${index + 1}",
-    backgroundColor: "",
+    text: "Event Management",
+    image: "/event.webp",
+    backgroundColor: "white",
+    // icon: Calendar,
+  },
+
+  {
+    text: "Media",
+    image: "/media.webp",
+    backgroundColor: "white",
+    // icon: Newspaper,
+  },
+  {
+    text: "Travel And Tourism",
+    image: "/travel.jpg",
+    backgroundColor: "white",
+    // icon: Plane,
+  },
+  {
+    text: "Manufacturing",
+    image: "https://picsum.photos/800/600?random=12",
+    backgroundColor: "white",
+    // icon: Factory,
   },
 ];
+
 const Page = () => {
   return (
     <div>
       <AuroraBackground>
         <IndustrySignature />{" "}
       </AuroraBackground>
+      <EnergyScrollSections />
       {/* <HoverImage /> */}
       <HoverImageGrid items={myItems} bgColor="white" />
       <AlternatingSection

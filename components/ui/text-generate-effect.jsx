@@ -111,7 +111,7 @@ export default function IndustrySignature() {
           >
             Privacy Policy
           </motion.div>
-          <motion.div className="text-8xl md:text-6xl lg:text-[6rem] font-bold text-white leading-none tracking-tight flex gap-6">
+          <motion.div className="text-8xl md:text-6xl lg:text-[6rem] 2xl:text-[7rem] font-bold text-white leading-none tracking-tight flex gap-6">
             {wordsArray.map((word, idx) => (
               <motion.span
                 key={word + idx}
