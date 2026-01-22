@@ -35,24 +35,6 @@ const MonitorHero = ({
           "technology meets style in this essential fitness companion for modern life.",
       },
     },
-    {
-      title: "AirPods®",
-      subtitle: "Max Ultra",
-      description: "Wireless Audio",
-      productImage:
-        "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=400&h=600&fit=crop",
-      features: [
-        { icon: "🎵", text: "Hi-Fi Sound" },
-        { icon: "🔋", text: "30hrs Battery" },
-      ],
-      badge: "Audio Series",
-      rightContent: {
-        title: "Immersive sound",
-        subtitle: "crystal clear audio",
-        description:
-          "experience music like never before with premium wireless technology.",
-      },
-    },
   ],
   topNav = ["About", "Services", "Industry", "Blog"],
   cartCount = 2,
@@ -74,14 +56,20 @@ const MonitorHero = ({
         {/* Monitor Frame */}
         <div className="relative">
           {/* Monitor Bezel */}
-          <div className="bg-gradient-to-br from-zinc-900 to-black rounded-3xl p-3 shadow-2xl">
+          <div className="bg-gradient-to-br from-zinc-900 to-black rounded-3xl p-3 ">
             {/* Screen */}
-            <div className="bg-black rounded-2xl overflow-hidden relative aspect-[21/11] border border-zinc-800">
+            <div className="bg-black rounded-2xl overflow-hidden relative aspect-[21/10] border border-zinc-800">
               {/* Top Navigation */}
               <div className="absolute top-6 left-0 right-0 flex items-center justify-between px-12 z-20">
-                <div className="w-28!  items-center justify-center text-white">
+                <div className="w-44! flex  items-center justify-center text-white">
                   {/* <div className="w-6 h-6 rounded-full border-2 border-zinc-600"></div> */}
-                  UxByte Studio
+                  <div className="flex gap-2">
+                    {" "}
+                    <div className="w-7 h-7 bg-[#6915ae] flex items-center justify-center p-1 -mt-1">
+                      <span className="text-white font-bold text-xs">UXB</span>
+                    </div>
+                    UxByte Studio
+                  </div>
                 </div>
 
                 <div className="flex gap-6">

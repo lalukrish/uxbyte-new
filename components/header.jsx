@@ -196,7 +196,6 @@ export default function Header() {
         }`}
       >
         <div className="xl:px-24 mx-auto px-4 h-20 flex items-center justify-between">
-          {/* LOGO */}
           <Link href="/" className="flex items-center gap-2">
             <div className="w-12 h-12 bg-[#6915ae] flex items-center justify-center p-1">
               <span className="text-white font-bold text-xl">UXB</span>
@@ -206,7 +205,6 @@ export default function Header() {
             </span>
           </Link>
 
-          {/* ================= DESKTOP NAV ================= */}
           <nav className="hidden lg:flex items-center gap-2">
             {menuData.map((item) => (
               <div

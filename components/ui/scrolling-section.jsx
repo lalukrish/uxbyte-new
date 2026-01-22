@@ -6,20 +6,12 @@ const EnergyScrollSections = () => {
   const [p, setP] = useState(0);
 
   useEffect(() => {
-    let ticking = false;
-
     const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (!scrollRef.current) return;
-          const rect = scrollRef.current.getBoundingClientRect();
-          const total = rect.height - window.innerHeight;
-          const scrolled = -rect.top;
-          setP(Math.min(Math.max(scrolled / total, 0), 1.5));
-          ticking = false;
-        });
-        ticking = true;
-      }
+      if (!scrollRef.current) return;
+      const rect = scrollRef.current.getBoundingClientRect();
+      const total = rect.height - window.innerHeight;
+      const scrolled = -rect.top;
+      setP(Math.min(Math.max(scrolled / total, 0), 1.5));
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -27,134 +19,139 @@ const EnergyScrollSections = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* ================= CONSTANTS ================= */
-  /* ================= EASING FUNCTION ================= */
-  const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-  const easeInOutCubic = (t) =>
-    t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  // Smooth easing functions
+  const ease = (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
+  const easeOut = (t) => t * (2 - t);
 
-  /* ================= CONSTANTS ================= */
-  const FILL_DURATION = 0.2; // Slightly longer for smoother fills
+  // Animation phases with smooth easing
+  const greenMove = easeOut(Math.min(p * 1.2, 1));
+  const heroFade = Math.max(1 - p * 3, 0);
+  const boxRise = ease(Math.min(Math.max((p - 0.08) * 3.5, 0), 1));
 
-  /* ================= PHASES WITH SMOOTH EASING ================= */
-  const greenMove = easeOutCubic(Math.min(p * 1.2, 1));
-  const boxRise = easeOutCubic(Math.min(Math.max((p - 0.08) * 4, 0), 1));
-  const borderProgress = easeInOutCubic(
-    Math.min(Math.max((p - 0.18) * 3.5, 0), 1),
+  // Border animation
+  const borderStart = 0.18;
+  const borderDuration = 0.25;
+  const borderRaw = Math.min(
+    Math.max((p - borderStart) / borderDuration, 0),
+    1,
   );
-  const greenFill = easeInOutCubic(
-    Math.min(Math.max((p - 0.3) / FILL_DURATION, 0), 1),
-  );
-  const image1Fill = easeInOutCubic(
-    Math.min(Math.max((p - 0.5) / FILL_DURATION, 0), 1),
-  );
-  const image1TextFade = easeInOutCubic(
-    Math.min(Math.max((p - 0.65) * 8, 0), 1),
-  );
-  const image2Fill = easeInOutCubic(
-    Math.min(Math.max((p - 0.75) / FILL_DURATION, 0), 1),
-  );
-  const image2TextFade = easeInOutCubic(
-    Math.min(Math.max((p - 0.9) * 8, 0), 1),
-  );
-  const image3Fill = easeInOutCubic(
-    Math.min(Math.max((p - 1.0) / FILL_DURATION, 0), 1),
-  );
-  /* ================= BORDER METER ================= */
+  const borderProgress = ease(borderRaw);
 
-  const leftEdge = Math.min(borderProgress * 4, 1);
-  const topEdge = Math.min(Math.max(borderProgress * 4 - 1, 0), 1);
-  const rightEdge = Math.min(Math.max(borderProgress * 4 - 2, 0), 1);
-  const bottomEdge = Math.min(Math.max(borderProgress * 4 - 3, 0), 1);
+  // Fill animations with smoother timing
+  const greenFillStart = 0.3;
+  const greenFillDuration = 0.18;
+  const greenFillRaw = Math.min(
+    Math.max((p - greenFillStart) / greenFillDuration, 0),
+    1,
+  );
+  const greenFill = ease(greenFillRaw);
+
+  const img1Start = 0.52;
+  const img1Duration = 0.18;
+  const img1FillRaw = Math.min(Math.max((p - img1Start) / img1Duration, 0), 1);
+  const image1Fill = ease(img1FillRaw);
+  const image1TextFade = ease(Math.min(Math.max((p - 0.7) * 5, 0), 1));
+
+  const img2Start = 0.78;
+  const img2Duration = 0.18;
+  const img2FillRaw = Math.min(Math.max((p - img2Start) / img2Duration, 0), 1);
+  const image2Fill = ease(img2FillRaw);
+  const image2TextFade = ease(Math.min(Math.max((p - 0.96) * 5, 0), 1));
+
+  // const img3Start = 1.04;
+  // const img3Duration = 0.18;
+  // const img3FillRaw = Math.min(Math.max((p - img3Start) / img3Duration, 0), 1);
+  // const image3Fill = ease(img3FillRaw);
+
+  // Border edges
+  const leftEdge = ease(Math.min(borderProgress * 4, 1));
+  const topEdge = ease(Math.min(Math.max(borderProgress * 4 - 1, 0), 1));
+  const rightEdge = ease(Math.min(Math.max(borderProgress * 4 - 2, 0), 1));
+  const bottomEdge = ease(Math.min(Math.max(borderProgress * 4 - 3, 0), 1));
 
   return (
     <div ref={scrollRef} className="h-[1000vh] bg-[#f7f7f3]">
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* GREEN BACKGROUND */}
         <div
-          className="absolute inset-0 bg-[#d4ff00] will-change-transform"
+          className="absolute inset-0 bg-gradient-to-b from-cyan-100 via-cyan-200 to-cyan-400"
           style={{
             transform: `translateY(${-greenMove * 40}vh)`,
-            transition: "transform 0.05s linear",
           }}
         />
 
         {/* HERO */}
         <div
-          className="absolute inset-0 flex items-center justify-center will-change-opacity"
+          className="absolute inset-0 flex items-center justify-center px-28 italic"
           style={{
-            opacity: Math.max(1 - p * 3, 0),
-            transition: "opacity 0.05s linear",
+            opacity: heroFade,
+            pointerEvents: heroFade > 0 ? "auto" : "none",
           }}
         >
-          <h1 className="text-7xl font-medium">Energy is Prosperity</h1>
+          <div className="w-full">
+            {/* Quote */}
+            <h1 className="text-7xl font-medium leading-tight">
+              The best way to predict the future is to invent it
+            </h1>
+
+            {/* Author + Image */}
+            <div className="mt-6 flex flex-col items-end">
+              <span className="text-2xl font-normal not-italic">
+                — Alan Kay
+              </span>
+
+              <img
+                src="/alan-kay.jpg"
+                alt="Alan Kay"
+                className="mt-4 h-40 w-40 object-cover rounded-md"
+              />
+            </div>
+          </div>
         </div>
 
         {/* CENTER BOX */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center mt-10">
           <div
-            className="relative w-[550px] h-[550px] bg-white overflow-hidden will-change-transform"
+            className="relative w-[550px] h-[550px] bg-white overflow-hidden"
             style={{
-              transform:
-                boxRise >= 1
-                  ? "translateY(0)"
-                  : `translateY(${(1 - boxRise) * 120}%)`,
+              transform: `translateY(${(1 - boxRise) * 120}%)`,
               opacity: boxRise,
-              transition: "all 0.05s linear",
             }}
           >
-            {/* BORDER (METER) */}
+            {/* BORDERS */}
             <div
-              className="absolute left-0 top-0 w-px bg-gray-400 will-change-auto"
-              style={{
-                height: `${leftEdge * 100}%`,
-                transition: "height 0.05s linear",
-              }}
+              className="absolute left-0 top-0 w-px bg-gray-400"
+              style={{ height: `${leftEdge * 100}%` }}
             />
             <div
-              className="absolute top-0 left-0 h-px bg-gray-400 will-change-auto"
-              style={{
-                width: `${topEdge * 100}%`,
-                transition: "width 0.05s linear",
-              }}
+              className="absolute top-0 left-0 h-px bg-gray-400"
+              style={{ width: `${topEdge * 100}%` }}
             />
             <div
-              className="absolute right-0 top-0 w-px bg-gray-400 will-change-auto"
-              style={{
-                height: `${rightEdge * 100}%`,
-                transition: "height 0.05s linear",
-              }}
+              className="absolute right-0 top-0 w-px bg-gray-400"
+              style={{ height: `${rightEdge * 100}%` }}
             />
             <div
-              className="absolute bottom-0 left-0 h-px bg-black will-change-auto"
-              style={{
-                width: `${bottomEdge * 100}%`,
-                transition: "width 0.05s linear",
-              }}
+              className="absolute bottom-0 left-0 h-px bg-black"
+              style={{ width: `${bottomEdge * 100}%` }}
             />
 
             {/* GREEN FILL */}
             <div
-              className="absolute bottom-0 left-0 w-full bg-[#d4ff00] will-change-auto"
-              style={{
-                height: `${greenFill * 100}%`,
-                transition: "height 0.05s linear",
-              }}
+              className="absolute bottom-0 left-0 w-full bg-gradient-to-b from-cyan-100 via-cyan-200 to-cyan-400"
+              style={{ height: `${greenFill * 100}%` }}
             />
 
             <div
-              className="absolute bottom-0 left-0 right-0 will-change-opacity p-12"
-              style={{
-                opacity: greenFill,
-                transition: "opacity 0.05s linear",
-              }}
+              className="absolute bottom-0 left-0 right-0 p-12"
+              style={{ opacity: greenFill }}
             >
               <h2 className="text-4xl font-medium text-black leading-tight">
                 The world's demand for energy will more than double by 2050.
               </h2>
             </div>
 
-            {/* IMAGE 1 */}
+            {/* IMAGES */}
             <ImageFill
               fill={image1Fill}
               src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900"
@@ -162,7 +159,6 @@ const EnergyScrollSections = () => {
               textOpacity={1 - image1TextFade}
             />
 
-            {/* IMAGE 2 */}
             <ImageFill
               fill={image2Fill}
               src="https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?w=900"
@@ -170,37 +166,24 @@ const EnergyScrollSections = () => {
               textOpacity={1 - image2TextFade}
             />
 
-            {/* IMAGE 3 */}
-            <ImageFill
+            {/* <ImageFill
               fill={image3Fill}
               src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=900"
               text="Energy for All"
               textOpacity={1}
-            />
+            /> */}
           </div>
         </div>
 
-        {/* RIGHT METER LABELS */}
-        <div className="absolute right-[8%] top-1/2 -translate-y-1/2 space-y-24">
-          <div
-            className="will-change-opacity"
-            style={{
-              opacity: topEdge,
-              transition: "opacity 0.05s linear",
-            }}
-          >
+        {/* METER LABELS */}
+        <div className="absolute right-[20%] top-1/2 -translate-y-1/2 space-y-24">
+          <div style={{ opacity: topEdge }}>
             <span className="inline-block w-12 h-px bg-black mr-3" />
             <span className="font-medium">66k TWh</span>
             <div className="text-sm text-gray-600">in 2050</div>
           </div>
 
-          <div
-            className="will-change-opacity"
-            style={{
-              opacity: bottomEdge,
-              transition: "opacity 0.05s linear",
-            }}
-          >
+          <div style={{ opacity: bottomEdge }}>
             <span className="inline-block w-12 h-px bg-black mr-3" />
             <span className="font-medium">26k TWh</span>
             <div className="text-sm text-gray-600">in 2023</div>
@@ -211,8 +194,6 @@ const EnergyScrollSections = () => {
   );
 };
 
-/* ================= IMAGE FILL COMPONENT ================= */
-
 const ImageFill = ({ fill, src, text, textOpacity = 1 }) => {
   if (fill <= 0) return null;
 
@@ -220,11 +201,8 @@ const ImageFill = ({ fill, src, text, textOpacity = 1 }) => {
     <>
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute bottom-0 left-0 w-full will-change-auto"
-          style={{
-            height: `${fill * 100}%`,
-            transition: "height 0.05s linear",
-          }}
+          className="absolute bottom-0 left-0 w-full"
+          style={{ height: `${fill * 100}%` }}
         >
           <img src={src} className="w-full h-full object-cover" alt="" />
         </div>
@@ -232,11 +210,8 @@ const ImageFill = ({ fill, src, text, textOpacity = 1 }) => {
 
       {text && (
         <div
-          className="absolute inset-0 flex items-center justify-center pointer-events-none will-change-opacity"
-          style={{
-            opacity: Math.min(fill, 1) * textOpacity,
-            transition: "opacity 0.05s linear",
-          }}
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          style={{ opacity: Math.min(fill, 1) * textOpacity }}
         >
           <h2 className="text-7xl font-medium text-white text-center drop-shadow-lg">
             {text}

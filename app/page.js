@@ -9,6 +9,7 @@ import ServiceHoverCard from "@/components/landingPage/mason-grid";
 import SaaSSection from "@/components/landingPage/scrolling-features";
 import { BLOGS } from "@/data/blog-data";
 import TopHeader from "@/components/topHeader";
+import DamnGoodHero from "@/components/landingPage/hero-second";
 
 const POPULAR_BLOGS = BLOGS.filter((b) => b.isPopular);
 
@@ -17,8 +18,8 @@ export default function Home() {
     <>
       {/* <AnimatedHeader /> */}
       <TopHeader />
-
-      <HeroNew />
+      <DamnGoodHero />
+      {/* <HeroNew /> */}
       <AboutSection />
       <ScrollingBox />
       <SaaSSection />

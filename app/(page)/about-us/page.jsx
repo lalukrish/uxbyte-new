@@ -7,6 +7,7 @@ import React from "react";
 import MonitorHero from "@/components/ui/deskotp-section";
 import AnimationCard from "@/components/landingPage/animation-card";
 import EnergyScrollSections from "@/components/ui/scrolling-section";
+import Title from "@/commonComponents/title";
 
 const page = () => {
   return (
@@ -23,6 +24,7 @@ const page = () => {
       <CreativeHero />
 
       {/* <ExpertiseTabs /> */}
+      <Title className="text-center">What Our Clients Say</Title>
       <MonitorHero />
 
       {/* <AboutUs /> */}
