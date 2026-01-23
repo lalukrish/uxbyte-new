@@ -19,7 +19,7 @@ export default function Home() {
       {/* <AnimatedHeader /> */}
       <TopHeader />
       <DamnGoodHero />
-      {/* <HeroNew /> */}
+      <HeroNew />
       <AboutSection />
       <ScrollingBox />
       <SaaSSection />
