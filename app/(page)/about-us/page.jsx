@@ -23,7 +23,6 @@ const page = () => {
       <AnimationCard />
 
       {/* <ExpertiseTabs /> */}
-      <Title className="text-center">What Our Clients Say</Title>
       <MonitorHero />
 
       {/* <AboutUs /> */}

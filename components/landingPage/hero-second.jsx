@@ -190,22 +190,36 @@ export default function DamnGoodHero() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  // ⏳ Initial show after 10s
   useEffect(() => {
-    let timer;
+    const initialTimer = setTimeout(() => {
+      setShowVideo(true);
+    }, 10000);
 
-    if (showVideo) {
-      // Auto hide after 30s when visible
-      timer = setTimeout(() => {
-        setShowVideo(false);
-      }, 30000);
-    } else {
-      // Show again after 25s when closed
-      timer = setTimeout(() => {
-        setShowVideo(true);
-      }, 25000);
-    }
+    return () => clearTimeout(initialTimer);
+  }, []);
 
-    return () => clearTimeout(timer);
+  // 🔁 Toggle logic
+  useEffect(() => {
+    if (!showVideo) return;
+
+    const hideTimer = setTimeout(() => {
+      setShowVideo(false);
+    }, 30000);
+
+    return () => clearTimeout(hideTimer);
+  }, [showVideo]);
+
+  // 🔄 Re-show after close (25s)
+  useEffect(() => {
+    if (showVideo) return;
+
+    const reopenTimer = setTimeout(() => {
+      setShowVideo(true);
+    }, 25000);
+
+    return () => clearTimeout(reopenTimer);
   }, [showVideo]);
 
   return (
@@ -332,37 +346,38 @@ export default function DamnGoodHero() {
             {/* Replace the previous image with carousel */}
             <MobileCenterCarousel />{" "}
           </div>
-          {showVideo && (
-            <div className="absolute bottom-4 fixed right-20 w-[240px] rounded-md bg-black border border-white/10 shadow-2xl overflow-hidden z-50">
-              {/* Close Button */}
-              <button
-                onClick={() => setShowVideo(false)}
-                className="absolute top-2 right-2 z-20 w-7 h-7 rounded-full bg-black/70 flex items-center justify-center hover:bg-black"
-                aria-label="Close video"
-              >
-                <X size={14} />
-              </button>
-              {/* Video */}{" "}
-              <div className="px-3 py-2 border-t border-white/10">
-                <div className="w-full h-[135px] overflow-hidden">
-                  <video
-                    src="/test_vid_1.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-full object-cover"
-                  />
+          <>
+            {showVideo && (
+              <div className="absolute bottom-2 fixed right-10 w-[240px] rounded-xl bg-black border border-white/10 shadow-2xl overflow-hidden z-50 transition-opacity duration-500">
+                {/* Close Button */}
+                <button
+                  onClick={() => setShowVideo(false)}
+                  className="absolute top-2 right-2 z-20 w-7 h-7 rounded-md bg-black/70 flex items-center justify-center hover:bg-black"
+                  aria-label="Close video"
+                >
+                  <X size={14} />
+                </button>
+                {/* Video */}{" "}
+                <div className="px-3 py-2 border-t border-white/10">
+                  <div className="w-full h-[135px] overflow-hidden">
+                    <video
+                      src="/test_vid_1.mp4"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Text Band */}
+                  <p className="text-xs text-gray-400 leading-snug">
+                    Watch how we design seamless digital experiences.
+                  </p>
                 </div>
-
-                {/* Text Band */}
-
-                <p className="text-xs text-gray-400 leading-snug">
-                  Watch how we design seamless digital experiences.
-                </p>
               </div>
-            </div>
-          )}
+            )}
+          </>
         </div>
       </div>
     </>

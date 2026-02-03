@@ -12,8 +12,6 @@ import ExplosionImage from "@/components/ui/explosion";
 import HoverImage from "@/components/ui/hover-image";
 import Spline from "@splinetool/react-spline";
 import React from "react";
-import BikeHero from "./grid-box";
-import { RadixFilesDemo } from "../ui/files";
 
 const page = () => {
   return (
