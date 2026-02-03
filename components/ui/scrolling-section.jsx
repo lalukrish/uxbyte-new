@@ -1,6 +1,51 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 
+import {
+  Cpu,
+  ShieldCheck,
+  LineChart,
+  Menu,
+  Bell,
+  Search,
+  User,
+  Cloud,
+} from "lucide-react";
+import Counter from "../about/counter";
+import AccessibilityIllustrations from "../about/animation-section";
+import WhyChooseUsSection from "../about/title-points";
+
+const strategies = [
+  {
+    id: 1,
+    icon: <Cpu size={28} />,
+    title: "Digital Innovation",
+    description:
+      "Building future-ready software solutions using cutting-edge technologies and agile development practices.",
+  },
+  {
+    id: 2,
+    icon: <ShieldCheck size={28} />,
+    title: "Cyber Security",
+    description:
+      "Protecting systems, data, and infrastructure through robust security architectures and proactive monitoring.",
+  },
+  {
+    id: 3,
+    icon: <Cloud size={28} />,
+    title: "Cloud Transformation",
+    description:
+      "Enabling scalable, reliable, and cost-efficient cloud solutions for modern enterprises.",
+  },
+  {
+    id: 4,
+    icon: <LineChart size={28} />,
+    title: "Data & Analytics",
+    description:
+      "Turning data into actionable insights to drive smarter decisions and business growth.",
+  },
+];
+
 const EnergyScrollSections = () => {
   const scrollRef = useRef(null);
   const [p, setP] = useState(0);
@@ -58,11 +103,6 @@ const EnergyScrollSections = () => {
   const image2Fill = ease(img2FillRaw);
   const image2TextFade = ease(Math.min(Math.max((p - 0.96) * 5, 0), 1));
 
-  // const img3Start = 1.04;
-  // const img3Duration = 0.18;
-  // const img3FillRaw = Math.min(Math.max((p - img3Start) / img3Duration, 0), 1);
-  // const image3Fill = ease(img3FillRaw);
-
   // Border edges
   const leftEdge = ease(Math.min(borderProgress * 4, 1));
   const topEdge = ease(Math.min(Math.max(borderProgress * 4 - 1, 0), 1));
@@ -70,43 +110,26 @@ const EnergyScrollSections = () => {
   const bottomEdge = ease(Math.min(Math.max(borderProgress * 4 - 3, 0), 1));
 
   return (
-    <div ref={scrollRef} className="h-[1000vh] bg-[#f7f7f3]">
+    <div ref={scrollRef} className="h-[1000vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* GREEN BACKGROUND */}
         <div
-          className="absolute inset-0 bg-gradient-to-b from-cyan-100 via-cyan-200 to-cyan-400"
+          className="absolute inset-0 bg-gradient-to-b from-white via-cyan-50 to-cyan-200"
           style={{
             transform: `translateY(${-greenMove * 40}vh)`,
           }}
         />
 
-        {/* HERO */}
+        {/* HERO SECTION WITH ACCESSIBILITY ILLUSTRATIONS */}
         <div
-          className="absolute inset-0 flex items-center justify-center px-28 italic"
+          className="absolute inset-0 w-full h-full px-10"
           style={{
             opacity: heroFade,
-            pointerEvents: heroFade > 0 ? "auto" : "none",
+            transform: `scale(${1 - p * 0.2})`,
           }}
         >
-          <div className="w-full">
-            {/* Quote */}
-            <h1 className="text-7xl font-medium leading-tight">
-              The best way to predict the future is to invent it
-            </h1>
-
-            {/* Author + Image */}
-            <div className="mt-6 flex flex-col items-end">
-              <span className="text-2xl font-normal not-italic">
-                — Alan Kay
-              </span>
-
-              <img
-                src="/alan-kay.jpg"
-                alt="Alan Kay"
-                className="mt-4 h-40 w-40 object-cover rounded-md"
-              />
-            </div>
-          </div>
+          {/* <AccessibilityIllustrations /> */}
+          <WhyChooseUsSection />
         </div>
 
         {/* CENTER BOX */}
@@ -120,15 +143,15 @@ const EnergyScrollSections = () => {
           >
             {/* BORDERS */}
             <div
-              className="absolute left-0 top-0 w-px bg-gray-400"
+              className="absolute left-0 top-0 w-px bg-gray-300"
               style={{ height: `${leftEdge * 100}%` }}
             />
             <div
-              className="absolute top-0 left-0 h-px bg-gray-400"
+              className="absolute top-0 left-0 h-px bg-gray-300"
               style={{ width: `${topEdge * 100}%` }}
             />
             <div
-              className="absolute right-0 top-0 w-px bg-gray-400"
+              className="absolute right-0 top-0 w-px bg-gray-300"
               style={{ height: `${rightEdge * 100}%` }}
             />
             <div
@@ -165,13 +188,6 @@ const EnergyScrollSections = () => {
               text="Clean Power"
               textOpacity={1 - image2TextFade}
             />
-
-            {/* <ImageFill
-              fill={image3Fill}
-              src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=900"
-              text="Energy for All"
-              textOpacity={1}
-            /> */}
           </div>
         </div>
 

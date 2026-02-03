@@ -7,6 +7,7 @@ import ProjectShowcase from "@/components/services/sector-details";
 import ProjectDetailSection from "@/components/services/sector-details";
 import { FAQAccordion } from "@/components/services/accordian-inner";
 import Breadcrumb from "@/components/landingPage/breadcrumb-new";
+import CTASection from "@/components/cta";
 
 const page = () => {
   const projects = [
@@ -318,6 +319,7 @@ const page = () => {
         subtitle="FAQ"
         faqs={faqData}
       />
+      <CTASection />
     </div>
   );
 };

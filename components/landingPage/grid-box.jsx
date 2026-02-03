@@ -8,23 +8,23 @@ import { EncryptedText } from "../ui/encrypted-text";
 
 export default function MultiSection() {
   return (
-    <section className="min-h-screen grid grid-cols-1 md:grid-cols-2 w-full bg-white">
-      <div className="flex flex-col justify-center px-4 md:px-10 md:ml-14! ">
-        <div className="animate-fadeUp  mt-2! md:mt-0 ">
+    <section className="w-full h-full grid grid-cols-1 md:grid-cols-2 bg-white">
+      {/* LEFT SIDE */}
+      <div className="flex flex-col justify-center px-4 md:px-10 md:ml-14 h-full">
+        <div className="animate-fadeUp mt-2 md:mt-0">
           <EncryptedText
             normaltext="WHERE"
             text=" WE INNOVATE"
-            className="text-sm"
+            className="text-sm md:block hidden"
             normalClassName=""
             encryptedClassName="text-[#adadae]"
             revealedClassName="text-gray-500 dark:text-[#adadae]"
             revealDelayMs={30}
           />
-          <Title>
-            {" "}
+          <Title className="mt-2">
             Eningeered For Pure
             <br />
-            The Speed.
+            <span className="text-[#7800c4]">The Speed.</span>
           </Title>
           <Paragraph className="xl:w-[500px]">
             UXByte delivers fast, reliable, and scalable digital solutions
@@ -37,12 +37,12 @@ export default function MultiSection() {
           <Button
             variant="filled"
             href="/blog"
-            className="px-8 py-4 mt-10"
+            className="px-8 md:py-4 py-3 mt-4 mb-2 md:mb-0 md:mt-10 hidden md:block w-fit"
             label="View All"
-          />{" "}
+          />
         </div>
 
-        <div className="flex items-center gap-8 mt-12 opacity-60">
+        <div className="md:flex items-center gap-8 mt-12 opacity-60 hidden">
           <span className="text-sm font-medium">SHIMANO</span>
           <span className="text-sm font-medium">UCI</span>
           <span className="text-sm font-medium">IRONMAN</span>
@@ -50,9 +50,9 @@ export default function MultiSection() {
       </div>
 
       {/* RIGHT SIDE */}
-      <div className="relative md:min-h-screen min-h-[50vh]  bg-black">
+      <div className="relative w-full h-full bg-black">
         <Image
-          src="/run-man.webp"
+          src="/handshake.jpg"
           alt="TX-01 Carbon Aero"
           fill
           className="object-cover animate-fadeInSlow"

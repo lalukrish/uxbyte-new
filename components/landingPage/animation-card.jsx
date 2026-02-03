@@ -305,7 +305,7 @@ const AnimationCard = () => {
             >
               <div className="animation-card-front absolute w-full h-full rounded-inherit overflow-hidden bg-gradient-to-br from-black to-white">
                 <img
-                  src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=600&fit=crop"
+                  src="/about-us-5.webp"
                   alt="Card 1"
                   className="w-full h-full object-cover"
                 />
@@ -397,7 +397,7 @@ const AnimationCard = () => {
             >
               <div className="animation-card-front absolute w-full h-full rounded-inherit overflow-hidden bg-white">
                 <img
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=600&fit=crop"
+                  src="/about-10.png"
                   alt="Card 2"
                   className="w-full h-full object-cover"
                 />
@@ -455,7 +455,7 @@ const AnimationCard = () => {
             >
               <div className="animation-card-front absolute w-full h-full rounded-inherit overflow-hidden bg-black">
                 <img
-                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=600&fit=crop"
+                  src="/about-11.png"
                   alt="Card 3"
                   className="w-full h-full object-cover"
                 />

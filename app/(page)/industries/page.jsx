@@ -1,5 +1,6 @@
 import Title from "@/commonComponents/title";
 import InspirationSection from "@/components/landingPage/blogSection";
+import HeroNew from "@/components/landingPage/hero-new";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import MonitorHero from "@/components/ui/deskotp-section";
 import PillarHero from "@/components/ui/hero-box";
@@ -94,7 +95,7 @@ const Page = () => {
   return (
     <div>
       <AuroraBackground>
-        <IndustrySignature />{" "}
+        <IndustrySignature />
       </AuroraBackground>
       <HoverImageGrid items={myItems} bgColor="white" />
       <AlternatingSection
@@ -111,7 +112,8 @@ const Page = () => {
         bgClass="bg-white"
         textColor="text-black"
       />
-      <PillarHero />
+      {/* <PillarHero /> */}
+      <HeroNew/>
 
       <AlternatingSection
         badgeText="TECHNOLOGY"

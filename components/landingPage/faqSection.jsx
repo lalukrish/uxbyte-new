@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Button } from "@/commonComponents/Button";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -144,7 +145,7 @@ export default function ScrollFaqGsap() {
   return (
     <section
       ref={sectionRef}
-      className="faq-section-wrapper h-[200vh]"
+      className="faq-section-wrapper mt-5 md:mt-0 h-[50vh] md:h-[200vh]"
       style={{
         position: "relative",
         isolation: "isolate",
@@ -159,14 +160,13 @@ export default function ScrollFaqGsap() {
           width: "100%",
           overflow: "hidden",
         }}
-        className="h-screen"
+        className="h-[100vh] md:h-screen"
       >
         {/* FAQ Section (slides up) */}
         <div
           ref={blueRef}
-          className="absolute top-0 left-0 w-full bg-white flex flex-col z-10"
+          className="absolute h-[89vh] max-h-[120vh] md:h-[120vh] top-0 left-0 w-full bg-white flex flex-col z-10 overflow-hidden overflow-y-hidden"
           style={{
-            height: "120vh",
             borderBottomLeftRadius: "3rem",
             borderBottomRightRadius: "3rem",
           }}
@@ -215,12 +215,9 @@ export default function ScrollFaqGsap() {
           </div>
         </div>
 
-        {/* Hero Section (revealed underneath) */}
         <div
-          className="absolute left-0 w-full bg-black text-white flex flex-col justify-center items-center px-4 md:px-6"
+          className="absolute left-0 w-full bg-black text-white flex flex-col justify-center items-center px-4 md:px-6 mt-40 md:mt-0  md:top-[10vh]  h-[100vh]"
           style={{
-            top: "10vh",
-            height: "100vh",
             borderTopLeftRadius: "3rem",
             borderTopRightRadius: "3rem",
           }}
@@ -235,9 +232,10 @@ export default function ScrollFaqGsap() {
             </h1>
           </div>
 
-          <button className="mt-4 md:mt-8 py-3 md:py-4 px-8 md:px-10 text-sm md:text-base border-2 border-white rounded-full hover:bg-white hover:text-black transition-colors">
-            Get Started
-          </button>
+          <Button
+            className="mt-4 md:mt-8 py-3 md:py-4 px-8 md:px-10 text-sm md:text-base border-2 text-white border-white rounded-full hover:bg-white hover:text-black transition-colors "
+            label={"Get Started"}
+          ></Button>
         </div>
       </div>
 

@@ -10,6 +10,7 @@ import SaaSSection from "@/components/landingPage/scrolling-features";
 import { BLOGS } from "@/data/blog-data";
 import TopHeader from "@/components/topHeader";
 import DamnGoodHero from "@/components/landingPage/hero-second";
+import AnimatedHeader from "@/components/landingPage/animated-header";
 
 const POPULAR_BLOGS = BLOGS.filter((b) => b.isPopular);
 
@@ -17,9 +18,12 @@ export default function Home() {
   return (
     <>
       {/* <AnimatedHeader /> */}
+      {/* <div className="relative z-10">
+            <MobileCenterCarousel />
+          </div> */}
+      {/* <HeroNew /> */}
       <TopHeader />
       <DamnGoodHero />
-      <HeroNew />
       <AboutSection />
       <ScrollingBox />
       <SaaSSection />

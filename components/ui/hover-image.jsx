@@ -112,7 +112,7 @@ const HoverImageGrid = ({ items = [], bgColor }) => {
   const displayItems = items.length > 0 ? items : defaultItems;
 
   return (
-    <div className={`${`min-h-screen bg-${bgColor} px-18`}`}>
+    <div className={`${`min-h-screen bg-${bgColor} px-18 mt-1`}`}>
       {/* Grid Container */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px ">
         {displayItems.map((item, index) => (

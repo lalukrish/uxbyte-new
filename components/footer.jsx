@@ -37,7 +37,7 @@ export default function Footer() {
           <h2 className="text-[clamp(4rem,15vw,12rem)] font-bold mb-16 leading-none tracking-tight">
             Let's Talk
           </h2>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <div className="flex  sm:flex-row items-center justify-center gap-6">
             {/* <button className="px-10 py-5 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition-all text-base border-2 border-white hover:scale-105">
               Contact Us
             </button> */}
@@ -49,7 +49,7 @@ export default function Footer() {
 
             <Button
               label="Move to top"
-              className="bg-white! text-black! py-4"
+              className="bg-white! text-black! py-4 px-4!"
               variant="filled"
               iconRight={<ArrowUp className="w-5 h-5" />}
               onClick={scrollToTop}

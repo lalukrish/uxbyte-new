@@ -524,7 +524,7 @@ const ServiceHoverCard = () => {
 
   return (
     <section className="features">
-      <div className="min-h-screen bg-white px-1 md:p-8">
+      <div className="md:min-h-screen bg-white px-1 md:p-8">
         <div className="px-2 md:px-16 mx-auto">
           <div className="mb-12">
             <EncryptedText

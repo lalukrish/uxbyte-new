@@ -63,13 +63,13 @@ const MonitorHero = ({
               <div className="absolute top-6 left-0 right-0 flex items-center justify-between px-12 z-20">
                 <div className="w-44! flex  items-center justify-center text-white">
                   {/* <div className="w-6 h-6 rounded-full border-2 border-zinc-600"></div> */}
-                  <div className="flex gap-2">
+                  {/* <div className="flex gap-2">
                     {" "}
                     <div className="w-7 h-7 bg-[#6915ae] flex items-center justify-center p-1 -mt-1">
                       <span className="text-white font-bold text-xs">UXB</span>
                     </div>
                     UxByte Studio
-                  </div>
+                  </div> */}
                 </div>
 
                 <div className="flex gap-6">

@@ -143,7 +143,7 @@ export default function SaaSSection() {
 
     const observer = new IntersectionObserver(
       observerCallback,
-      observerOptions
+      observerOptions,
     );
 
     sections.forEach((section) => {
@@ -164,7 +164,7 @@ export default function SaaSSection() {
         <div className="max-w-7xl mx-auto">
           {/* Mobile Tab Navigation */}
           <div className="mb-8">
-            <div className="flex overflow-x-auto gap-2 pb-4 scrollbar-hide">
+            <div className="grid  gap-2 pb-4 scrollbar-hide grid-cols-2">
               {categories.map((category) => (
                 <Button
                   key={category.id}
@@ -186,7 +186,7 @@ export default function SaaSSection() {
 
           {/* Mobile Content */}
           <div className="space-y-6">
-            <h2 className="text-3xl font-medium text-gray-900 leading-tight">
+            <h2 className="text-2xl ml-1 font-medium text-gray-900 leading-tight">
               {categories[activeCategory].heading}
             </h2>
 
@@ -194,7 +194,7 @@ export default function SaaSSection() {
               {categories[activeCategory].services.map((service, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl p-5 shadow-sm border border-gray-100"
+                  className="bg-white  p-5  border border-gray-100"
                 >
                   <h3 className="text-lg font-medium text-gray-900 mb-2">
                     {service.title}
@@ -210,14 +210,15 @@ export default function SaaSSection() {
                 </div>
               ))}
             </div>
-
-            <Button
-              label="Explore All"
-              href="/explore-all"
-              variant="outlined"
-              className="w-full justify-center mt-6"
-              iconRight={<ArrowRight size={18} />}
-            />
+            <div className="w-full flex justify-center items-center">
+              <Button
+                label="Explore All"
+                href="/explore-all"
+                variant="filled"
+                className="w-fit justify-center mt-2 justify-items-center "
+                iconRight={<ArrowRight size={18} />}
+              />
+            </div>
           </div>
         </div>
       </div>

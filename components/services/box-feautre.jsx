@@ -71,7 +71,7 @@ const FeatureSection = ({ image, title, services = [], imageLeft = true }) => {
                         whileInView={{ pathLength: 1 }}
                         viewport={{ once: true }}
                         transition={{
-                          delay: index * 0.1 + 0.3,
+                          delay: 0.3,
                           duration: 0.4,
                           ease: "easeOut",
                         }}

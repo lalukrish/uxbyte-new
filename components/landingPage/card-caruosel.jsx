@@ -85,11 +85,11 @@ export default function MobileCenterCarousel() {
   };
 
   return (
-    <div className="relative w-full h-[60vh] bg-white flex items-center justify-center overflow-hidden">
+    <div className="relative w-full  flex items-center justify-center overflow-hidden">
       <div className="relative w-full max-w-md mx-auto px-12">
         <div
           ref={containerRef}
-          className="relative h-[100px] flex items-center justify-center touch-pan-y"
+          className="relative h-[300px] flex items-center justify-center touch-pan-y"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}

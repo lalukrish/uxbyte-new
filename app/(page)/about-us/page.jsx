@@ -17,11 +17,10 @@ const page = () => {
         path={["Home", "Services"]}
         shape="organicBlob"
       />
-      <AnimationCard />
+      <CreativeHero />
       <Counter />
       <EnergyScrollSections />
-
-      <CreativeHero />
+      <AnimationCard />
 
       {/* <ExpertiseTabs /> */}
       <Title className="text-center">What Our Clients Say</Title>
