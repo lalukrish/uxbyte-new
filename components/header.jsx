@@ -196,14 +196,14 @@ export default function Header() {
         }`}
       >
         <div className="xl:px-24 mx-auto px-4 h-20 flex items-center justify-between">
-          {/* <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <div className="w-12 h-12 bg-[#6915ae] flex items-center justify-center p-1">
               <span className="text-white font-bold text-xl">UXB</span>
             </div>
             <span className={`${logoText} font-semibold text-lg tracking-wide`}>
               Uxbyte Studio
             </span>
-          </Link> */}
+          </Link>
 
           <nav className="hidden lg:flex items-center gap-2">
             {menuData.map((item) => (

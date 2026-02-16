@@ -10,6 +10,7 @@ import ScrollingFeatures from "@/components/scrolling-features";
 import ScrollMarquee from "@/components/scrollmarquee";
 import ExplosionImage from "@/components/ui/explosion";
 import HoverImage from "@/components/ui/hover-image";
+import ServicesSection from "@/components/who-we-are/round-scroll";
 import Spline from "@splinetool/react-spline";
 import React from "react";
 
@@ -29,7 +30,8 @@ const page = () => {
       {/* <SaaSSection /> */}
       {/* <CardMovingSection /> */}
       {/* <DomainSearchSection /> */}
-      <ScrollingFeatures />
+      <ServicesSection />
+      {/* <ScrollingFeatures /> */}
       {/* <ProjectFilterSection />
       <ServiceCard /> */}
       {/* <AboutUs /> */}

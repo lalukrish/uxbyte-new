@@ -228,20 +228,20 @@ export default function DamnGoodHero() {
         <>
           <div
             ref={overlayRef}
-            className="fixed inset-0 bg-white z-50 pointer-events-none"
+            className="fixed inset-0 bg-white z-50 pointer-events-none "
             style={{ opacity: 1 }}
           />
 
           {!animationComplete && (
             <div
               ref={logoRef}
-              className="fixed z-[60] pl-2 md:pl-0 flex items-center gap-1 md:gap-2 left-1/2 top-1/2 md:left-1/2 md:top-1/2 "
+              className="fixed z-[60] pl-2 md:-pl-5 flex items-center gap-1 md:gap-2 left-1/2 top-1/2 md:left-1/2 md:top-1/2 md:-mt-4 "
               style={{
                 transform: "translate(-50%, -50%) scale(2)",
                 opacity: 1,
               }}
             >
-              <div className="h-10 w-10 md:w-11 md:h-11 bg-black items-center justify-center flex">
+              <div className="h-10 w-10 md:w-12 md:h-12 bg-black items-center justify-center flex  ">
                 <span className="text-white font-bold text-xl">UXB</span>
               </div>
               <span className="text-xl md:text-xl font-bold">

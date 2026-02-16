@@ -14,6 +14,7 @@ import {
 import Counter from "../about/counter";
 import AccessibilityIllustrations from "../about/animation-section";
 import WhyChooseUsSection from "../about/title-points";
+import PyramidFunnel from "../about/pyramid-section";
 
 const strategies = [
   {
@@ -74,8 +75,8 @@ const EnergyScrollSections = () => {
   const boxRise = ease(Math.min(Math.max((p - 0.08) * 3.5, 0), 1));
 
   // Border animation
-  const borderStart = 0.18;
-  const borderDuration = 0.25;
+  const borderStart = 0.1;
+  const borderDuration = 0.1;
   const borderRaw = Math.min(
     Math.max((p - borderStart) / borderDuration, 0),
     1,
@@ -122,14 +123,15 @@ const EnergyScrollSections = () => {
 
         {/* HERO SECTION WITH ACCESSIBILITY ILLUSTRATIONS */}
         <div
-          className="absolute inset-0 w-full h-full px-10"
+          className="absolute inset-0 w-full h-full px-10 mt-20"
           style={{
             opacity: heroFade,
             transform: `scale(${1 - p * 0.2})`,
           }}
         >
           {/* <AccessibilityIllustrations /> */}
-          <WhyChooseUsSection />
+          {/* <WhyChooseUsSection /> */}
+          <PyramidFunnel />
         </div>
 
         {/* CENTER BOX */}
@@ -193,7 +195,7 @@ const EnergyScrollSections = () => {
 
         {/* METER LABELS */}
         <div className="absolute right-[20%] top-1/2 -translate-y-1/2 space-y-24">
-          <div style={{ opacity: topEdge }}>
+          {/* <div style={{ opacity: topEdge }}>
             <span className="inline-block w-12 h-px bg-black mr-3" />
             <span className="font-medium">66k TWh</span>
             <div className="text-sm text-gray-600">in 2050</div>
@@ -203,7 +205,7 @@ const EnergyScrollSections = () => {
             <span className="inline-block w-12 h-px bg-black mr-3" />
             <span className="font-medium">26k TWh</span>
             <div className="text-sm text-gray-600">in 2023</div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

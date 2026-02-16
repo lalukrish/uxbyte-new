@@ -17,7 +17,7 @@ export default function CreativeHero() {
           {/* === LEFT IMAGE SECTION === */}
           <div className="flex justify-center items-center order-1 lg:order-1">
             <div
-              className="relative w-full max-w-[350px] h-[400px] sm:max-w-[400px] sm:h-[450px] md:max-w-[650px] md:h-[500px] overflow-hidden  group"
+              className="relative w-full max-w-[350px] h-[400px] sm:max-w-[400px] sm:h-[450px] md:max-w-[600px] md:h-[480px] overflow-hidden  group"
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
                 setCursorPos({

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MoveRightIcon } from "lucide-react";
 import { Button } from "@/commonComponents/Button";
 
 export default function SaaSSection() {
@@ -203,9 +203,11 @@ export default function SaaSSection() {
                     {service.description}
                   </p>
                   <Button
-                    label="EXPLORE"
-                    variant="outlined"
-                    className="text-sm px-4 py-2"
+                    label="Explore All"
+                    href="/explore-all"
+                    variant="ghost"
+                    className="w-fit justify-center mt-2 justify-items-center "
+                    iconRight={<ArrowRight size={18} />}
                   />
                 </div>
               ))}
@@ -214,7 +216,7 @@ export default function SaaSSection() {
               <Button
                 label="Explore All"
                 href="/explore-all"
-                variant="filled"
+                variant="ghost"
                 className="w-fit justify-center mt-2 justify-items-center "
                 iconRight={<ArrowRight size={18} />}
               />
@@ -273,7 +275,7 @@ export default function SaaSSection() {
           <div className="col-span-12 lg:col-span-9 space-y-24">
             {categories.map((category) => (
               <div key={category.id} className="category-section">
-                <h2 className="text-4xl md:text-5xl font-medium text-gray-900 mb-12 leading-tight">
+                <h2 className="text-4xl md:text-[30px] font-normal text-gray-900 mb-12 leading-tight">
                   {category.heading}
                 </h2>
 
@@ -291,8 +293,9 @@ export default function SaaSSection() {
                       </p>
                       <Button
                         label="EXPLORE"
-                        variant="outlined"
-                        className="flex items-center gap-2 px-5 py-2.5 self-start hover:bg-black hover:text-white"
+                        variant="ghost"
+                        iconRight={<MoveRightIcon />}
+                        className="flex items-center gap-2 px-5 py-2.5 self-start  "
                       />
                     </div>
                   ))}

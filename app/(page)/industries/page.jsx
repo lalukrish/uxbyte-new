@@ -94,10 +94,10 @@ const myItems = [
 const Page = () => {
   return (
     <div>
-      <AuroraBackground>
+      {/* <AuroraBackground>
         <IndustrySignature />
       </AuroraBackground>
-      <HoverImageGrid items={myItems} bgColor="white" />
+      <HoverImageGrid items={myItems} bgColor="white" /> */}
       <AlternatingSection
         badgeText="PRODUCT DESIGN"
         badgeEncryptedText="AND DEVELOPMENT AGENCY"
@@ -113,7 +113,7 @@ const Page = () => {
         textColor="text-black"
       />
       {/* <PillarHero /> */}
-      <HeroNew/>
+      {/* <HeroNew /> */}
 
       <AlternatingSection
         badgeText="TECHNOLOGY"

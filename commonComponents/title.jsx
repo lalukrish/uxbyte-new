@@ -1,7 +1,7 @@
 const Title = ({ children, className = "" }) => {
   return (
     <h1
-      className={`text-[28px] xl:text-[52px] 2xl:text-[56px] mb-4 font-medium text-black ${className}`}
+      className={`text-[28px] xl:text-[50px] 2xl:text-[56px] mb-4 font-normal text-black ${className}`}
     >
       {children}
     </h1>

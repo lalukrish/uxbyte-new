@@ -21,9 +21,9 @@ export default function Home() {
       {/* <div className="relative z-10">
             <MobileCenterCarousel />
           </div> */}
-      {/* <HeroNew /> */}
+      <HeroNew />
       <TopHeader />
-      <DamnGoodHero />
+      {/* <DamnGoodHero /> */}
       <AboutSection />
       <ScrollingBox />
       <SaaSSection />
