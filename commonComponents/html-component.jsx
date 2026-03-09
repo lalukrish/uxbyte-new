@@ -1,5 +1,6 @@
-import Titles from "@/components/ui/Titles";
+// import Titles from "@/components/ui/Titles";
 import Image from "next/image";
+import Title from "./title";
 
 export default function HTMLImageComponent({
   title = "",
@@ -51,7 +52,7 @@ export default function HTMLImageComponent({
             ${isRight ? "md:order-1 xl:ml-10 2xl:ml-24" : "md:order-2 xl:mr-10 2xl:mr-36"}
           `}
         >
-          <Titles text={title} className="mb-4 md:mb-8 font-light" />
+          <Title text={title} className="mb-4 md:mb-8 font-light" />
           <div
             className="rich-content-styles"
             dangerouslySetInnerHTML={{ __html: content }}
