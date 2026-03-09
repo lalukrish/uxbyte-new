@@ -5,6 +5,7 @@ import Paragraph from "@/commonComponents/paragraph";
 import Title from "@/commonComponents/title";
 import Image from "next/image";
 import { EncryptedText } from "../ui/encrypted-text";
+import GlossyText, { CanvasText } from "../ui/canvas-text";
 
 export default function MultiSection() {
   return (
@@ -24,7 +25,25 @@ export default function MultiSection() {
           <Title className="mt-2">
             Eningeered For Pure
             <br />
-            <span className="text-[#7800c4]">The Speed.</span>
+            {/* <span className="text-[#7800c4]">The Speed.</span> */}
+            <GlossyText
+              text="Lightning Speed"
+              // backgroundClassName="bg-black dark:bg-blue-600"
+              // colors={[
+              //   "rgba(168, 85, 247, 1)", // purple
+              //   "rgba(239, 68, 68, 0.9)", // red
+              //   "rgba(59, 130, 246, 0.8)", // blue
+              //   "rgba(34, 197, 94, 0.7)", // green
+              //   "rgba(168, 85, 247, 0.6)",
+              //   "rgba(239, 68, 68, 0.5)",
+              //   "rgba(59, 130, 246, 0.4)",
+              //   "rgba(34, 197, 94, 0.3)",
+              //   "rgba(168, 85, 247, 0.2)",
+              //   "rgba(239, 68, 68, 0.1)",
+              // ]}
+              // lineGap={4}
+              // animationDuration={20}
+            />
           </Title>
           <Paragraph className="xl:w-[500px]">
             UXByte delivers fast, reliable, and scalable digital solutions

@@ -11,6 +11,9 @@ import { BLOGS } from "@/data/blog-data";
 import TopHeader from "@/components/topHeader";
 import DamnGoodHero from "@/components/landingPage/hero-second";
 import AnimatedHeader from "@/components/landingPage/animated-header";
+import HeroVideo from "@/components/video-hero";
+import MovingCards from "@/components/scroll-image-smaller";
+import ParticleSphereHero from "@/components/particle-section";
 
 const POPULAR_BLOGS = BLOGS.filter((b) => b.isPopular);
 
@@ -21,7 +24,8 @@ export default function Home() {
       {/* <div className="relative z-10">
             <MobileCenterCarousel />
           </div> */}
-      <HeroNew />
+      <HeroVideo />
+      {/* <HeroNew /> */}
       <TopHeader />
       {/* <DamnGoodHero /> */}
       <AboutSection />
@@ -31,6 +35,7 @@ export default function Home() {
       <FaqSection />
       <ExplosionImage />
       <InspirationSection blogs={POPULAR_BLOGS} />
+      {/* <MovingCards /> */}
     </>
   );
 }

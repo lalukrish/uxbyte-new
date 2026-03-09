@@ -17,7 +17,6 @@ const page = () => {
         path={["Home", "Services"]}
         shape="organicBlob"
       />
-      <CreativeHero />
       <Counter />
       <EnergyScrollSections />
       <AnimationCard />

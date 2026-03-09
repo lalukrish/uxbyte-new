@@ -223,7 +223,7 @@ export default function ScrollFaqGsap() {
           }}
         >
           <div className="w-full flex flex-col items-center justify-center py-8 md:py-20 max-w-7xl mx-auto">
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[120px] font-semibold text-center leading-tight gradient-text mb-2 md:mb-4">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[120px] font-semibold text-center leading-tight gradient-text mb-2 md:-mb-4">
               The data you own,
             </h1>
 

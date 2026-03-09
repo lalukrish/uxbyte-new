@@ -94,19 +94,19 @@ const myItems = [
 const Page = () => {
   return (
     <div>
-      {/* <AuroraBackground>
+      <AuroraBackground>
         <IndustrySignature />
       </AuroraBackground>
-      <HoverImageGrid items={myItems} bgColor="white" /> */}
+      <HoverImageGrid items={myItems} bgColor="white" />
       <AlternatingSection
-        badgeText="PRODUCT DESIGN"
-        badgeEncryptedText="AND DEVELOPMENT AGENCY"
+        badgeText="UXBYTE STUDIO"
+        badgeEncryptedText="PRODUCT DESIGN & DEVELOPMENT AGENCY"
         title={
           <>
-            Record Proven We Build <br /> Digital Excellence
+            We Design & Build <br /> Digital Experiences That Perform
           </>
         }
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. "
+        description="UXBYTE Studio is a product design and development agency focused on creating high-impact digital solutions. We combine strategic thinking, user-centered design, and modern engineering to build scalable web and mobile experiences. From idea validation to full-scale product launches, we help startups and enterprises turn complex problems into elegant, high-performing digital products."
         primaryImage="/hero_img1.png"
         secondaryImage="/education.jpg"
         bgClass="bg-white"
@@ -117,13 +117,13 @@ const Page = () => {
 
       <AlternatingSection
         badgeText="TECHNOLOGY"
-        badgeEncryptedText="AND INNOVATION"
+        badgeEncryptedText="SCALABLE ENGINEERING"
         title={
           <>
-            Engineering <br /> Scalable Solutions
+            Future-Ready <br /> Systems Built to Scale
           </>
         }
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. "
+        description="UXBYTE Studio builds robust digital infrastructures that evolve with your business. We leverage modern technologies, modular architectures, and performance-driven development practices to create products that are secure, scalable, and ready for growth. Our team focuses on clean code, optimized performance, and long-term maintainability."
         primaryImage="/education.jpg"
         secondaryImage="/hero_img1.png"
         reverse

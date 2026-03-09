@@ -7,6 +7,7 @@ import { EncryptedText } from "../ui/encrypted-text";
 import ISSSpaceshipCanvas from "../ui/spaceship";
 import MobileCenterCarousel from "./card-caruosel";
 import { X } from "lucide-react";
+import Link from "next/link";
 
 export default function DamnGoodHero() {
   const containerRef = useRef(null);
@@ -272,9 +273,11 @@ export default function DamnGoodHero() {
             <span className="text-sm font-medium tracking-wider cursor-pointer">
               WHAT WE DO
             </span>
-            <span className="text-sm font-medium tracking-wider cursor-pointer">
-              WHO ARE WE
-            </span>
+            <Link href={"/who-we-are"}>
+              <span className="text-sm font-medium tracking-wider cursor-pointer">
+                WHO ARE WE
+              </span>
+            </Link>
           </div>
         </nav>
 
