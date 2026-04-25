@@ -18,6 +18,7 @@
 
 //     for (let i = 0; i < particleCount; i++) {
 //       const radius = 2.8;
+
 //       const theta = Math.random() * Math.PI * 2;
 //       const phi = Math.acos(Math.random() * 2 - 1);
 
@@ -26,6 +27,7 @@
 //       sphere[i * 3 + 2] = radius * Math.cos(phi);
 
 //       const range = 12;
+
 //       spread[i * 3] = (Math.random() - 0.5) * range;
 //       spread[i * 3 + 1] = (Math.random() - 0.5) * range;
 //       spread[i * 3 + 2] = (Math.random() - 0.5) * range;
@@ -39,25 +41,26 @@
 //   useFrame(() => {
 //     if (!ref.current || !geometryRef.current) return;
 
-//     // Smooth lerp toward the real scroll value — works both directions
-//     smoothScroll.current += (scroll - smoothScroll.current) * 0.06;
+//     smoothScroll.current += (scroll - smoothScroll.current) * 0.08;
 
-//     const s = Math.max(0, Math.min(1, smoothScroll.current));
+//     const s = THREE.MathUtils.clamp(smoothScroll.current, 0, 1);
 //     const positions = geometryRef.current.attributes.position.array;
 
 //     for (let i = 0; i < particleCount; i++) {
 //       const i3 = i * 3;
-//       // s=0 → tight sphere, s=1 → scattered starfield
+
 //       positions[i3] = THREE.MathUtils.lerp(
 //         spherePositions[i3],
 //         spreadPositions[i3],
 //         s,
 //       );
+
 //       positions[i3 + 1] = THREE.MathUtils.lerp(
 //         spherePositions[i3 + 1],
 //         spreadPositions[i3 + 1],
 //         s,
 //       );
+
 //       positions[i3 + 2] = THREE.MathUtils.lerp(
 //         spherePositions[i3 + 2],
 //         spreadPositions[i3 + 2],
@@ -67,10 +70,8 @@
 
 //     geometryRef.current.attributes.position.needsUpdate = true;
 
-//     // Continuous slow auto-rotation
 //     baseRotY.current += 0.0005;
 
-//     // Mouse parallax layered on top of base rotation
 //     ref.current.rotation.y = baseRotY.current + mouse.x * 0.25;
 //     ref.current.rotation.x = mouse.y * 0.15;
 //   });
@@ -85,12 +86,13 @@
 //           itemSize={3}
 //         />
 //       </bufferGeometry>
+
 //       <pointsMaterial
 //         size={0.016}
 //         color="#ffffff"
 //         sizeAttenuation
 //         transparent
-//         opacity={0.88}
+//         opacity={0.9}
 //       />
 //     </points>
 //   );
@@ -100,43 +102,46 @@
 //   const [scroll, setScroll] = useState(0);
 
 //   useEffect(() => {
+//     const hero = document.getElementById("particle-hero");
+
 //     const handleScroll = () => {
-//       const hero = document.getElementById("particle-hero");
 //       if (!hero) return;
 
-//       // Total scrollable distance inside the hero section
-//       // hero.offsetHeight = 200vh, window.innerHeight = 100vh
-//       // So scrollable range = 100vh = window.innerHeight
-//       const scrolled = window.scrollY;
-//       const maxScroll = hero.offsetHeight - window.innerHeight;
+//       const rect = hero.getBoundingClientRect();
+//       const sectionHeight = hero.offsetHeight - window.innerHeight;
 
-//       // Clamp to [0, 1] — works perfectly in both directions
-//       const progress = Math.min(Math.max(scrolled / maxScroll, 0), 1);
+//       const progress = THREE.MathUtils.clamp(-rect.top / sectionHeight, 0, 1);
 
-//       setScroll(progress);
+//       const mapped = progress < 0.5 ? progress * 2 : (1 - progress) * 2;
+
+//       setScroll(mapped);
 //     };
 
 //     window.addEventListener("scroll", handleScroll, { passive: true });
-//     // Run once on mount so initial state is correct
 //     handleScroll();
+
 //     return () => window.removeEventListener("scroll", handleScroll);
 //   }, []);
 
 //   return (
-//     <section className="h-screen">
+//     <div className="h-screen">
 //       <div
 //         id="particle-hero"
 //         style={{
 //           position: "relative",
 //           width: "100%",
-//           height: "300vh",
-//           background: "#000000",
+//           height: "200vh",
+//           background: "#000",
 //           overflow: "hidden",
 //         }}
 //       >
-//         {/* Canvas sticks while scrolling through the 200vh */}
 //         <div
-//           style={{ position: "sticky", top: 0, height: "100vh", width: "100%" }}
+//           style={{
+//             position: "sticky",
+//             top: 0,
+//             height: "100vh",
+//             width: "100%",
+//           }}
 //         >
 //           <Canvas
 //             camera={{ position: [0, 0, 7], fov: 60 }}
@@ -145,7 +150,6 @@
 //             <ParticleSphere scroll={scroll} />
 //           </Canvas>
 
-//           {/* Overlay text */}
 //           <div
 //             style={{
 //               position: "absolute",
@@ -160,59 +164,21 @@
 //           >
 //             <h1
 //               style={{
-//                 color: "#ffffff",
-//                 fontSize: "clamp(32px, 6vw, 72px)",
+//                 color: "#fff",
+//                 fontSize: "clamp(32px,6vw,72px)",
 //                 fontWeight: 600,
 //                 lineHeight: 1.2,
 //                 maxWidth: "760px",
-//                 fontFamily: "system-ui, sans-serif",
 //                 letterSpacing: "-0.02em",
 //               }}
 //             >
-//               Intelligent <span style={{ opacity: 0.65 }}>Automation</span>
+//               Uxbyte <span style={{ opacity: 0.65 }}>Studios</span>
 //               <br />
-//               Engineered for Impact
 //             </h1>
-//           </div>
-
-//           {/* Scroll progress indicator */}
-//           <div
-//             style={{
-//               position: "absolute",
-//               bottom: "32px",
-//               left: "50%",
-//               transform: "translateX(-50%)",
-//               display: "flex",
-//               flexDirection: "column",
-//               alignItems: "center",
-//               gap: "8px",
-//               opacity: scroll < 0.05 ? 1 : 0,
-//               transition: "opacity 0.5s ease",
-//               pointerEvents: "none",
-//             }}
-//           >
-//             <span
-//               style={{
-//                 color: "rgba(255,255,255,0.5)",
-//                 fontSize: "11px",
-//                 letterSpacing: "0.14em",
-//                 textTransform: "uppercase",
-//               }}
-//             >
-//               Scroll
-//             </span>
-//             <div
-//               style={{
-//                 width: "1px",
-//                 height: "40px",
-//                 background:
-//                   "linear-gradient(to bottom, rgba(255,255,255,0.4), transparent)",
-//               }}
-//             />
 //           </div>
 //         </div>
 //       </div>
-//     </section>
+//     </div>
 //   );
 // }
 
@@ -328,10 +294,7 @@ export default function ParticleSphereHero() {
       const rect = hero.getBoundingClientRect();
       const sectionHeight = hero.offsetHeight - window.innerHeight;
 
-      // progress within the hero section
       const progress = THREE.MathUtils.clamp(-rect.top / sectionHeight, 0, 1);
-
-      // sphere → spread → sphere
       const mapped = progress < 0.5 ? progress * 2 : (1 - progress) * 2;
 
       setScroll(mapped);
@@ -375,11 +338,13 @@ export default function ParticleSphereHero() {
               position: "absolute",
               inset: 0,
               display: "flex",
+              flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
               textAlign: "center",
               pointerEvents: "none",
               padding: "0 24px",
+              gap: "80px",
             }}
           >
             <h1
@@ -390,12 +355,25 @@ export default function ParticleSphereHero() {
                 lineHeight: 1.2,
                 maxWidth: "760px",
                 letterSpacing: "-0.02em",
+                margin: 0,
               }}
             >
               Uxbyte <span style={{ opacity: 0.65 }}>Studios</span>
-              <br />
-              {/* Engineered for Impact */}
             </h1>
+            <p
+              style={{
+                color: "#ffff",
+                opacity: 1,
+                fontSize: "clamp(14px,1.6vw,18px)",
+                lineHeight: 1.7,
+                maxWidth: "520px",
+                margin: 0,
+              }}
+            >
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when
+            </p>
           </div>
         </div>
       </div>

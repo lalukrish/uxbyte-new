@@ -628,7 +628,7 @@ const IsolatedExplosionImage = () => {
         <div className="isolated-explosion-intro-header pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
           <h1 className="text-center text-4xl font-bold text-white md:text-7xl h-1"></h1>
         </div>
-        <div className="isolated-explosion-outro-header pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
+        <div className="isolated-explosion-outro-header pointer-events-none absolute inset-0 z-20 flex items-center justify-center mt-60 ml-88">
           <h1 className="text-center text-4xl font-bold text-white md:text-7xl">
             Creators Behind Growth
           </h1>
@@ -659,7 +659,8 @@ const IsolatedExplosionImage = () => {
             />
           ))}
           <Image
-            src="/blog-3.webp"
+            // src="/blog-3.webp"
+            src="/top-leaders.png"
             alt="Cover Image"
             width={500}
             height={500}

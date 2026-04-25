@@ -145,7 +145,7 @@ export default function ScrollFaqGsap() {
   return (
     <section
       ref={sectionRef}
-      className="faq-section-wrapper mt-5 md:mt-0 h-[50vh] md:h-[200vh]"
+      className="white-section faq-section-wrapper mt-5 md:mt-0 h-[50vh] md:h-[200vh]"
       style={{
         position: "relative",
         isolation: "isolate",

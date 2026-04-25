@@ -62,7 +62,7 @@ import "./globals.css";
 import Script from "next/script";
 import Footer from "@/components/footer";
 import ClientLayout from "@/components/animation-loader";
-// import ClientLayout from "@/components/client-layout";
+import { LogoMark } from "@/context/LogoMark";
 
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -105,10 +105,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${ibmPlexSans.className} ${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
       >
-        <ClientLayout>
-          {children}
-          <Footer />
-        </ClientLayout>
+        {/* <ClientLayout> */}
+        {/* <LogoMark /> */}
+        {children}
+        <Footer />
+        {/* </ClientLayout> */}
       </body>
     </html>
   );

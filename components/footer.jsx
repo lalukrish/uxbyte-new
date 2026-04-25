@@ -18,13 +18,9 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-black text-white h-screen flex flex-col">
-      {/* Main Content - Centered */}
+    <footer className="dark-section w-full bg-black text-white h-screen flex flex-col">
       <div className="flex-1 flex items-center justify-center px-6">
         <div className="text-center max-w-5xl">
-          {/* <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-8">
-            No Fluffs & No Frills
-          </p> */}
           <EncryptedText
             normaltext="PRODUCT DESIGN"
             text=" AND DEVELOPMENT AGENCY"
@@ -38,9 +34,6 @@ export default function Footer() {
             Let's Talk
           </h2>
           <div className="flex  sm:flex-row items-center justify-center gap-6">
-            {/* <button className="px-10 py-5 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition-all text-base border-2 border-white hover:scale-105">
-              Contact Us
-            </button> */}
             <Button
               label=" Contact Us"
               className="border-white! hover:bg-black! hover:border-white! hover:text-white! text-white! py-4 px-10"
@@ -57,7 +50,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      {/* General Enquiry */}
       <div className="mt-1 pb-14  flex flex-col items-center gap-4 text-gray-400">
         <p className="text-xs uppercase tracking-[0.3em] text-gray-500">
           General Enquiry
@@ -82,7 +74,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -90,11 +81,7 @@ export default function Footer() {
               Uxbyte Studio © {new Date().getFullYear()} All rights reserved
             </p>
 
-            {/* Social Icons */}
             <div className="flex items-center gap-6">
-              {/* <Link href="#" className="hover:text-gray-400 transition-colors">
-                <Facebook className="w-5 h-5" />
-              </Link> */}
               <Link
                 target="_blank"
                 href="https://www.instagram.com/uxbyte?igsh=MWRiMjZ5ZWJobjdxYw"
@@ -116,12 +103,8 @@ export default function Footer() {
               >
                 <Twitter className="w-5 h-5" />
               </Link>
-              {/* <Link href="#" className="hover:text-gray-400 transition-colors">
-                <Youtube className="w-5 h-5" />
-              </Link> */}
             </div>
 
-            {/* Legal Links */}
             <div className="flex items-center gap-6 text-sm text-gray-400">
               <Link href="#" className="hover:text-white transition-colors">
                 Privacy Policy

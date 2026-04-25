@@ -14,6 +14,8 @@ import AnimatedHeader from "@/components/landingPage/animated-header";
 import HeroVideo from "@/components/video-hero";
 import MovingCards from "@/components/scroll-image-smaller";
 import ParticleSphereHero from "@/components/particle-section";
+import MultiSection from "@/components/landingPage/grid-box";
+import Features from "@/components/ui/icon-component";
 
 const POPULAR_BLOGS = BLOGS.filter((b) => b.isPopular);
 
@@ -24,14 +26,16 @@ export default function Home() {
       {/* <div className="relative z-10">
             <MobileCenterCarousel />
           </div> */}
-      <HeroVideo />
+      <HeroVideo darkSections=".dark-section" lightSections=".white-section" />{" "}
       {/* <HeroNew /> */}
-      <TopHeader />
+      {/* <TopHeader /> */}
       {/* <DamnGoodHero /> */}
       <AboutSection />
+      <Features />
+      {/* <MultiSection /> */}
       <ScrollingBox />
       <SaaSSection />
-      <ServiceHoverCard />
+      {/* <ServiceHoverCard /> */}
       <FaqSection />
       <ExplosionImage />
       <InspirationSection blogs={POPULAR_BLOGS} />

@@ -512,6 +512,7 @@ export default function SaaSSection() {
   /* ── DESKTOP ── */
   return (
     <div
+      className="dark-section"
       style={{
         background: "#0a0a0a",
         position: "relative",

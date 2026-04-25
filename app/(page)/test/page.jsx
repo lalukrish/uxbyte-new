@@ -10,6 +10,7 @@ import ParticleSphereHero from "@/components/particle-section";
 import ScrollingFeatures from "@/components/scrolling-features";
 import ScrollMarquee from "@/components/scrollmarquee";
 import TestComponent from "@/components/test-component";
+import UXBScene from "@/components/three-component";
 import ExplosionImage from "@/components/ui/explosion";
 import HoverImage from "@/components/ui/hover-image";
 import ServicesSection from "@/components/who-we-are/round-scroll";
@@ -19,8 +20,8 @@ import React from "react";
 const page = () => {
   return (
     <div>
-      <TestComponent />
-      <ParticleSphereHero />
+      {/* <TestComponent />
+      <ParticleSphereHero /> */}
 
       {/* <WobbleCardDemo /> */}
       {/* <SpotlightPreview />
@@ -34,7 +35,17 @@ const page = () => {
       {/* <SaaSSection /> */}
       {/* <CardMovingSection /> */}
       {/* <DomainSearchSection /> */}
-      <ServicesSection />
+      {/* <ServicesSection /> */}
+      <div
+        style={{
+          width: "100vw",
+          height: "100vh",
+          background: "#080808",
+          overflow: "hidden",
+        }}
+      >
+        <UXBScene />
+      </div>
       {/* <ScrollingFeatures /> */}
       {/* <ProjectFilterSection />
       <ServiceCard /> */}

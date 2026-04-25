@@ -159,80 +159,76 @@ const ScrollingBox = () => {
   const boxRef = useRef(null);
   const nextSectionRef = useRef(null);
 
-  useLayoutEffect(() => {
-    if (!sectionRef.current || !boxRef.current || !nextSectionRef.current)
-      return;
+  // useLayoutEffect(() => {
+  //   if (!sectionRef.current || !boxRef.current || !nextSectionRef.current)
+  //     return;
 
-    const section = sectionRef.current;
-    const box = boxRef.current;
-    const nextSection = nextSectionRef.current;
+  //   const section = sectionRef.current;
+  //   const box = boxRef.current;
+  //   const nextSection = nextSectionRef.current;
 
-    const expansionAnim = gsap.fromTo(
-      box,
-      {
-        width: "400px",
-        height: "300px",
-        borderRadius: "20px",
-        transformOrigin: "bottom center",
-      },
-      {
-        width: "100%",
-        height: "100vh",
-        borderRadius: "0px",
-        ease: "power1.inOut",
-      },
-    );
+  //   const expansionAnim = gsap.fromTo(
+  //     box,
+  //     {
+  //       width: "400px",
+  //       height: "300px",
+  //       borderRadius: "20px",
+  //       transformOrigin: "bottom center",
+  //     },
+  //     {
+  //       width: "100%",
+  //       height: "100vh",
+  //       borderRadius: "0px",
+  //       ease: "power1.inOut",
+  //     },
+  //   );
 
-    const expansionTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: "top bottom+=100",
-      end: "center center",
-      scrub: 1.5,
-      animation: expansionAnim,
-      invalidateOnRefresh: true,
-    });
+  //   const expansionTrigger = ScrollTrigger.create({
+  //     trigger: section,
+  //     start: "top bottom+=100",
+  //     end: "center center",
+  //     scrub: 1.5,
+  //     animation: expansionAnim,
+  //     invalidateOnRefresh: true,
+  //   });
 
-    const slideUpAnim = gsap.fromTo(
-      nextSection,
-      { yPercent: 100 },
-      { yPercent: 0, ease: "power1.inOut" },
-    );
+  //   const slideUpAnim = gsap.fromTo(
+  //     nextSection,
+  //     { yPercent: 100 },
+  //     { yPercent: 0, ease: "power1.inOut" },
+  //   );
 
-    const slideUpTrigger = ScrollTrigger.create({
-      trigger: section,
-      start: "center center",
-      end: "bottom top",
-      scrub: 1.5,
-      pin: section,
-      pinSpacing: true,
-      anticipatePin: 1,
-      animation: slideUpAnim,
-      invalidateOnRefresh: true,
-    });
+  //   const slideUpTrigger = ScrollTrigger.create({
+  //     trigger: section,
+  //     start: "center center",
+  //     end: "bottom top",
+  //     scrub: 1.5,
+  //     pin: section,
+  //     pinSpacing: true,
+  //     anticipatePin: 1,
+  //     animation: slideUpAnim,
+  //     invalidateOnRefresh: true,
+  //   });
 
-    const handleResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", handleResize);
+  //   const handleResize = () => ScrollTrigger.refresh();
+  //   window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      expansionTrigger.kill(true);
-      slideUpTrigger.kill(true);
-      expansionAnim.kill();
-      slideUpAnim.kill();
-      setTimeout(() => ScrollTrigger.refresh(), 0);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //     expansionTrigger.kill(true);
+  //     slideUpTrigger.kill(true);
+  //     expansionAnim.kill();
+  //     slideUpAnim.kill();
+  //     setTimeout(() => ScrollTrigger.refresh(), 0);
+  //   };
+  // }, []);
 
   return (
     <section className="">
       <div className="w-full ">
         <ParticleSphereHero />
 
-        <div ref={nextSectionRef} className=" inset-0 w-full h-full ">
-          <div className="w-full h-full">
-            <MultiSection />
-          </div>
-        </div>
+        <div></div>
       </div>
     </section>
   );

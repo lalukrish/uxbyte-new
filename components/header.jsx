@@ -170,7 +170,6 @@ export default function Header() {
     ? "bg-black text-white hover:bg-gray-800"
     : "bg-white text-black hover:bg-gray-100";
 
-  // Active state colors
   const getActiveColor = (href) => {
     if (!isActive(href)) return "";
     return isDarkSection
@@ -187,7 +186,6 @@ export default function Header() {
 
   return (
     <>
-      {/* ================= HEADER ================= */}
       <header
         className={`fixed top-0 left-0 w-full z-50 ${headerBg} border-b ${borderColor} transition-all duration-500 ${
           showHeader && !scrollingDown
@@ -195,15 +193,17 @@ export default function Header() {
             : "-translate-y-full opacity-0"
         }`}
       >
-        <div className="xl:px-24 mx-auto px-4 h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-12 h-12 bg-[#6915ae] flex items-center justify-center p-1">
-              <span className="text-white font-bold text-xl">UXB</span>
+        <div className="xl:px-24 mx-auto px-4 h-20 flex items-center justify-center">
+          {/* <Link href="/" className="flex items-center gap-2">
+            <div className="w-[35px] h-[35px] bg-[#6915ae] flex items-center justify-center p-1 rounded-[9px]">
+              <span className="text-[13px] font-extrabold text-white tracking-[-0.04em] leading-none">
+                UXB
+              </span>{" "}
             </div>
-            <span className={`${logoText} font-semibold text-lg tracking-wide`}>
-              Uxbyte Studio
+            <span className={` ${logoText} font-bold  tracking-[0.04em]`}>
+              Uxbyte studios
             </span>
-          </Link>
+          </Link> */}
 
           <nav className="hidden lg:flex items-center gap-2">
             {menuData.map((item) => (
@@ -256,15 +256,15 @@ export default function Header() {
           </nav>
 
           {/* CTA */}
-          <div className="hidden lg:block">
+          {/* <div className="hidden lg:block">
             <Link
               href="/contact"
-              className={`inline-flex items-center gap-2 px-6 py-2 ${ctaBg} font-medium transition-colors text-sm`}
+              className={`inline-flex items-center gap-2 px-6 py-1 ${ctaBg} font-medium transition-colors text-sm`}
             >
               GET IN TOUCH
               <ArrowRight size={16} />
             </Link>
-          </div>
+          </div> */}
         </div>
       </header>
 
@@ -347,14 +347,13 @@ export default function Header() {
           <div className="fixed top-3 right-6 xl:right-24 z-50 hidden md:block">
             <Link
               href="/contact-us"
-              className={`inline-flex items-center gap-2 px-6 py-3.5 font-medium transition-all duration-500 text-sm shadow-lg ${
+              className={`inline-flex items-center gap-2 px-6 py-2.5 font-medium transition-all duration-500 text-sm shadow-lg ${
                 showHeader
                   ? `${ctaBg}`
                   : "bg-black text-white hover:bg-gray-800"
               }`}
             >
-              GET IN TOUCH
-              <ArrowRight size={16} />
+              Contact <ArrowRight size={16} />
             </Link>
           </div>
 

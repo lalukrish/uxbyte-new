@@ -23,7 +23,6 @@ export default function HTMLImageComponent({
           image ? "md:grid-cols-12 " : "grid-cols-1"
         }`}
       >
-        {/* Image Section */}
         {image && (
           <div
             className={`

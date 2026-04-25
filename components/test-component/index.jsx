@@ -41,7 +41,7 @@ export default function TestComponent() {
       >
         {/* Logo Icon */}
         <div className="w-8 h-8 bg-white rounded-md" />
-        <span className="text-xl font-semibold">AnimateUI</span>
+        <span className="text-xl font-semibold">Uxbyte</span>
       </motion.div>
 
       {/* Hero Content */}

@@ -15,7 +15,7 @@ export default function InspirationSection({ blogs = [] }) {
   if (!popularBlogs.length) return null;
 
   return (
-    <section className="w-full py-20 xl:px-24  text-black">
+    <section className="white-section w-full py-20 xl:px-24  text-black">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center  mx-auto px-6 mb-16">
         <div className="flex-col">

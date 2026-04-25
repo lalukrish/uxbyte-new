@@ -9,63 +9,17 @@ import GlossyText, { CanvasText } from "../ui/canvas-text";
 
 export default function MultiSection() {
   return (
-    <section className="w-full h-full grid grid-cols-1 md:grid-cols-2 bg-white">
+    <section
+      className="w-full h-screen
+     grid grid-cols-1 md:grid-cols-2 "
+    >
       {/* LEFT SIDE */}
-      <div className="flex flex-col justify-center px-4 md:px-10 md:ml-14 h-full">
-        <div className="animate-fadeUp mt-2 md:mt-0">
-          <EncryptedText
-            normaltext="WHERE"
-            text=" WE INNOVATE"
-            className="text-sm md:block hidden"
-            normalClassName=""
-            encryptedClassName="text-[#adadae]"
-            revealedClassName="text-gray-500 dark:text-[#adadae]"
-            revealDelayMs={30}
-          />
-          <Title className="mt-2">
-            Eningeered For Pure
-            <br />
-            {/* <span className="text-[#7800c4]">The Speed.</span> */}
-            <GlossyText
-              text="Lightning Speed"
-              // backgroundClassName="bg-black dark:bg-blue-600"
-              // colors={[
-              //   "rgba(168, 85, 247, 1)", // purple
-              //   "rgba(239, 68, 68, 0.9)", // red
-              //   "rgba(59, 130, 246, 0.8)", // blue
-              //   "rgba(34, 197, 94, 0.7)", // green
-              //   "rgba(168, 85, 247, 0.6)",
-              //   "rgba(239, 68, 68, 0.5)",
-              //   "rgba(59, 130, 246, 0.4)",
-              //   "rgba(34, 197, 94, 0.3)",
-              //   "rgba(168, 85, 247, 0.2)",
-              //   "rgba(239, 68, 68, 0.1)",
-              // ]}
-              // lineGap={4}
-              // animationDuration={20}
-            />
-          </Title>
-          <Paragraph className="xl:w-[500px]">
-            UXByte delivers fast, reliable, and scalable digital solutions
-            across multiple areas. From rapid development to seamless cloud
-            integration and instant access, we create solutions that accelerate
-            growth, streamline operations, and drive real impact. Our focus is
-            on speed, efficiency, and innovation, ensuring your business stays
-            ahead in a fast-paced digital world.
-          </Paragraph>
-          <Button
-            variant="filled"
-            href="/blog"
-            className="px-8 md:py-4 py-3 mt-4 mb-2 md:mb-0 md:mt-10 hidden md:block w-fit"
-            label="View All"
-          />
-        </div>
-
-        <div className="md:flex items-center gap-8 mt-12 opacity-60 hidden">
+      <div className="flex flex-col justify-center px-4 md:px-10 md:ml-14 h-full bg-white">
+        {/* <div className="md:flex items-center gap-8 mt-12 opacity-60 hidden">
           <span className="text-sm font-medium">SHIMANO</span>
           <span className="text-sm font-medium">UCI</span>
           <span className="text-sm font-medium">IRONMAN</span>
-        </div>
+        </div> */}
       </div>
 
       {/* RIGHT SIDE */}
