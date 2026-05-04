@@ -133,7 +133,7 @@ export default function UXBCube({ size = 140, faces }: UXBCubeProps) {
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
-      className="ml-140 mt-16 absolute"
+      className=" ml-28 md:ml-140 -mt-80 md:mt-16 absolute"
     >
       <div style={{ width: size, height: size, transformStyle: "preserve-3d" }}>
         <div

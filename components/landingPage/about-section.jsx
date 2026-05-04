@@ -66,16 +66,10 @@ const AboutSection = () => {
           </Paragraph>
         </div>
 
-        <div className="xl:w-2/3 flex  items-end gap-0 justify-end">
-          <div className="relative flex justify-center items-center ">
+        <div className="xl:w-2/3 flex  items-end gap-0 justify-end ">
+          <div className="relative flex justify-center items-center">
             <motion.div
-              className="relative
-    xl:absolute
-    z-5
-    xl:right-[350px]
-    2xl:right-[440px]
-    h-[260px]
-    w-[200px]
+              className="relative xl:absolute z-5 xl:right-[350px] 2xl:right-[440px] h-[260px] w-[200px]
     xl:h-[450px]
     xl:w-[350px]
     2xl:h-[590px]

@@ -23,7 +23,6 @@ const CSS = `
   }
 `;
 
-/* ─── LogoMark ─── */
 function LogoMark({ isDark }: { isDark: boolean }) {
   return (
     <div className="flex items-center gap-2.5 pl-4 md:pl-16 mt-1">
@@ -47,7 +46,6 @@ function LogoMark({ isDark }: { isDark: boolean }) {
   );
 }
 
-/* ─── LogoIntro ─── */
 function LogoIntro({ onComplete }: { onComplete: () => void }) {
   const bgRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
@@ -116,14 +114,11 @@ function LogoIntro({ onComplete }: { onComplete: () => void }) {
   );
 }
 
-/* ─── Hero ─── */
 export default function Hero({
   videoUrl = "https://cdn.icgmiddleast.com/deutsche/career/career.m3u8",
   posterUrl = "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80",
   title = "Crafting Experiences That Leave A Lasting Mark Compliance That Protects Let's Build Your",
   description = "We push boundaries every day, combining technology with human insight.",
-  // ── Pass custom selectors from outside if needed
-  // e.g. darkSections=".dark-section,.hero-section" lightSections=".white-section,.light-bg"
   darkSections = ".dark-section",
   lightSections = ".white-section",
 }: {
@@ -150,9 +145,6 @@ export default function Hero({
   const [pipVisible, setPipVisible] = useState(true);
   const [isDark, setIsDark] = useState(true);
 
-  /* ─── ScrollTrigger: watch dark/light sections globally ─── */
-  // Inside HeroVideo — find this useEffect and change timeout
-  /* ─── ScrollTrigger: watch dark/light sections globally ─── */
   useEffect(() => {
     if (!introComplete) return;
 
@@ -183,14 +175,13 @@ export default function Hero({
         );
       });
 
-      // ── Hero section always white regardless of scroll direction
       if (wrapRef.current) {
         triggers.push(
           ScrollTrigger.create({
             trigger: wrapRef.current,
             start: "top 40%",
             end: "bottom 40%",
-            onEnter: () => setIsDark(true), // scroll down into hero → white
+            onEnter: () => setIsDark(true),
             onEnterBack: () => setIsDark(true), // scroll up back into hero → white
           }),
         );
@@ -231,7 +222,6 @@ export default function Hero({
 
   useEffect(() => () => clearTimeout(pipReopenTimer.current!), []);
 
-  /* ─── HLS video setup ─── */
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
@@ -264,7 +254,6 @@ export default function Hero({
     };
   }, [videoUrl]);
 
-  /* ─── Fade poster when video ready ─── */
   useEffect(() => {
     if (!videoReady || !posterRef.current) return;
     gsap.to(posterRef.current, {
@@ -277,7 +266,6 @@ export default function Hero({
     });
   }, [videoReady]);
 
-  /* ─── Title entrance (after intro + video) ─── */
   useEffect(() => {
     if (!videoReady || !introComplete || !titleRef.current) return;
     const ctx = gsap.context(() => {
@@ -295,7 +283,6 @@ export default function Hero({
     return () => ctx.revert();
   }, [videoReady, introComplete]);
 
-  /* ─── Scroll animation ─── */
   useEffect(() => {
     if (!videoReady) return;
     const tid = setTimeout(() => {
@@ -381,7 +368,6 @@ export default function Hero({
     return () => clearTimeout(tid);
   }, [videoReady]);
 
-  /* ─── Title split ─── */
   const titleWords = title.split(" ");
   const total = titleWords.length;
   const l1end = Math.max(1, Math.round(total * 0.2));
@@ -397,19 +383,16 @@ export default function Hero({
     <>
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
 
-      {/* ── Intro ── */}
       {!introComplete && (
         <LogoIntro onComplete={() => setIntroComplete(true)} />
       )}
 
-      {/* ── Sticky nav after intro ── */}
       {introComplete && (
         <nav className="fixed top-0 left-0 z-[300] p-4 pointer-events-none">
           <LogoMark isDark={isDark} />
         </nav>
       )}
 
-      {/* ── Scroll container ── */}
       <div ref={wrapRef} style={{ height: "350vh" }} className="">
         <section className="sticky top-0 h-screen overflow-hidden">
           <video
@@ -433,7 +416,6 @@ export default function Hero({
           <div className="absolute inset-0 bg-black/30 z-[105]" />
 
           <div className="absolute inset-0 z-[110]">
-            {/* Right image */}
             <div
               ref={rightImageRef}
               className="absolute top-0 right-0 h-full overflow-hidden hidden md:block"
@@ -451,27 +433,23 @@ export default function Hero({
               />
             </div>
 
-            {/* Left black panel */}
             <div
               ref={gradientRef}
               className="absolute top-0 left-0 h-full bg-black w-full md:w-[58%] pointer-events-none"
               style={{ zIndex: 115 }}
             />
 
-            {/* Overlay content */}
             <div
               ref={overlayContentRef}
-              className="absolute inset-0 flex items-end md:items-center pb-16 md:pb-0"
+              className="absolute inset-0 flex items-end md:items-center pb-16 md:pb-0 "
               style={{ zIndex: 116, pointerEvents: "none" }}
             >
-              <div className="w-full md:w-[48%] px-6 md:px-[clamp(24px,5vw,112px)] md:pr-8 flex flex-col gap-5 md:gap-8">
-                <div className="relative">
+              <div className="w-full md:w-[48%] px-6 md:px-[clamp(24px,5vw,112px)] md:pr-8 flex flex-col gap-5 md:gap-8 ">
+                <div className="relative ">
                   <div
                     aria-hidden="true"
-                    className="absolute hidden md:block pointer-events-none select-none whitespace-nowrap"
+                    className="absolute  pointer-events-none select-none whitespace-nowrap -translate-y-140! md:translate-y-0! top-0! left-4 md:-left-4!"
                     style={{
-                      top: "0px",
-                      left: "-20px",
                       fontSize: "clamp(180px,17vw,340px)",
                       fontWeight: 700,
                       color: "#fff",
@@ -482,34 +460,30 @@ export default function Hero({
                   >
                     UXB
                   </div>
-                  <div className="mb-6 pointer-events-auto hidden md:flex ">
+                  <div className="mb-6 pointer-events-auto  ">
                     <UXBCube
                       size={140}
                       faces={[
-                        { type: "image", src: "/cover-79.png", alt: "Cover" }, // front
-                        { type: "label", label: "UI/UX", sub: "Design" }, // back
-                        { type: "image", src: "/blog-1.webp" }, // right
-                        { type: "label", label: "Web", sub: "Dev" }, // left
-                        { type: "label", label: "Cloud", sub: "Scale" }, // top
-                        { type: "image", src: "/2026.png" }, // bottom
+                        { type: "image", src: "/cover-79.png", alt: "Cover" },
+                        { type: "label", label: "UI/UX", sub: "Design" },
+                        { type: "image", src: "/blog-1.webp" },
+                        { type: "label", label: "Web", sub: "Dev" },
+                        { type: "label", label: "Cloud", sub: "Scale" },
+                        { type: "image", src: "/2026.png" },
                       ]}
                     />{" "}
                   </div>
 
                   <div className="flex items-baseline mt-10 md:mt-[300px] mb-1">
-                    <span
-                      className="font-semibold text-white/90 tracking-[0.12em] leading-none"
-                      style={{ fontSize: "clamp(18px,3.5vw,52px)" }}
-                    >
+                    <span className="font-semibold text-white/90 tracking-[0.12em] leading-none text-[clamp(18px,36px,52px)]">
                       Digital
                     </span>
                   </div>
 
                   <div className="relative inline-block">
                     <div
-                      className="font-semibold  mb-1.5 bg-clip-text text-transparent"
+                      className="font-semibold  mb-1.5 bg-clip-text text-transparent text-[clamp(18px,36px,52px)]"
                       style={{
-                        fontSize: "clamp(18px,3.5vw,52px)",
                         backgroundImage:
                           "linear-gradient(90deg, #5B2A86 0%, #9B5C7A 50%, #F59E0B 100%)",
                       }}
@@ -519,16 +493,6 @@ export default function Hero({
                     <div className="h-px bg-white/20 mb-[3px]" />
                     <div className="h-0.5 w-[45%] bg-[#6915ae]" />
                   </div>
-
-                  {/* <div className="flex gap-[5px] mt-3 mb-4">
-                    {[0.5, 0.25, 0.12].map((op, i) => (
-                      <div
-                        key={i}
-                        className="w-[5px] h-[5px] rounded-full"
-                        style={{ background: `rgba(255,255,255,${op})` }}
-                      />
-                    ))}
-                  </div> */}
 
                   <p className="mt-6 text-white/40 tracking-[0.06em] text-[11px] md:text-[13px]">
                     Strategy · Craft · Delivery — across every platform we touch
@@ -549,7 +513,6 @@ export default function Hero({
               </div>
             </div>
 
-            {/* Title pyramid */}
             <div
               ref={titleRef}
               className="absolute inset-0 flex flex-col items-center justify-center px-4 pt-20 md:pt-48 pb-10 z-[120]"
@@ -580,30 +543,10 @@ export default function Hero({
                 </div>
               ))}
             </div>
-
-            {/* Scroll chevrons */}
-            {/* <div className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center z-[120]">
-              {[0, 0.28].map((delay, i) => (
-                <ChevronDown
-                  key={i}
-                  strokeWidth={1.2}
-                  className="text-white/70"
-                  style={{
-                    width: 26,
-                    height: 26,
-                    marginTop: i ? -7 : 0,
-                    animation: "scrollCascade 2.2s ease-in-out infinite",
-                    animationDelay: `${delay}s`,
-                    opacity: 0,
-                  }}
-                />
-              ))}
-            </div> */}
           </div>
         </section>
       </div>
 
-      {/* ── PiP glass chip ── */}
       {pipVisible && (
         <div
           ref={glassRef}

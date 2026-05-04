@@ -1,14 +1,7 @@
 "use client";
 
 import { Button } from "@/commonComponents/Button";
-import {
-  Facebook,
-  Twitter,
-  Linkedin,
-  Instagram,
-  Youtube,
-  ArrowUp,
-} from "lucide-react";
+import { Twitter, Linkedin, Instagram, ArrowUp } from "lucide-react";
 import Link from "next/link";
 import { EncryptedText } from "./ui/encrypted-text";
 
