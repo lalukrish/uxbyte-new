@@ -370,9 +370,11 @@ export default function ParticleSphereHero() {
                 margin: 0,
               }}
             >
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when
+              We craft innovative digital experiences through custom software
+              development, UI/UX design, cloud solutions, and digital
+              transformation services. At UXByte Studios, we help businesses
+              turn ideas into scalable, high-performing products that drive
+              growth and success.
             </p>
           </div>
         </div>

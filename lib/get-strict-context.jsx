@@ -1,22 +1,40 @@
-import * as React from 'react';
+// import * as React from 'react';
 
-function getStrictContext(name) {
+// function getStrictContext(name) {
+//   const Context = React.createContext(undefined);
+
+//   const Provider = ({
+//     value,
+//     children
+//   }) => <Context.Provider value={value}>{children}</Context.Provider>;
+
+//   const useSafeContext = () => {
+//     const ctx = React.useContext(Context);
+//     if (ctx === undefined) {
+//       throw new Error(`useContext must be used within ${name ?? 'a Provider'}`);
+//     }
+//     return ctx;
+//   };
+
+//   return [Provider, useSafeContext];
+// }
+
+// export { getStrictContext };
+
+import * as React from "react";
+
+export function getStrictContext(name) {
   const Context = React.createContext(undefined);
 
-  const Provider = ({
-    value,
-    children
-  }) => <Context.Provider value={value}>{children}</Context.Provider>;
+  function useStrictContext() {
+    const context = React.useContext(Context);
 
-  const useSafeContext = () => {
-    const ctx = React.useContext(Context);
-    if (ctx === undefined) {
-      throw new Error(`useContext must be used within ${name ?? 'a Provider'}`);
+    if (context === undefined) {
+      throw new Error(`${name} must be used within its Provider`);
     }
-    return ctx;
-  };
 
-  return [Provider, useSafeContext];
+    return context;
+  }
+
+  return [Context.Provider, useStrictContext];
 }
-
-export { getStrictContext };

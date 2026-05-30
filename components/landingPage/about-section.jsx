@@ -50,7 +50,7 @@ const AboutSection = () => {
             Purpose-Built
             <br />
             <GlossyText
-              text="Healthcare Solutions
+              text="Business Solutions
 "
             />
           </Title>

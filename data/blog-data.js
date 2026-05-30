@@ -1,189 +1,90 @@
 export const BLOGS = [
   {
-    slug: "mediation-family-law",
-    title: "How lorem ipsum Is Mediation Useful in Family Law Cases?",
-    author: "John Doe",
-    date: "December 1, 2025",
-    read: "3 min read",
-    image: "/feature-1.png",
+    slug: "future-of-custom-software-development",
+    title: "The Future of Custom Software Development in 2026",
+    author: "UXByte Team",
+    date: "January 15, 2026",
+    read: "5 min read",
+    image: "/cover-79.png",
     isFeatured: true,
     isPopular: true,
     content: [
       {
         type: "p",
-        text: "Mediation plays a crucial role in resolving family law disputes by encouraging open communication and reducing emotional strain.",
+        text: "Custom software continues to drive digital transformation by helping businesses automate processes, improve efficiency, and deliver better customer experiences.",
       },
       {
         type: "h2",
-        text: "What Is Mediation in Family Law?",
-      },
-      {
-        type: "p",
-        text: "It is a voluntary and confidential process where a neutral third party helps families reach agreements without court intervention.",
-      },
-      {
-        type: "h2",
-        text: "Key Benefits of Mediation",
+        text: "Why Custom Software Matters",
       },
       {
         type: "ul",
         items: [
-          "Lower legal costs",
-          "Faster resolution",
-          "Less emotional stress",
-          "Better long-term cooperation",
+          "Tailored to business needs",
+          "Scalable for future growth",
+          "Enhanced security and control",
+          "Improved operational efficiency",
         ],
       },
     ],
   },
 
   {
-    slug: "ppc-paid-search-strategy",
-    title: "Guide to Winning with PPC: Optimizing Your Paid Search Strategy",
-    author: "Rincy John",
-    date: "September 14, 2025",
-    read: "12 mins read",
-    image: "/feature-1.png",
-    isFeatured: false,
-    isPopular: true,
-    content: [
-      {
-        type: "p",
-        text: "Pay-per-click advertising is one of the fastest ways to drive targeted traffic, but only when optimized correctly.",
-      },
-      {
-        type: "h2",
-        text: "Understanding PPC Basics",
-      },
-      {
-        type: "p",
-        text: "PPC allows advertisers to bid for ad placement in search engines and pay only when users click.",
-      },
-      {
-        type: "h2",
-        text: "Optimization Tips",
-      },
-      {
-        type: "ul",
-        items: [
-          "Use high-intent keywords",
-          "Optimize landing pages",
-          "Track conversions",
-          "Continuously A/B test ads",
-        ],
-      },
-    ],
-  },
-
-  {
-    slug: "child-custody-laws",
-    title: "Understanding Child Custody Laws: A Comprehensive Guide",
-    author: "Jane Smith",
-    date: "August 20, 2025",
-    read: "5 min read",
-    image: "/feature-1.png",
-    isFeatured: false,
-    isPopular: true,
-    content: [
-      {
-        type: "p",
-        text: "Child custody laws determine how parental responsibilities are divided after separation or divorce.",
-      },
-      {
-        type: "h2",
-        text: "Types of Custody",
-      },
-      {
-        type: "ul",
-        items: [
-          "Legal custody",
-          "Physical custody",
-          "Joint custody",
-          "Sole custody",
-        ],
-      },
-      {
-        type: "p",
-        text: "Courts always prioritize the best interests of the child when making custody decisions.",
-      },
-    ],
-  },
-
-  {
-    slug: "mobile-first-design",
-    title: "Why Mobile-First Design Is No Longer Optional",
-    author: "Alex Thomas",
-    date: "August 1, 2025",
+    slug: "cloud-solutions-for-business-growth",
+    title: "How Cloud Solutions Accelerate Business Growth",
+    author: "UXByte Team",
+    date: "February 8, 2026",
     read: "6 min read",
-    image: "/feature-1.png",
+    image: "/coorporate.webp",
     isFeatured: false,
-    isPopular: false,
+    isPopular: true,
     content: [
       {
         type: "p",
-        text: "Mobile-first design ensures that websites are optimized for smaller screens before scaling up.",
+        text: "Cloud technology enables businesses to scale faster, reduce infrastructure costs, and improve collaboration across teams.",
       },
       {
         type: "h2",
-        text: "Benefits of Mobile-First",
-      },
-      {
-        type: "ul",
-        items: ["Better performance", "Improved SEO", "Higher engagement"],
-      },
-    ],
-  },
-
-  {
-    slug: "content-marketing-strategies",
-    title: "Content Marketing Strategies That Actually Work",
-    author: "Maria Fernandez",
-    date: "July 10, 2025",
-    read: "7 min read",
-    image: "/feature-1.png",
-    isFeatured: false,
-    isPopular: false,
-    content: [
-      {
-        type: "p",
-        text: "Content marketing is about delivering value consistently to build long-term trust.",
-      },
-      {
-        type: "h2",
-        text: "Winning Strategies",
+        text: "Key Benefits of Cloud Adoption",
       },
       {
         type: "ul",
         items: [
-          "Know your audience",
-          "Create evergreen content",
-          "Repurpose content across platforms",
+          "Reduced operational costs",
+          "Improved flexibility",
+          "Better security and backup",
+          "Faster deployment cycles",
         ],
       },
     ],
   },
 
   {
-    slug: "ux-writing-conversions",
-    title: "How UX Writing Improves Conversion Rates",
-    author: "Daniel Lee",
-    date: "June 22, 2025",
+    slug: "importance-of-ui-ux-design",
+    title: "Why Great UI/UX Design Is Essential for Digital Success",
+    author: "UXByte Team",
+    date: "March 2, 2026",
     read: "4 min read",
-    image: "/feature-1.png",
+    image: "/fintech.webp",
     isFeatured: false,
-    isPopular: false,
+    isPopular: true,
     content: [
       {
         type: "p",
-        text: "UX writing focuses on clear, concise copy that guides users through digital products.",
+        text: "A well-designed user experience increases engagement, improves customer satisfaction, and drives higher conversion rates.",
       },
       {
         type: "h2",
-        text: "Why Words Matter",
+        text: "What Makes Great UI/UX?",
       },
       {
-        type: "p",
-        text: "Small wording changes can significantly impact user decisions and conversions.",
+        type: "ul",
+        items: [
+          "User-centered design",
+          "Clear navigation",
+          "Responsive experiences",
+          "Accessibility and usability",
+        ],
       },
     ],
   },

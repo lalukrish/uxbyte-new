@@ -1,16 +1,16 @@
-'use client';;
-import * as React from 'react';
-import { Accordion as AccordionPrimitive } from 'radix-ui';
-import { motion, AnimatePresence } from 'motion/react';
+"use client";
+import * as React from "react";
+import { Accordion as AccordionPrimitive } from "radix-ui";
+import { motion, AnimatePresence } from "motion/react";
 
-import { useControlledState } from '@/hooks/use-controlled-state';
-import { getStrictContext } from '@/lib/get-strict-context';
+import { useControlledState } from "@/hooks/use-controlled-state";
+import { getStrictContext } from "@/lib/get-strict-context";
 
-const [AccordionProvider, useAccordion] =
-  getStrictContext('AccordionContext');
+const [AccordionProvider, useAccordion] = getStrictContext("AccordionContext");
 
-const [AccordionItemProvider, useAccordionItem] =
-  getStrictContext('AccordionItemContext');
+const [AccordionItemProvider, useAccordionItem] = getStrictContext(
+  "AccordionItemContext",
+);
 
 function Accordion(props) {
   const [value, setValue] = useControlledState({
@@ -21,14 +21,20 @@ function Accordion(props) {
 
   return (
     <AccordionProvider value={{ value, setValue }}>
-      <AccordionPrimitive.Root data-slot="accordion" {...props} onValueChange={setValue} />
+      <AccordionPrimitive.Root
+        data-slot="accordion"
+        {...props}
+        onValueChange={setValue}
+      />
     </AccordionProvider>
   );
 }
 
 function AccordionItem(props) {
   const { value } = useAccordion();
-  const [isOpen, setIsOpen] = React.useState(value?.includes(props?.value) ?? false);
+  const [isOpen, setIsOpen] = React.useState(
+    value?.includes(props?.value) ?? false,
+  );
 
   React.useEffect(() => {
     setIsOpen(value?.includes(props?.value) ?? false);
@@ -46,12 +52,14 @@ function AccordionHeader(props) {
 }
 
 function AccordionTrigger(props) {
-  return (<AccordionPrimitive.Trigger data-slot="accordion-trigger" {...props} />);
+  return (
+    <AccordionPrimitive.Trigger data-slot="accordion-trigger" {...props} />
+  );
 }
 
 function AccordionContent({
   keepRendered = false,
-  transition = { duration: 0.35, ease: 'easeInOut' },
+  transition = { duration: 0.35, ease: "easeInOut" },
   ...props
 }) {
   const { isOpen } = useAccordionItem();
@@ -63,21 +71,22 @@ function AccordionContent({
           <motion.div
             key="accordion-content"
             data-slot="accordion-content"
-            initial={{ height: 0, opacity: 0, '--mask-stop': '0%', y: 20 }}
+            initial={{ height: 0, opacity: 0, "--mask-stop": "0%", y: 20 }}
             animate={
               isOpen
-                ? { height: 'auto', opacity: 1, '--mask-stop': '100%', y: 0 }
-                : { height: 0, opacity: 0, '--mask-stop': '0%', y: 20 }
+                ? { height: "auto", opacity: 1, "--mask-stop": "100%", y: 0 }
+                : { height: 0, opacity: 0, "--mask-stop": "0%", y: 20 }
             }
             transition={transition}
             style={{
               maskImage:
-                'linear-gradient(black var(--mask-stop), transparent var(--mask-stop))',
+                "linear-gradient(black var(--mask-stop), transparent var(--mask-stop))",
               WebkitMaskImage:
-                'linear-gradient(black var(--mask-stop), transparent var(--mask-stop))',
-              overflow: 'hidden',
+                "linear-gradient(black var(--mask-stop), transparent var(--mask-stop))",
+              overflow: "hidden",
             }}
-            {...props} />
+            {...props}
+          />
         </AccordionPrimitive.Content>
       ) : (
         isOpen && (
@@ -85,23 +94,24 @@ function AccordionContent({
             <motion.div
               key="accordion-content"
               data-slot="accordion-content"
-              initial={{ height: 0, opacity: 0, '--mask-stop': '0%', y: 20 }}
+              initial={{ height: 0, opacity: 0, "--mask-stop": "0%", y: 20 }}
               animate={{
-                height: 'auto',
+                height: "auto",
                 opacity: 1,
-                '--mask-stop': '100%',
+                "--mask-stop": "100%",
                 y: 0,
               }}
-              exit={{ height: 0, opacity: 0, '--mask-stop': '0%', y: 20 }}
+              exit={{ height: 0, opacity: 0, "--mask-stop": "0%", y: 20 }}
               transition={transition}
               style={{
                 maskImage:
-                  'linear-gradient(black var(--mask-stop), transparent var(--mask-stop))',
+                  "linear-gradient(black var(--mask-stop), transparent var(--mask-stop))",
                 WebkitMaskImage:
-                  'linear-gradient(black var(--mask-stop), transparent var(--mask-stop))',
-                overflow: 'hidden',
+                  "linear-gradient(black var(--mask-stop), transparent var(--mask-stop))",
+                overflow: "hidden",
               }}
-              {...props} />
+              {...props}
+            />
           </AccordionPrimitive.Content>
         )
       )}
@@ -109,4 +119,12 @@ function AccordionContent({
   );
 }
 
-export { Accordion, AccordionItem, AccordionHeader, AccordionTrigger, AccordionContent, useAccordion, useAccordionItem };
+export {
+  Accordion,
+  AccordionItem,
+  AccordionHeader,
+  AccordionTrigger,
+  AccordionContent,
+  useAccordion,
+  useAccordionItem,
+};

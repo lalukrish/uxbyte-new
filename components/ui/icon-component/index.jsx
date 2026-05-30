@@ -85,18 +85,18 @@ const HipaaIcon = () => (
 const cards = [
   {
     Icon: ShieldIcon,
-    title: "SOC 2 Type II Certified",
-    desc: "Our systems and internal controls are independently audited to ensure security, availability, and confidentiality.",
+    title: "Enterprise-Grade Security",
+    desc: "We implement industry best practices for data protection, secure development, and infrastructure security to safeguard business-critical information.",
   },
   {
     Icon: CertBadgeIcon,
-    title: "ISO/IEC 27001:2022 Certified",
-    desc: "We maintain an information security management system to safeguard sensitive healthcare data.",
+    title: "Quality-Driven Development",
+    desc: "Our development process follows proven standards for code quality, testing, performance, and scalability to deliver reliable digital solutions.",
   },
   {
     Icon: HipaaIcon,
-    title: "HIPAA Compliant",
-    desc: "Zapare follows strict safeguards to ensure the secure handling and protection of healthcare information.",
+    title: "Cloud & Compliance Ready",
+    desc: "We build secure, scalable applications and cloud solutions designed to meet modern business, privacy, and regulatory requirements.",
   },
 ];
 
@@ -135,11 +135,10 @@ export default function Certifications() {
         </h1> */}
         <Title>
           {" "}
-          Purpose-Built
+          Turning Vision Into
           <br />
           <GlossyText
-            text="Healthcare Solutions
-"
+            text="Digital Reality"
             // backgroundClassName="bg-black dark:bg-blue-600"
             // colors={[
             //   "rgba(168, 85, 247, 1)", // purple
@@ -159,9 +158,9 @@ export default function Certifications() {
         </Title>
 
         <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-          We follow globally recognized security standards and compliance
-          frameworks to ensure the protection, integrity, and privacy of
-          healthcare data.
+          At UXByte, we combine cutting-edge technology, creative thinking, and
+          strategic expertise to deliver digital solutions that help businesses
+          innovate, scale, and achieve measurable growth.
         </p>
       </div>
 

@@ -7,9 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function GlobalNav() {
-  const bgRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const [phase, setPhase] = useState<"center" | "moving">("center");
+  const bgRef = useRef < HTMLDivElement > null;
+  const logoRef = useRef < HTMLDivElement > null;
+  const [phase, setPhase] = (useState < "center") | ("moving" > "center");
   const [introDone, setIntroDone] = useState(false);
   const [isDark, setIsDark] = useState(true);
 
@@ -17,23 +17,26 @@ export default function GlobalNav() {
   useEffect(() => {
     const t1 = setTimeout(() => setPhase("moving"), 900);
 
-    const t2 = setTimeout(() => {
-      const bg = bgRef.current;
-      const logo = logoRef.current;
-      if (!bg || !logo) return;
+    const t2 = setTimeout(
+      () => {
+        const bg = bgRef.current;
+        const logo = logoRef.current;
+        if (!bg || !logo) return;
 
-      gsap.to(logo, { opacity: 0, duration: 0.35, ease: "power2.inOut" });
-      gsap.to(bg, {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.inOut",
-        onComplete: () => {
-          requestAnimationFrame(() =>
-            requestAnimationFrame(() => setIntroDone(true))
-          );
-        },
-      });
-    }, 900 + 1000 + 200);
+        gsap.to(logo, { opacity: 0, duration: 0.35, ease: "power2.inOut" });
+        gsap.to(bg, {
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.inOut",
+          onComplete: () => {
+            requestAnimationFrame(() =>
+              requestAnimationFrame(() => setIntroDone(true)),
+            );
+          },
+        });
+      },
+      900 + 1000 + 200,
+    );
 
     return () => {
       clearTimeout(t1);
@@ -45,8 +48,7 @@ export default function GlobalNav() {
   useEffect(() => {
     if (!introDone) return;
 
-    const triggers: ScrollTrigger[] = [];
-
+    const triggers = [];
     const timer = setTimeout(() => {
       document.querySelectorAll(".dark-section").forEach((section) => {
         triggers.push(
@@ -56,7 +58,7 @@ export default function GlobalNav() {
             end: "bottom 40%",
             onEnter: () => setIsDark(true),
             onEnterBack: () => setIsDark(true),
-          })
+          }),
         );
       });
 
@@ -68,7 +70,7 @@ export default function GlobalNav() {
             end: "bottom 40%",
             onEnter: () => setIsDark(false),
             onEnterBack: () => setIsDark(false),
-          })
+          }),
         );
       });
     }, 100);
@@ -80,7 +82,7 @@ export default function GlobalNav() {
   }, [introDone]);
 
   // ── Shared LogoMark JSX
-  const logoMark = (dark: boolean) => (
+  const logoMark = (dark) => (
     <div className="flex items-center gap-2.5 pl-4 md:pl-16 mt-1">
       <div className="w-[36px] h-[36px] bg-[#6915ae] rounded-[9px] flex items-center justify-center shrink-0">
         <span className="text-[13px] font-extrabold text-white tracking-[-0.04em] leading-none">
@@ -132,9 +134,7 @@ export default function GlobalNav() {
 
       {/* ── Sticky nav after intro */}
       {introDone && (
-        <nav className="fixed top-0 left-0 z-50 p-4">
-          {logoMark(isDark)}
-        </nav>
+        <nav className="fixed top-0 left-0 z-50 p-4">{logoMark(isDark)}</nav>
       )}
     </>
   );

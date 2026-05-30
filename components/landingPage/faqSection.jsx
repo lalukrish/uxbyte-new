@@ -4,6 +4,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/commonComponents/Button";
+import Title from "@/commonComponents/title";
+import GlossyText from "../ui/canvas-text";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -176,9 +178,10 @@ export default function ScrollFaqGsap() {
               <span className="text-black">SIMPLE</span>
               <span className="text-gray-500"> ANSWERS, FAST</span>
             </div>
-            <h2 className="text-2xl md:text-4xl font-bold pl-2 md:pl-4 mb-4 md:mb-6">
-              Frequently Asked Questions
-            </h2>
+            <Title className="flex flex-row items-center gap-2 !pl-8">
+              Frequently
+              <GlossyText text=" Asked Questions" />
+            </Title>
 
             <div className="divide-y divide-gray-300 flex-shrink-0">
               {faqs.map((faq, index) => (

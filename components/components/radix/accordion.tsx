@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { ChevronDownIcon } from 'lucide-react';
+import * as React from "react";
+import { ChevronDownIcon } from "lucide-react";
 
 import {
   Accordion as AccordionPrimitive,
@@ -7,13 +7,22 @@ import {
   AccordionHeader as AccordionHeaderPrimitive,
   AccordionTrigger as AccordionTriggerPrimitive,
   AccordionContent as AccordionContentPrimitive,
-  type AccordionProps as AccordionPrimitiveProps,
-  type AccordionItemProps as AccordionItemPrimitiveProps,
-  type AccordionTriggerProps as AccordionTriggerPrimitiveProps,
-  type AccordionContentProps as AccordionContentPrimitiveProps,
-} from '@/components/animate-ui/primitives/radix/accordion';
-import { cn } from '@/lib/utils';
+} from "@/components/animate-ui/primitives/radix/accordion";
+import { cn } from "@/lib/utils";
 
+type AccordionPrimitiveProps = React.ComponentProps<typeof AccordionPrimitive>;
+
+type AccordionItemPrimitiveProps = React.ComponentProps<
+  typeof AccordionItemPrimitive
+>;
+
+type AccordionTriggerPrimitiveProps = React.ComponentProps<
+  typeof AccordionTriggerPrimitive
+>;
+
+type AccordionContentPrimitiveProps = React.ComponentProps<
+  typeof AccordionContentPrimitive
+>;
 type AccordionProps = AccordionPrimitiveProps;
 
 function Accordion(props: AccordionProps) {
@@ -25,7 +34,7 @@ type AccordionItemProps = AccordionItemPrimitiveProps;
 function AccordionItem({ className, ...props }: AccordionItemProps) {
   return (
     <AccordionItemPrimitive
-      className={cn('border-b last:border-b-0', className)}
+      className={cn("border-b last:border-b-0", className)}
       {...props}
     />
   );
@@ -45,7 +54,7 @@ function AccordionTrigger({
     <AccordionHeaderPrimitive className="flex">
       <AccordionTriggerPrimitive
         className={cn(
-          'focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180',
+          "focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180",
           className,
         )}
         {...props}
@@ -68,7 +77,7 @@ function AccordionContent({
 }: AccordionContentProps) {
   return (
     <AccordionContentPrimitive {...props}>
-      <div className={cn('text-sm pt-0 pb-4', className)}>{children}</div>
+      <div className={cn("text-sm pt-0 pb-4", className)}>{children}</div>
     </AccordionContentPrimitive>
   );
 }

@@ -7,6 +7,7 @@ import Title from "@/commonComponents/title";
 import { EncryptedText } from "../ui/encrypted-text";
 import { Button } from "@/commonComponents/Button";
 import { ArrowRight } from "lucide-react";
+import GlossyText from "../ui/canvas-text";
 
 export default function InspirationSection({ blogs = [] }) {
   // Only popular blogs (max 3)
@@ -28,7 +29,12 @@ export default function InspirationSection({ blogs = [] }) {
             revealedClassName="text-[#535658] dark:text-[#535658]"
             revealDelayMs={30}
           />
-          <Title className="">Latest Blogs</Title>
+          <div className="mb-6 pb-4">
+            <Title className="flex items-center gap-2">
+              Latest
+              <GlossyText text=" Blog Posts" />
+            </Title>
+          </div>
         </div>
 
         <Link
