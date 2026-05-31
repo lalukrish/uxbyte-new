@@ -505,7 +505,11 @@ export default function Hero({
                     variant="outlined"
                     className={"text-white!"}
                     iconRight={<ArrowBigRight />}
-                  ></Button>
+                    iconLeft={null}
+                    href={undefined}
+                    ariaLabel={"View Our Work"}
+                    onClick={() => {}}
+                  />
                   <span className="text-xs md:text-[13px] text-white/80 underline cursor-pointer hover:text-white/70 transition-colors duration-200">
                     Read case studies →
                   </span>

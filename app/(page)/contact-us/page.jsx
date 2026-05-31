@@ -4,157 +4,157 @@ import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 import { EncryptedText } from "@/components/ui/encrypted-text";
 import Title from "@/commonComponents/title";
 
-const SpaceBackground = () => {
-  const canvasRef = useRef(null);
+// const SpaceBackground = () => {
+//   const canvasRef = useRef(null);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    let animationFrameId;
+//   useEffect(() => {
+//     const canvas = canvasRef.current;
+//     const ctx = canvas.getContext("2d");
+//     let animationFrameId;
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+//     const resizeCanvas = () => {
+//       canvas.width = window.innerWidth;
+//       canvas.height = window.innerHeight;
+//     };
+//     resizeCanvas();
+//     window.addEventListener("resize", resizeCanvas);
 
-    const stars = Array.from({ length: 300 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      radius: Math.random() * 1.2,
-      opacity: Math.random(),
-      twinkleSpeed: Math.random() * 0.015 + 0.008,
-    }));
+//     const stars = Array.from({ length: 300 }, () => ({
+//       x: Math.random() * canvas.width,
+//       y: Math.random() * canvas.height,
+//       radius: Math.random() * 1.2,
+//       opacity: Math.random(),
+//       twinkleSpeed: Math.random() * 0.015 + 0.008,
+//     }));
 
-    const moon = {
-      radius: 18,
-      orbitRadius: 100,
-      orbitSpeed: 0.008,
-      angle: 0,
-      x: canvas.width * 0.15,
-      y: canvas.height * 0.25,
-    };
+//     const moon = {
+//       radius: 18,
+//       orbitRadius: 100,
+//       orbitSpeed: 0.008,
+//       angle: 0,
+//       x: canvas.width * 0.15,
+//       y: canvas.height * 0.25,
+//     };
 
-    const iss = {
-      x: canvas.width * 0.75,
-      y: canvas.height * 0.5,
-      size: 4,
-      angle: 0,
-      orbitRadius: 150,
-      speed: 0.012,
-      trail: [],
-    };
+//     const iss = {
+//       x: canvas.width * 0.75,
+//       y: canvas.height * 0.5,
+//       size: 4,
+//       angle: 0,
+//       orbitRadius: 150,
+//       speed: 0.012,
+//       trail: [],
+//     };
 
-    const drawMoon = () => {
-      moon.angle += moon.orbitSpeed;
-      const moonX = moon.x + Math.cos(moon.angle) * moon.orbitRadius;
-      const moonY = moon.y + Math.sin(moon.angle) * moon.orbitRadius * 0.5;
+//     const drawMoon = () => {
+//       moon.angle += moon.orbitSpeed;
+//       const moonX = moon.x + Math.cos(moon.angle) * moon.orbitRadius;
+//       const moonY = moon.y + Math.sin(moon.angle) * moon.orbitRadius * 0.5;
 
-      const moonGradient = ctx.createRadialGradient(
-        moonX - moon.radius * 0.4,
-        moonY - moon.radius * 0.4,
-        moon.radius * 0.1,
-        moonX,
-        moonY,
-        moon.radius,
-      );
-      moonGradient.addColorStop(0, "#c9c9c9");
-      moonGradient.addColorStop(0.7, "#8a8a8a");
-      moonGradient.addColorStop(1, "#5a5a5a");
+//       const moonGradient = ctx.createRadialGradient(
+//         moonX - moon.radius * 0.4,
+//         moonY - moon.radius * 0.4,
+//         moon.radius * 0.1,
+//         moonX,
+//         moonY,
+//         moon.radius,
+//       );
+//       moonGradient.addColorStop(0, "#c9c9c9");
+//       moonGradient.addColorStop(0.7, "#8a8a8a");
+//       moonGradient.addColorStop(1, "#5a5a5a");
 
-      ctx.fillStyle = moonGradient;
-      ctx.beginPath();
-      ctx.arc(moonX, moonY, moon.radius, 0, Math.PI * 2);
-      ctx.fill();
+//       ctx.fillStyle = moonGradient;
+//       ctx.beginPath();
+//       ctx.arc(moonX, moonY, moon.radius, 0, Math.PI * 2);
+//       ctx.fill();
 
-      ctx.fillStyle = "rgba(90, 90, 90, 0.4)";
-      ctx.beginPath();
-      ctx.arc(moonX - 5, moonY - 3, 3, 0, Math.PI * 2);
-      ctx.fill();
+//       ctx.fillStyle = "rgba(90, 90, 90, 0.4)";
+//       ctx.beginPath();
+//       ctx.arc(moonX - 5, moonY - 3, 3, 0, Math.PI * 2);
+//       ctx.fill();
 
-      ctx.beginPath();
-      ctx.arc(moonX + 4, moonY + 2, 2, 0, Math.PI * 2);
-      ctx.fill();
+//       ctx.beginPath();
+//       ctx.arc(moonX + 4, moonY + 2, 2, 0, Math.PI * 2);
+//       ctx.fill();
 
-      ctx.beginPath();
-      ctx.arc(moonX - 2, moonY + 5, 2.5, 0, Math.PI * 2);
-      ctx.fill();
-    };
+//       ctx.beginPath();
+//       ctx.arc(moonX - 2, moonY + 5, 2.5, 0, Math.PI * 2);
+//       ctx.fill();
+//     };
 
-    const drawISS = () => {
-      iss.angle += iss.speed;
-      const centerX = canvas.width * 0.75;
-      const centerY = canvas.height * 0.5;
-      iss.x = centerX + Math.cos(iss.angle) * iss.orbitRadius;
-      iss.y = centerY + Math.sin(iss.angle) * iss.orbitRadius * 0.6;
+//     const drawISS = () => {
+//       iss.angle += iss.speed;
+//       const centerX = canvas.width * 0.75;
+//       const centerY = canvas.height * 0.5;
+//       iss.x = centerX + Math.cos(iss.angle) * iss.orbitRadius;
+//       iss.y = centerY + Math.sin(iss.angle) * iss.orbitRadius * 0.6;
 
-      iss.trail.push({ x: iss.x, y: iss.y });
-      if (iss.trail.length > 40) iss.trail.shift();
+//       iss.trail.push({ x: iss.x, y: iss.y });
+//       if (iss.trail.length > 40) iss.trail.shift();
 
-      for (let i = 0; i < iss.trail.length - 1; i++) {
-        const alpha = i / iss.trail.length;
-        ctx.beginPath();
-        ctx.moveTo(iss.trail[i].x, iss.trail[i].y);
-        ctx.lineTo(iss.trail[i + 1].x, iss.trail[i + 1].y);
-        ctx.strokeStyle = `rgba(150, 200, 255, ${alpha * 0.3})`;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
+//       for (let i = 0; i < iss.trail.length - 1; i++) {
+//         const alpha = i / iss.trail.length;
+//         ctx.beginPath();
+//         ctx.moveTo(iss.trail[i].x, iss.trail[i].y);
+//         ctx.lineTo(iss.trail[i + 1].x, iss.trail[i + 1].y);
+//         ctx.strokeStyle = `rgba(150, 200, 255, ${alpha * 0.3})`;
+//         ctx.lineWidth = 1;
+//         ctx.stroke();
+//       }
 
-      ctx.fillStyle = "#4a90e2";
-      ctx.fillRect(iss.x - 8, iss.y - 1, 16, 2);
+//       ctx.fillStyle = "#4a90e2";
+//       ctx.fillRect(iss.x - 8, iss.y - 1, 16, 2);
 
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(iss.x - 2, iss.y - 2, 4, 4);
+//       ctx.fillStyle = "#ffffff";
+//       ctx.fillRect(iss.x - 2, iss.y - 2, 4, 4);
 
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = "#ffffff";
-      ctx.fillStyle = "#ffffff";
-      ctx.beginPath();
-      ctx.arc(iss.x, iss.y, iss.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.shadowBlur = 0;
-    };
+//       ctx.shadowBlur = 8;
+//       ctx.shadowColor = "#ffffff";
+//       ctx.fillStyle = "#ffffff";
+//       ctx.beginPath();
+//       ctx.arc(iss.x, iss.y, iss.size, 0, Math.PI * 2);
+//       ctx.fill();
+//       ctx.shadowBlur = 0;
+//     };
 
-    const animate = () => {
-      ctx.fillStyle = "#000000";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+//     const animate = () => {
+//       ctx.fillStyle = "#000000";
+//       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      stars.forEach((star) => {
-        star.opacity += star.twinkleSpeed;
-        if (star.opacity > 1 || star.opacity < 0.2) {
-          star.twinkleSpeed *= -1;
-        }
+//       stars.forEach((star) => {
+//         star.opacity += star.twinkleSpeed;
+//         if (star.opacity > 1 || star.opacity < 0.2) {
+//           star.twinkleSpeed *= -1;
+//         }
 
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
-        ctx.fill();
-      });
+//         ctx.beginPath();
+//         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+//         ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+//         ctx.fill();
+//       });
 
-      drawMoon();
-      drawISS();
+//       drawMoon();
+//       drawISS();
 
-      animationFrameId = requestAnimationFrame(animate);
-    };
+//       animationFrameId = requestAnimationFrame(animate);
+//     };
 
-    animate();
+//     animate();
 
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
+//     return () => {
+//       window.removeEventListener("resize", resizeCanvas);
+//       cancelAnimationFrame(animationFrameId);
+//     };
+//   }, []);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full"
-      style={{ background: "#000000" }}
-    />
-  );
-};
+//   return (
+//     <canvas
+//       ref={canvasRef}
+//       className="absolute inset-0 w-full h-full"
+//       style={{ background: "#000000" }}
+//     />
+//   );
+// };
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -207,7 +207,7 @@ const ContactForm = () => {
 
   return (
     <div className="min-h-screen relative flex items-center justify-center p-4 lg:p-8 overflow-hidden">
-      <SpaceBackground />
+      {/* <SpaceBackground /> */}
 
       <div className="relative z-10 w-full max-w-7xl grid lg:grid-cols-2 gap-8 items-start md:mt-20">
         {/* Left Side - Info */}
